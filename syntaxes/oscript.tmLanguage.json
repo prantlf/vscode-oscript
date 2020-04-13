@@ -1,0 +1,158 @@
+{
+  "name": "OScript",
+  "scopeName": "source.oscript",
+  "comment": "OScript Syntax version 1.0",
+  "patterns": [
+    {
+      "name": "constant.numeric.integer.oscript",
+      "match": "\\b\\d+(?![eE.0-9])"
+    },
+    {
+      "name": "constant.numeric.float.oscript",
+      "match": "\\b\\d+(\\.\\d+)?([eE]-?\\d*)?"
+    },
+    {
+      "name": "string.quoted.single.oscript",
+      "begin": "'",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.oscript" }
+      },
+      "end": "'",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.oscript" }
+      }
+    },
+    {
+      "name": "string.quoted.double.oscript",
+      "begin": "\"",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.oscript" }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.oscript" }
+      }
+    },
+    {
+      "name": "comment.block.oscript",
+      "begin": "/\\*",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.begin.oscript" }
+      },
+      "end": "\\*/",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.comment.end.oscript" }
+      }
+    },
+    {
+      "name": "comment.line.double-slash.oscript",
+      "begin": "//",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.oscript" }
+      },
+      "end": "$"
+    },
+    {
+      "name": "meta.function.oscript",
+      "match": "(?i)\\b(?:(\\w+)\\s+)?(function)\\b\\s+(\\w+)\\s+(\\w+)",
+      "captures": {
+        "1": { "name": "storage.modifier.oscript" },
+        "2": { "name": "storage.type.function.oscript" },
+        "3": { "name": "entity.name.type.oscript" },
+        "4": { "name": "entity.name.function.oscript" }
+      }
+    },
+    {
+      "name": "meta.function.oscript",
+      "match": "(?i)\\b(script)\\b\\s+(\\w+)",
+      "captures": {
+        "1": { "name": "storage.type.function.oscript" },
+        "2": { "name": "entity.name.function.oscript" }
+      }
+    },
+    {
+      "name": "keyword.control.oscript",
+      "match": "(?i)\\b(break|breakif|by|case|continue|continueif|default|downto|else|elseif|end|for|goto|if|in|repeat|return|switch|to|until|while)\\b"
+    },
+    {
+      "name": "constant.language.oscript",
+      "match": "(?i)\\b(false|none|true|undefined)\\b"
+    },
+    {
+      "name": "variable.language.self.oscript",
+      "match": "(?i)\\b(super|this)\\b"
+    },
+    {
+      "name": "variable.name.oscript",
+      "match": "(?i)\\$(\\w+)\\b"
+    },
+    {
+      "name": "support.constant.oscript",
+      "match": "(?i)\\b(booleantype|bytestype|datatype|dynamictype|errortype|externtype|integertype|listtype|longtype|objecttype|objreftype|pointtype|realtype|scripttype|stringtype|undefinedtype|voidtype)\\b"
+    },
+    {
+      "name": "support.function.oscript",
+      "match": "(?i)\\b(datatypename|echo|echodebug|echoerror|echoinfo|echostamp|echowarn|getfeatures|isdefined|iserror|isfeature|isinvokable|isnoterror|isnotset|isobject|isset|isundefined|length|nparameters|parameters|pointh|pointv|type)\\b"
+    },
+    {
+      "name": "support.type.oscript",
+      "match": "(?i)\\b(cachetree|capiconnect|capierr|capilog|capilogin|compiler|dapisession|dapinode|dapiversion|dapistream|filecopy|fileprefs|frame|javaobject|mailmessage|pop3session|smtpsession|ssloptions|patfind|patchange|regex|socket|sqlconnection|sqlcursor|uapisession|uapiuser|wapisession|wapimap|wapimaptask|wapiwork|wapisubwork|domattr|domcdatasection|domcharacterdata|domcomment|domdocument|domdocumentfragment|domdocumenttype|domelement|domentity|domentityreference|domimplementation|domnamednodemap|domnode|domnodelist|domnotation|domparser|domprocessinginstruction|domtext|saxparser|xslprocessor)\\b"
+    },
+    {
+      "name": "support.variable.oscript",
+      "match": "(?i)\\b(capi|dapi|env|global|language|logging|math|memcached|otds|pattern|security|sql|str|system|uapi|vis|wapi|web|zip)\\b"
+    },
+    {
+      "name": "keyword.type.oscript",
+      "match": "(?i)\\b(assoc|boolean|bytes|date|dynamic|error|extern|file|integer|interface|list|long|object|package|point|real|recarray|record|script|string|void)\\b"
+    },
+    {
+      "name": "storage.modifier.oscript",
+      "match": "(?i)\\b(final|inherits|private|public|override|using)\\b"
+    },
+    {
+      "name": "keyword.operator.logical.oscript",
+      "match": "(?i)\\b(and|eq|ge|gt|le|lt|ne|not|or|xor)\\b"
+    },
+    {
+      "name": "keyword.operator.assignment.compound.oscript",
+      "match": "\\*=|/=|\\+=|\\-="
+    },
+    {
+      "name": "keyword.operator.assignment.compound.bitwise.oscript",
+      "match": "\\&=|\\^=|\\|="
+    },
+    {
+      "name": "keyword.operator.bitwise.shift.oscript",
+      "match": "<<|>>|>>"
+    },
+    {
+      "name": "keyword.operator.comparison.oscript",
+      "match": "==|!="
+    },
+    {
+      "name": "keyword.operator.relational.oscript",
+      "match": "<=|>=|<>|<|>"
+    },
+    {
+      "name": "keyword.operator.logical.oscript",
+      "match": "\\!|&&|\\|\\|"
+    },
+    {
+      "name": "keyword.operator.bitwise.oscript",
+      "match": "\\&|~|\\^|\\|"
+    },
+    {
+      "name": "keyword.operator.assignment.oscript",
+      "match": "\\="
+    },
+    {
+      "name": "keyword.operator.arithmetic.oscript",
+      "match": "%|\\*|/|-|\\+"
+    },
+    {
+      "name": "keyword.preprocessor.oscript",
+      "match": "(?i)#\\s*(define|else|endif|ifdef|ifndef|undef)\\b"
+    }
+  ]
+}
