@@ -60,7 +60,7 @@
     "syntax-highlighting"
   ],
   "scripts": {
-    "test": "jsonlint -Dq language-configuration.json package.json syntaxes/oscript.tmLanguage.json"
+    "vscode:prepublish": "jsonlint -Dq language-configuration.json package.json syntaxes/oscript.tmLanguage.json"
   },
   "devDependencies": {
     "@prantlf/jsonlint": "10.2.0"

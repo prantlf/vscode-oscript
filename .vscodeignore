@@ -4,3 +4,4 @@
 .vscodeignore
 .vscode/**
 syntaxes/tmlanguage.json
+test/
