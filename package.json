@@ -42,7 +42,7 @@
           ".os",
           ".osx"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./syntaxes/oscript.configuration.json"
       }
     ],
     "grammars": [
