@@ -26,13 +26,13 @@
     ["`", "`"]
   ],
   "indentationRules": {
-    "increaseIndentPattern": "((\\b(case|default|else|for|function|if|object|repeat|switch|while)\\b((?!\\b(elseif|else|end|until)\\b).)*)|(\\{\\s*))$",
-    "decreaseIndentPattern": "^\\s*((\\b(elseif|else|end|until)\\b)|(\\})|(\\)))"
+    "increaseIndentPattern": "((\\b(case|default|do|else|for|function|if|object|repeat|switch|while)\\b((?!\\b(elseif|else|end|until)\\b).)*)|(\\{\\s*))$",
+    "decreaseIndentPattern": "^\\s*((\\b(else|elseif|end|until)\\b)|(\\})|(\\)))"
   },
   "folding": {
     "markers": {
-        "start": "#(?:ifdef|ifndef|else)\\b",
-        "end": "#endif\\b"
+        "start": "\\b(do|if|function|object|repeat|while)\\b|#(ifdef|ifndef)\\b|{[ \\t]*$",
+        "end": "(\\bend|until|#endif)\\b|^\\s*}"
     }
   }
 }
