@@ -20,7 +20,7 @@ examples in `test/` to check the effect of your changes.
 
 ## Others
 
-Other editors with the syntax highlighting for OScript are based on [Scintilla]. [SciTE], [Geany], [Nodepad++] and [others] include a [colourful theme] for the [OScript lexer].
+Users of [Text Mate] can install the [OScript Bundle]. Other editors with the syntax highlighting for OScript are based on [Scintilla], for example. [SciTE], [Geany], [Nodepad++] and [others] include a [colourful theme] for the [OScript lexer].
 
 Web pages can highlight the OScript syntax of a code example [using JavaScript].
 
@@ -30,6 +30,8 @@ Copyright (c) 2020 Ferdinand Prantl
 
 Licensed under the [MIT license].
 
+[Text Mate]: https://macromates.com/
+[OScript Bundle]: https://github.com/prantlf/oscript.tmbundle
 [Scintilla]: https://scintilla.org/
 [SciTE]: https://www.scintilla.org/SciTE.html
 [colourful theme]: https://sourceforge.net/p/scintilla/scite/ci/default/tree/src/oscript.properties
