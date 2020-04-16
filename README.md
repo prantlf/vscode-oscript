@@ -12,6 +12,18 @@ An example of the syntax highlighting in the Light+ theme:
 
 ![Light](images/light.png)
 
+## Features
+
+* Syntax Highlighting
+* Folding
+* Commenting / Uncommenting
+
+## Planned
+
+* Linting
+* IntelliSense
+* Snippets
+
 ## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding
@@ -20,7 +32,7 @@ examples in `test/` to check the effect of your changes.
 
 ## Others
 
-Users of [Text Mate] can install the [OScript Bundle]. Other editors with the syntax highlighting for OScript are based on [Scintilla], for example. [SciTE], [Geany], [Nodepad++] and [others] include a [colourful theme] for the [OScript lexer].
+Users of [TextMate] can install the [OScript Bundle]. Other editors with the syntax highlighting for OScript are based on [Scintilla], for example. [SciTE], [Geany], [Nodepad++] and [others] include a [colourful theme] for the [OScript lexer].
 
 Web pages can highlight the OScript syntax of a code example [using JavaScript].
 
@@ -30,7 +42,7 @@ Copyright (c) 2020 Ferdinand Prantl
 
 Licensed under the [MIT license].
 
-[Text Mate]: https://macromates.com/
+[TextMate]: https://macromates.com/
 [OScript Bundle]: https://github.com/prantlf/oscript.tmbundle
 [Scintilla]: https://scintilla.org/
 [SciTE]: https://www.scintilla.org/SciTE.html
