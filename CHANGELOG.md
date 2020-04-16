@@ -1,3 +1,9 @@
+# [0.1.1](https://github.com/prantlf/vscode-oscript/compare/v0.1.0...v0.1.0) (2020-04-16)
+
+### Fixes
+
+* Recognise keywords "script" and "endscript" ([5d8838b](https://github.com/prantlf/vscode-oscript/commit/5d8838b60994f2b4d4f8083f05f44e7cfe25d31b))
+
 # [0.1.0](https://github.com/prantlf/vscode-oscript/compare/v0.0.2...v0.1.0) (2020-04-15)
 
 ### Fixes
