@@ -72,7 +72,7 @@
     },
     {
       "name": "keyword.control.oscript",
-      "match": "(?i)\\b(break|breakif|by|case|continue|continueif|default|downto|else|elseif|end|for|goto|if|in|repeat|return|switch|to|until|while)\\b"
+      "match": "(?i)\\b(break|breakif|by|case|continue|continueif|default|downto|else|elseif|end|endscript|for|goto|if|in|repeat|return|switch|to|until|while)\\b"
     },
     {
       "name": "constant.language.oscript",

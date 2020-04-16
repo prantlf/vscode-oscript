@@ -18,6 +18,9 @@ public object Document inherits CORE::Node
     end
   end
 
+  script Empty
+  endscript
+
 end
 
 end
