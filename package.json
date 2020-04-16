@@ -60,7 +60,7 @@
     "syntax-highlighting"
   ],
   "scripts": {
-    "vscode:prepublish": "jsonlint -Dq language-configuration.json package.json syntaxes/oscript.tmLanguage.json",
+    "vscode:prepublish": "jsonlint -Dq package.json syntaxes/oscript.configuration.json syntaxes/oscript.tmLanguage.json",
     "vsce:patch": "vsce publish --baseImagesUrl https://raw.githubusercontent.com/prantlf/vscode-oscript/master/ patch",
     "vsce:minor": "vsce publish --baseImagesUrl https://raw.githubusercontent.com/prantlf/vscode-oscript/master/ minor"
   },
