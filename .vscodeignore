@@ -3,5 +3,6 @@
 .gitignore
 .vscodeignore
 .vscode/**
+syntaxes/*.yaml
 syntaxes/tmlanguage.json
 test/

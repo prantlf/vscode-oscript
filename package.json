@@ -60,11 +60,17 @@
     "syntax-highlighting"
   ],
   "scripts": {
-    "vscode:prepublish": "jsonlint -Dq package.json syntaxes/oscript.configuration.json syntaxes/oscript.tmLanguage.json",
+    "lint:json": "jsonlint -Dq package.json syntaxes/oscript.configuration.json syntaxes/oscript.tmLanguage.json",
+    "lint:yaml": "yamllint syntaxes/oscript.configuration.yaml syntaxes/oscript.tmLanguage.yaml",
+    "convert": "js-yaml syntaxes/oscript.configuration.yaml > syntaxes/oscript.configuration.json && js-yaml syntaxes/oscript.tmLanguage.yaml > syntaxes/oscript.tmLanguage.json",
+    "prepare": "npm run lint:yaml && npm run convert",
+    "vscode:prepublish": "npm run lint:json",
     "vsce:patch": "vsce publish --baseImagesUrl https://raw.githubusercontent.com/prantlf/vscode-oscript/master/ patch",
     "vsce:minor": "vsce publish --baseImagesUrl https://raw.githubusercontent.com/prantlf/vscode-oscript/master/ minor"
   },
   "devDependencies": {
-    "@prantlf/jsonlint": "10.2.0"
+    "@prantlf/jsonlint": "10.2.0",
+    "js-yaml": "3.13.1",
+    "yaml-lint": "1.2.4"
   }
 }
