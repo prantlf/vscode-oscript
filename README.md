@@ -24,6 +24,18 @@ An example of the syntax highlighting in the Light+ theme:
 * IntelliSense
 * Snippets
 
+## Notes
+
+If you keep to the official OScript coding standard, use tabs and set the visual tab size to 4 in `settings.json`:
+
+```json
+"[oscript]": {
+  "editor.tabSize": 4,
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": false
+}
+````
+
 ## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding
