@@ -206,7 +206,7 @@ Web pages can highlight the OScript syntax of a code example [using JavaScript].
 
 ## License
 
-Copyright (c) 2020-2021Ferdinand Prantl
+Copyright (c) 2020-2021 Ferdinand Prantl
 
 The logo was based on an [original icon](https://icon-icons.com/icon/file-type-vscode/130084) published among [vscode by Roberto Huertas](https://icon-icons.com/pack/vscode/2107) under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license. Thank you!
 

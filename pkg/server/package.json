@@ -1,7 +1,7 @@
 {
   "name": "oscript-language-server",
   "description": "Syntax checking, highlighting, hover hints and other support for the OScript language in Visual Studio Code.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "Ferdinand Prantl",
     "email": "prantlf@gmail.com",

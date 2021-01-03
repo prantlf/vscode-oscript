@@ -19,7 +19,6 @@ export default function (name, plugins = []) {
       commonjs(),
       ...plugins,
       sucrase({
-        exclude: ['node_modules/**'],
         transforms: ['typescript'],
         production
       }),

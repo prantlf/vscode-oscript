@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+Fix the dependency on oscript-ast-walker.
+
 ## 0.2.0
 
 * Add a language server with the syntax-checking, quick fixes, built-in type completion, hover hints, symbol outline, local identifier definition, references and renaming.
