@@ -1,0 +1,244 @@
+-
+  id: New
+  type: Method
+  synopsis: 'POP3Session.New(String host, [Integer port]): POP3Session'
+  comment: |-
+    Returns a new POP3Session object
+
+    **Parameters**:
+      host: IP address or domain name of POP3 host.
+      port: POP3 connection port, optional and defaults to 110
+
+    **Result**:
+      A new POP3Session object or undefined if there was an error
+      constructing the object.
+-
+  id: Close
+  type: Method
+  synopsis: 'POP3Session.Close(): Integer'
+  comment: |-
+    No parameters.  Closes the session.
+
+    **Parameters**:
+      None:
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: DeleteMessage
+  type: Method
+  synopsis: 'POP3Session.DeleteMessage(Dynamic messageIndex): Integer'
+  comment: |-
+    The messageIndex parameter can be either an Integer ID or a
+    String UID.  Marks the specified message for deletion on the
+    server.
+
+    **Parameters**:
+      messageIndex: either an Integer ID or a String UID of the
+                    message to retrieve
+
+    **Result**:
+      Returns 0 if successful, -1 if any errors occurred.
+-
+  id: GetLastError
+  type: Method
+  synopsis: 'POP3Session.GetLastError(): String'
+  comment: |-
+    No parameters.  Returns an error string for the last error that
+    occured.
+
+
+    **Result**:
+      Returns an error string for the last error that occured.
+-
+  id: GetTimeout
+  type: Method
+  synopsis: 'POP3Session.GetTimeout(): Integer'
+  comment: |-
+    Gets the timeout value for POP3 commands.  The timeout is in
+    milliseconds.
+
+    **Parameters**:
+      None:
+
+    **Result**:
+      Returns the timeout in milliseconds, -1 if an error
+      occured.
+-
+  id: GetUID
+  type: Method
+  synopsis: 'POP3Session.GetUID(Integer messageIndex): String'
+  comment: |-
+    Returns the UID for the given message.  If no message exists,
+    returns and empty string.
+
+    **Parameters**:
+      messageIndex: ID of the message to retrieve
+
+    **Result**:
+      Returns the UID for the given message.  If no message exists,
+      returns and empty string.
+-
+  id: InitContext
+  type: Method
+  synopsis: 'POP3Session.InitContext(SSLOptions options): Integer'
+  comment: |-
+    Sets the SSL options for a secure connection.  You must call this
+    before attempting to do a SecureLogin() call.
+
+    **Parameters**:
+      options: an instance of SSLOptions.
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: ListMessage
+  type: Method
+  synopsis: 'POP3Session.ListMessage(Dynamic messageIndex): Integer'
+  comment: |-
+    The messageIndex parameter can be either an Integer ID or a
+    String UID.  Returns the size of the message specified by
+    mesgIndex or -1 if any errors occurred.
+
+    **Parameters**:
+      messageIndex: either an Integer ID or a String UID of the
+                    message to retrieve
+
+    **Result**:
+      Returns the size of the message specified by mesgIndex or -1 if
+      any errors occurred.
+-
+  id: ListMessages
+  type: Method
+  synopsis: 'POP3Session.ListMessages([Integer listType]): List'
+  comment: |-
+    If listType is not specified or LIST_BY_IDS, then it returns a
+    List of the message ids and sizes, one after the other.  Ie,
+    1,234,2,3435,3,5430. If listType is LIST_BY_UIDS, then it
+    returns a List of the message ids and their UID strings, one
+    after the other, ie,
+    1,34DF32EAC3,2,64EA32EDC3,3,354456CAE3.
+
+    **Parameters**:
+      listType: type of list to return, either LIST_BY_IDS, or
+                LIST_BY_UIDS.
+
+    **Result**:
+      Returns a list of ids.
+-
+  id: Login
+  type: Method
+  synopsis: 'POP3Session.Login(String username, String password): Boolean'
+  comment: |-
+    The client will check server capabilities and authenticate using
+    CRAM-MD5 if available automatically, otherwise, it will login
+    with CLEAR.
+
+    **Parameters**:
+      username: username used to login to POP3 server.
+      password: password used to login to POP3 server.
+
+    **Result**:
+      Returns TRUE for success and FALSE if an error occurred.
+-
+  id: MessageCount
+  type: Method
+  synopsis: 'POP3Session.MessageCount(): Integer'
+  comment: |-
+    No parameters.  Returns the number of messages for the logged in
+    user on the POP3 server.
+
+
+    **Result**:
+      Returns the number of messages for the logged in user on the
+      POP3 server.
+-
+  id: RetrieveHeader
+  type: Method
+  synopsis: 'POP3Session.RetrieveHeader(Dynamic messageIndex): List'
+  comment: |-
+    The messageIndex parameter can be either an Integer ID or a
+    String UID.  Returns a List composed of the key/value string
+    pairs found in the header of the given message.  The return
+    value will be Undefined if no message exists at that index.  Ie,
+    key1, value1, key2, value2, etc.
+
+    **Parameters**:
+      messageIndex: either an Integer ID or a String UID of the
+                    message to retrieve
+
+    **Result**:
+      Returns a List for the given mesgIndex.  The return value will
+      be Undefined if no message exists at that index.
+-
+  id: RetrieveMessage
+  type: Method
+  synopsis: 'POP3Session.RetrieveMessage(Dynamic messageIndex): MailMessage'
+  comment: |-
+    The messageIndex parameter can be either an Integer ID or a
+    String UID.  Returns a MailMessage class for the given
+    messageIndex.  The return value will be Undefined if no message
+    exists at that index.
+
+    **Parameters**:
+      messageIndex: either an Integer ID or a String UID of the
+                    message to retrieve
+
+    **Result**:
+      Returns a MailMessage class for the given mesgIndex.  The
+      return value will be Undefined if no message exists at that
+      index.
+-
+  id: SecureLogin
+  type: Method
+  synopsis: 'POP3Session.SecureLogin(String username, String password): Integer'
+  comment: |-
+    Does an SSL secure login.  You must have called InitContext()
+    before this.
+
+    **Parameters**:
+      username: user login on POP3 server
+      password: user password for POP3 server
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: SendCommand
+  type: Method
+  synopsis: 'POP3Session.SendCommand(String command, [String arguments]): Integer'
+  comment: |-
+    Use this to send other raw POP3 commands.  The arguments param is
+    optional.
+
+    **Parameters**:
+      command: command to send
+      arguments: command arguments to send
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: ServerHasUIDs
+  type: Method
+  synopsis: 'POP3Session.ServerHasUIDs(): Boolean'
+  comment: |-
+    Returns TRUE if the server supports UIDL command, FALSE
+    otherwise
+
+    **Parameters**:
+      None:
+
+    **Result**:
+      TRUE if the server supports UIDL command, FALSE otherwise.
+-
+  id: SetTimeout
+  type: Method
+  synopsis: 'POP3Session.SetTimeout(Integer timeout): Integer'
+  comment: |-
+    Sets the timeout value for POP3 commands.  The timeout is in
+    milliseconds.
+
+    **Parameters**:
+      timeout: timeout in milliseconds.
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.

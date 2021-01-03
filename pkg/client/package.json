@@ -1,0 +1,9 @@
+{
+  "name": "vscode-oscript-language-client",
+  "private": true,
+  "devDependencies": {
+    "@rollup/plugin-json": "4.1.0",
+    "@types/vscode": "1.52.0",
+    "vscode-languageclient": "7.0.0"
+  }
+}

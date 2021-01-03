@@ -1,0 +1,456 @@
+-
+  id: AUTOCOMMIT
+  type: Property
+  synopsis: 'Sql.AUTOCOMMIT: Integer'
+  comment: |-
+    A commit flag for ODBC.
+-
+  id: CACHE
+  type: Property
+  synopsis: 'Sql.CACHE: Integer'
+  comment: |-
+    This attribute directs SQL.Declare() to cache the cursor,
+    allowing for rows to be fetched from the database more
+    efficiently.
+-
+  id: CACHEDYNAMIC
+  type: Property
+  synopsis: 'Sql.CACHEDYNAMIC: Integer'
+  comment: |-
+    Not used.
+-
+  id: COMMIT
+  type: Property
+  synopsis: 'Sql.COMMIT: Integer'
+  comment: |-
+    A constant passed to Sql.EndTransaction() indicating a
+    transaction should be committed.
+-
+  id: MULTIEXEC
+  type: Property
+  synopsis: 'Sql.MULTIEXEC: Integer'
+  comment: |-
+    Not used.
+-
+  id: NOCACHE
+  type: Property
+  synopsis: 'Sql.NOCACHE: Integer'
+  comment: |-
+    Directs SQL.Declare() to not cache the cursor.
+-
+  id: NOLOG
+  type: Property
+  synopsis: 'Sql.NOLOG: Integer'
+  comment: |-
+    Directs SQL.Declare() to turn off statement logging within the
+    cursor.
+-
+  id: NOTRANSWARN
+  type: Property
+  synopsis: 'Sql.NOTRANSWARN: Integer'
+  comment: |-
+    Directs SQL.Declare() to turn off warnings if the cursor is being
+    used outside the context of a transaction.
+-
+  id: ROLLBACK
+  type: Property
+  synopsis: 'Sql.ROLLBACK: Error'
+  comment: |-
+    An error passed to Sql.EndTransaction() indicating a transaction
+    should be rolled back. SQL.Fetch() also returns SQL.ROLLBACK to
+    indicated no further data can be fetched.
+-
+  id: SLOWMODE
+  type: Property
+  synopsis: 'Sql.SLOWMODE: Integer'
+  comment: |-
+    Not used.
+-
+  id: Alloc
+  type: Method
+  synopsis: 'Sql.Alloc(Integer conType, CAPILOG logObj, CAPIERR errObj, Integer num): SqlConnection'
+  comment: |-
+    Allocates an SqlConnection object. This data structure is used to
+    hold information about the database connection.
+
+    **Parameters**:
+      conType: An Integer specifying the connection type.
+               CAPI.CT_ORACLE indicates Oracle and CAPI.CT_MSDBLIB
+               indicates MSSQL Server.
+      logObj: A CAPILog object for logging transactions.
+      errObj: A CAPIErr object for logging errors.
+      num: This parameter must be zero.
+
+    **Result**:
+      An allocated SqlConnection, otherwise an error.
+-
+  id: AllocFromConnect
+  type: Method
+  synopsis: 'Sql.AllocFromConnect(CAPICONNECT connect): SqlConnection'
+  comment: |-
+    Allocates an SqlConnection object from a CAPICONNECT. This
+    SqlConnection is used to hold information about the database
+    connection and is required for most SQL functions in this
+    package.
+
+    **Parameters**:
+      connect: A CAPIConnect, used to allocate an SqlConnection.
+
+    **Result**:
+      An allocated SqlConnection, or an error.
+-
+  id: Bind
+  type: Method
+  synopsis: 'Sql.Bind(SqlCursor cursor, List values): Integer'
+  comment: |-
+    Binds a list of Strings, Integers, and/or Dates to parameters in
+    the SQL statement contained in the cursor. This function must be
+    called before the execution and fetching of the cursor, but
+    after SQL.Prepare() is called. If there are no parameters in the
+    SQL statement, pass an empty list.
+
+    **Parameters**:
+      cursor: The SqlCursor to be bound.
+      values: A list of values to bind to the parameters in the SQL
+              statement within the cursor, or an empty list. These
+              values can be Strings, Integers, or Dates.
+
+    **Result**:
+      0 if successful, Error otherwise.
+-
+  id: Close
+  type: Method
+  synopsis: 'Sql.Close(SqlCursor cursor): Integer'
+  comment: |-
+    Closes the specified SqlCursor after processing is complete.
+
+    **Parameters**:
+      cursor: The SqlCursor to be closed.
+
+    **Result**:
+      0 if successful, Error otherwise.
+-
+  id: ColNames
+  type: Method
+  synopsis: 'Sql.ColNames(SqlCursor cursor): List'
+  comment: |-
+    Returns a List of column names referenced by the SQL statement
+    within the cursor.
+
+    **Parameters**:
+      cursor: The SqlCursor from which column information will be
+              extracted.
+
+    **Result**:
+      A List of column names referenced by the SQL statement within
+      the cursor.
+-
+  id: Cols
+  type: Method
+  synopsis: 'Sql.Cols(SqlCursor cursor): List'
+  comment: |-
+    Returns a List of the data from the last cursor fetch.
+
+    **Parameters**:
+      cursor: An SqlCursor.
+
+    **Result**:
+      A List containing the data from the last fetch of the cursor.
+      The list contains one element for each row of data, and the
+      values can be Strings, Integers, and/or Dates.
+-
+  id: Connect
+  type: Method
+  synopsis: 'Sql.Connect(SqlConnection connect, String srvName, String dbName, String usrName, String pword, String applStr, String hostStr): Integer'
+  comment: |-
+    Connects an allocated SqlConnection to the database.
+
+    **Parameters**:
+      connect: The SqlConnection to be connected.
+      srvName: The String name of the server to which the connection
+               is made.
+      dbName: The String name of the database to which the connection
+              is made. For an Oracle databases, a NULL string must
+              be used.
+      usrName: The String name of the person user being
+               connected.
+      pword: The password of the user being connected.
+
+    **Result**:
+      0 if successful, Error otherwise.
+-
+  id: Declare
+  type: Method
+  synopsis: 'Sql.Declare(SqlConnection connect, String stmt, [Integer flags]): SqlCursor'
+  comment: |-
+    Declares an SqlCursor for later use. The statement may contain
+    parameters for binding in the form of ":A1", ":A2", etc.
+    Repeated values must be expressed as separate parameters, so
+    that ":A1" cannot be reused later in the SQL statement even if
+    the bound value is identical in both instances.
+
+    **Parameters**:
+      connect: An SqlConnection.
+      stmt: An SQL statement.
+      flags: Flag(s) to indicate how the statement and cursor will be
+             handled. SQL.CACHE, SQL.NOCACHE, SQL.NOLOG, and
+             SQL.NOTRANSWARN are all valid flags (See Attributes
+             section above for more information on these flags)
+             .
+
+    **Result**:
+      The declared cursor if successful, Error otherwise.
+-
+  id: Disconnect
+  type: Method
+  synopsis: 'Sql.Disconnect(SqlConnection connect): Integer'
+  comment: |-
+    Drops or disconnects a database connection.
+
+    **Parameters**:
+      connect: An SqlConnection to be dropped.
+
+    **Result**:
+      0 if successful, Error otherwise.
+-
+  id: EndTransaction
+  type: Method
+  synopsis: 'Sql.EndTransaction(SqlConnection connect, Dynamic value): Integer'
+  comment: |-
+    Ends a database transaction, allowing commitment or rollback of
+    the transaction. See also SQL.EndTransaction().
+
+    **Parameters**:
+      connect: An SqlConnection.
+      value: A value indicating a commitment or a rollback of the
+             transaction. SQL.COMMIT and SQL.ROLLBACK are commonly
+             passed. If the value is of type Error, rollback will
+             occur.
+
+    **Result**:
+      0 if successful, Error otherwise.
+-
+  id: Exec
+  type: Method
+  synopsis: 'Sql.Exec(SqlConnection connect, Integer cacheFlag, -->String stmt, [Dynamic sub], [Dynamic sub]): RecArray'
+  comment: |-
+    Executes an SQL statement.
+
+    **Parameters**:
+      connect: An SqlConnection.cacheFlagcacheFlag Use either SQL.CACHE or SQL.NOCACHE.
+               Normally, SQL.CACHE should be used, use SQL.NOCACHE
+               when creating or dropping Oracle database
+               objects.
+      stmt: An SQL statement. Parameterized values can be included in
+            this statement, with the parameter syntax consisting of
+            a colon followed by alphanumeric characters (":A1",
+            ":A2", etc.). Up to 30 parameters can be passed.
+      sub<n>: the values of the optional parameters included in the
+              SQL statement. Either all the parameters can be passed
+              in a List for this argument, or they may be passed as
+              arguments, since this is a variable-argument function
+              (like Str.Format()). Each sub<n> parameter specifies a
+              value to be substituted in the SQL statement for the
+              respective parameter. Values are substituted from left
+              to right, regardless of variable name or parameter
+              characters.
+
+    **Result**:
+      For SELECT statements: A RecArray containing the data from the
+      executed SQL statement is returned. For INSERT, UPDATE, or
+      DELETE statements: An Integer indicating the number of rows
+      affected by the executed statement is returned. If the
+      execution of the SQL statement fails, Error is returned.
+-
+  id: ExecN
+  type: Method
+  synopsis: 'Sql.ExecN(SqlConnection connect, String stmt, RecArray params): RecArray'
+  comment: |-
+    Executes a parameterized SQL statement multiple times; once for
+    each row in parms, a RecArray of parameter values.  ExecN() may
+    be optimized in some databases to perform better than calling
+    Exec() for each iteration.
+
+    **Parameters**:
+      connect: An SqlConnection.
+      stmt: An SQL statement. Parameterized values can be included in
+            this statement, with the parameter syntax consisting of
+            a colon followed by alphanumeric characters (":A1",
+            ":A2", etc.). Up to 30 parameters can be passed.
+      params: A RecArray of parameters. The parameterized SQL
+              statement is executed using parameters from each row
+              in the RecArray, in left-to-right column order in a
+              given row.
+
+    **Result**:
+      For SELECT statements: A RecArray containing the data from the
+      executed SQL statement is returned. For INSERT, UPDATE, or
+      DELETE statements: An Integer indicating the number of rows
+      affected by the executed statement is returned. If the
+      execution of the SQL statement fails, Error is returned.
+-
+  id: Execute
+  type: Method
+  synopsis: 'Sql.Execute(SqlCursor cursor): Integer'
+  comment: |-
+    Executes an SqlCursor. This function differs from SQL.Fetch() in
+    that it is performed once, after the declaration, preparation,
+    and binding of the cursor. All the data that will be obtained
+    from the database by the SQL statement contained in the cursor
+    is retrieved during SQL.Execute(). See also SQL.Prepare(),
+    SQL.Bind(), and SQL.Fetch().
+
+    **Parameters**:
+      cursor: An SqlCursor to execute.
+
+    **Result**:
+      0 if successful, Error otherwise.
+-
+  id: Fetch
+  type: Method
+  synopsis: 'Sql.Fetch(SqlCursor cursor): Integer'
+  comment: |-
+    Fetches a row of data based on the specified SqlCursor. After an
+    SQL.Execute() has been performed on a cursor, SQL.Fetch() is
+    used to retrieve the data incrementally. In the case of a cached
+    cursor, rows of data are retrieved in blocks for greater
+    efficiency. See also SQL.Prepare(), SQL.Bind(), and
+    SQL.Execute().
+
+    **Parameters**:
+      cursor: An SqlCursor upon which the fetch is to be
+              performed.
+
+    **Result**:
+      0 if successful, Error otherwise. When the SQL.ROLLBACK is
+      returned, the fetch is complete.
+-
+  id: GetBlob
+  type: Method
+  synopsis: 'Sql.GetBlob(SqlConnection arg1, String arg2, Integer arg3, Integer arg4): Integer'
+  comment: |-
+    Internal use only.
+
+    An SqlCursor upon which the fetch is to be performed.
+    connectAn SqlConnection.
+      arg2: Internal use only
+      arg3: Internal use only
+      arg4: Internal use only
+
+    **Result**:
+      Internal use only.
+-
+  id: IsSelect
+  type: Method
+  synopsis: 'Sql.IsSelect(SqlCursor cursor): Integer'
+  comment: |-
+    Indicates whether the SQL statement within an SqlCursor is a
+    SELECT statement. The SQL statement must have been parsed with
+    SQL.Prepare() before this method is called.
+
+    **Parameters**:
+      cursor: The SqlCursor in question.
+
+    **Result**:
+      TRUE if the statement is a SELECT, FALSE otherwise.
+-
+  id: NCols
+  type: Method
+  synopsis: 'Sql.NCols(SqlCursor cursor): Integer'
+  comment: |-
+    Determines the number of columns that the SQL statement in the
+    cursor will return.
+
+    **Parameters**:
+      cursor: The SqlCursor in question.
+
+    **Result**:
+      An Integer specifying the number of columns that the SQL
+      statement will return.
+-
+  id: Now
+  type: Method
+  synopsis: 'Sql.Now(SqlConnection connect): Date'
+  comment: |-
+    Returns the current date and time as defined by the database
+    server.
+
+    **Parameters**:
+      connect: An SqlConnection.
+
+    **Result**:
+      The current date and time as defined by the database
+      server.
+-
+  id: Open
+  type: Method
+  synopsis: 'Sql.Open(SqlCursor cursor): Integer'
+  comment: |-
+    Opens the SqlCursor after it has been declared.
+
+    **Parameters**:
+      cursor: The SqlCursor to be opened.
+
+    **Result**:
+      0 if successful, Error otherwise.
+-
+  id: Prepare
+  type: Method
+  synopsis: 'Sql.Prepare(SqlCursor cursor): Integer'
+  comment: |-
+    Triggers the server to parse the SQL statement within the cursor.
+    The SqlCursor must be parsed before most other methods can be
+    performed with it.
+
+    **Parameters**:
+      cursor: The SqlCursor to be parsed/prepared.
+
+    **Result**:
+      0 if successful, Error otherwise.
+-
+  id: PutBlob
+  type: Method
+  synopsis: 'Sql.PutBlob(SqlConnection connect, String arg2, Integer arg3, Integer arg4): Dynamic'
+  comment: |-
+    Internal use only.
+
+    **Parameters**:
+      connect: The SqlConnection.
+      arg2: Internal use only.
+      arg3: Internal use only.
+      arg4: Internal use only.
+
+    **Result**:
+      Internal use only.
+-
+  id: RowCount
+  type: Method
+  synopsis: 'Sql.RowCount(SqlCursor cursor): Integer'
+  comment: |-
+    Determines the number of rows affected by the execution of an SQL
+    statement defined within an SqlCursor. SQL.Prepare() must have
+    been called before this method can be used.
+
+    **Parameters**:
+      cursor: The SqlCursor whose affected rows are to be
+              counted.
+
+    **Result**:
+      An Integer specifying the number of rows affected by the SQL
+      statement.
+-
+  id: StartTransaction
+  type: Method
+  synopsis: 'Sql.StartTransaction(SqlConnection connect): Integer'
+  comment: |-
+    Starts a database transaction, allowing multiple SQL statements
+    to be grouped together. Should an error occur during the
+    execution of any statement after the beginning of the
+    transaction and before the SQL.EndTransaction(), all of the
+    intervening statements can be rolled back or canceled.
+
+    **Parameters**:
+      connect: An SqlConnection.
+
+    **Result**:
+      0 if successful, Error otherwise.

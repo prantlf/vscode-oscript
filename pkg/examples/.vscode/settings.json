@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    "**/.DS_Store": true
+  },
+  "[oscript]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false
+  }
+}

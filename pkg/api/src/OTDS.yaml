@@ -1,0 +1,218 @@
+-
+  id: Activate
+  type: Method
+  synopsis: 'OTDS.Activate(): Bytes'
+  comment: |-
+    Activates the current resource on the current OTDS server.
+
+
+    **Result**:
+      The secret key of the activated resource.
+-
+  id: Connect
+  type: Method
+  synopsis: 'OTDS.Connect(String uri): Boolean'
+  comment: |-
+    Unregisters any existing connection to an OTDS server and attempt
+    to open a new connection to the specified uri.
+
+    **Parameters**:
+      uri: A URI to the OTDS server.
+
+    **Result**:
+      Returns TRUE on success, FALSE on failure.
+-
+  id: Deactivate
+  type: Method
+  synopsis: 'OTDS.Deactivate(): Boolean'
+  comment: |-
+    Deactivates the current resource on the current OTDS server.
+
+
+    **Result**:
+      Returns TRUE on success, FALSE on failure.
+-
+  id: Disconnect
+  type: Method
+  synopsis: 'OTDS.Disconnect(): Boolean'
+  comment: |-
+    Unregisters any existing connection to an OTDS server.
+
+
+    **Result**:
+      Returns TRUE on success, FALSE on failure.
+-
+  id: GetRedirectURL
+  type: Method
+  synopsis: 'OTDS.GetRedirectURL(String uri): String'
+  comment: |-
+    Returns the new OTDS redirectURL based on the original uri.
+
+    **Parameters**:
+      uri: A string which is appended as a next URL parameter.
+
+    **Result**:
+      Returns URL of OTDS server, appending the uri as a
+      parameter.
+-
+  id: GetResourceID
+  type: Method
+  synopsis: 'OTDS.GetResourceID(): String'
+  comment: |-
+    Returns the currently registered OTDS connection�s resourceID
+    located in the KIni.
+
+
+    **Result**:
+      Returns resourceID of current registered resource.
+-
+  id: GetResources
+  type: Method
+  synopsis: 'OTDS.GetResources(String filter): RecArray'
+  comment: |-
+    Queries the connected OTDS server for all it�s available
+    resources narrowing the scope using the specified filter.
+
+    **Parameters**:
+      filter: A filter narrowing the scope of search.
+
+    **Result**:
+      Returns a recarray with the following row structure: CommonName
+      - String DisplayName - String URI - String Location - String
+      ConnectionParam - String FieldMapping - String ResourceState -
+      String ResourceType - String ResourceID - String IsActivated -
+      Boolean
+-
+  id: GetVersion
+  type: Method
+  synopsis: 'OTDS.GetVersion(): String'
+  comment: |-
+    Returns the version of the current connected OTDS server.
+
+
+    **Result**:
+      Returns the version of the current connected OTDS server.
+-
+  id: Host
+  type: Method
+  synopsis: 'OTDS.Host(): String'
+  comment: |-
+    Returns the currently registered OTDS host name.
+
+
+    **Result**:
+      Returns the currently registered OTDS host name.
+-
+  id: Initialize
+  type: Method
+  synopsis: 'OTDS.Initialize(CAPILOGIN login): String'
+  comment: |-
+    Initializes the OTDS built-ins library by allowing it to read the
+    OTDS URI and ResourceID from the KIni.  It is required to call
+    this before any of the other functionality will work.  You can
+    call it multiple times safely as it only does the Init
+    once.
+
+    **Parameters**:
+      login: A valid CAPILOGIN object.
+
+    **Result**:
+      Returns TRUE on success, FALSE on failure.
+-
+  id: IsActivated
+  type: Method
+  synopsis: 'OTDS.IsActivated(): Boolean'
+  comment: |-
+    Returns activation state of current OTDS Connection.
+
+
+    **Result**:
+      Returns TRUE if resource is activated, FALSE otherwise.
+-
+  id: LoginRequestTicketForResource
+  type: Method
+  synopsis: 'OTDS.LoginRequestTicketForResource(String username, String password, String resourceID): String'
+  comment: |-
+    Returns an encoded ticket for authenticated username and password
+    on the specified resourceID.
+
+    **Parameters**:
+      username: A valid OTDS username
+      password: A valid OTDS password
+      resourceID: A valid OTDS resourceID
+
+    **Result**:
+      Returns an encoded ticket for the resource on successful
+      authentication of the specified user.
+-
+  id: Port
+  type: Method
+  synopsis: 'OTDS.Port(): String'
+  comment: |-
+    Returns the currently registered OTDS port.
+
+
+    **Result**:
+      Returns the currently registered OTDS port.
+-
+  id: RequestTicketForUser
+  type: Method
+  synopsis: 'OTDS.RequestTicketForUser(String username, String resourceID, String ticket): String'
+  comment: |-
+    Returns an encoded ticket for the specified resourceID while
+    impersonating username.  Requires the existing user's ticket.
+    For Anonymous authentication the ticket can be Undefined.
+
+    **Parameters**:
+      username: A user to impersonate on the target resourceID.
+      resourceID: A valid OTDS target resourceID
+      ticket: An OPTIONAL parameter. A valid, authenticated OTDS
+              ticket, or Undefined for Anonymous
+              authentication.
+
+    **Result**:
+      Returns an encoded OTDS ticket for the specified resource and
+      impersonated username.
+-
+  id: RequestTicketForResource
+  type: Method
+  synopsis: 'OTDS.RequestTicketForResource(String token, String resourceID): String'
+  comment: |-
+    Returns an encoded ticket for the specified resourceID.  Requires
+    the existing users encoded token generated from an original
+    ticket validation.
+
+    **Parameters**:
+      token: A valid token generated from the validation of an OTDS
+             ticket.
+      resourceID: A valid OTDS resourceID
+
+    **Result**:
+      Returns an encoded ticket for the resource on successful
+      authentication of the specified user.
+-
+  id: SSOCookieDomain
+  type: Method
+  synopsis: 'OTDS.SSOCookieDomain(): String'
+  comment: |-
+    Returns the current OTDS single sign on cookie domain.
+
+
+    **Result**:
+      Returns the current OTDS single sign on cookie domain.
+-
+  id: ValidateTicket
+  type: Method
+  synopsis: 'OTDS.ValidateTicket(String ticket): Assoc'
+  comment: |-
+    Validate an incoming ticket for the currently connected
+    resource.
+
+    **Parameters**:
+      ticket: A valid OTDS encoded ticket.
+
+    **Result**:
+      Returns an assoc with the following structure: Token - String
+      CipherText - Bytes [CipherText is used to request OTDS
+      Tickets] ResourceID - String UserID - String IsValid - Boolean
+      CredentialUserName - String CredentialPassword - String

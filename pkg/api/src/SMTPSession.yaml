@@ -1,0 +1,152 @@
+-
+  id: New
+  type: Method
+  synopsis: 'SMTPSession.New(String host, Integer port): SMTPSession'
+  comment: |-
+    Returns a new SMTPSession object
+
+    **Parameters**:
+      host: IP address or domain name of SMTP host.
+      port: SMTP connection port
+
+    **Result**:
+      A new SMTPSession object or undefined if there was an error
+      constructing the object.
+-
+  id: Close
+  type: Method
+  synopsis: 'SMTPSession.Close(): Integer'
+  comment: |-
+    No parameters.  Closes the session.
+
+    **Parameters**:
+      None:
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: Connect
+  type: Method
+  synopsis: 'SMTPSession.Connect([String host]): Integer'
+  comment: |-
+    The host parameter is optional and if not specified, will connect
+    to the host as specified in the New() function.  Otherwise, this
+    host parameter will override whatever host param was used in the
+    New() function.  Use this if you do not require authentication
+    to connect to your smtp server.
+
+    **Parameters**:
+      host: IP address or domain name of SMTP server.
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: GetLastError
+  type: Method
+  synopsis: 'SMTPSession.GetLastError(): String'
+  comment: |-
+    No parameters.  Returns an error string for the last error that
+    occured.
+
+
+    **Result**:
+      Returns an error string for the last error that occured.
+-
+  id: GetTimeout
+  type: Method
+  synopsis: 'SMTPSession.GetTimeout(): Integer'
+  comment: |-
+    Gets the timeout value for SMTP commands.  The timeout is in
+    milliseconds.
+
+    **Parameters**:
+      None:
+
+    **Result**:
+      Returns the timeout in milliseconds, -1 if an error
+      occured.
+-
+  id: InitContext
+  type: Method
+  synopsis: 'SMTPSession.InitContext(SSLOptions options): Integer'
+  comment: |-
+    Sets the SSL options for a secure connection.  You must call this
+    before attempting to do a SecureLogin() call.
+
+    **Parameters**:
+      options: an instance of SSLOptions.
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: Login
+  type: Method
+  synopsis: 'SMTPSession.Login(String username, String password, [Integer loginMethod]): Integer'
+  comment: |-
+    This function allows authenticated login to an smtp server, with
+    two different methods available, LOGIN_CRAM_MD5 and LOGIN_CLEAR.
+     The loginMethod param is optional and the default is
+    LOGIN_CLEAR.
+
+    **Parameters**:
+      username: username used to login to SMTP server.
+      password: password used to login to SMTP server.
+      loginMethod: type of login authentication to use.
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: SecureLogin
+  type: Method
+  synopsis: 'SMTPSession.SecureLogin(String hostname, [String username, String password]): Integer'
+  comment: |-
+    The username/password parameters are optional, use them if your
+    server also requires authentication as well as TLS/SSL.  You
+    must have called InitContext() before this.
+
+    **Parameters**:
+      hostname: IP address or domain name of SMTP server.
+      username: user login on SMTP server
+      password: user password for SMTP server
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: SendCommand
+  type: Method
+  synopsis: 'SMTPSession.SendCommand(String command, [String arguments]): Integer'
+  comment: |-
+    Use this to send other raw SMTP commands.  The arguments param is
+    optional.
+
+    **Parameters**:
+      command: command to send
+      arguments:
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: SendMessage
+  type: Method
+  synopsis: 'SMTPSession.SendMessage(MailMessage message): Integer'
+  comment: |-
+    Sends a previously created MailMessage ( an email ).
+
+    **Parameters**:
+      message: MailMessage to send
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.
+-
+  id: SetTimeout
+  type: Method
+  synopsis: 'SMTPSession.SetTimeout(Integer timeout): Integer'
+  comment: |-
+    Sets the timeout value for SMTP commands.  The timeout is in
+    milliseconds.
+
+    **Parameters**:
+      timeout: timeout in milliseconds.
+
+    **Result**:
+      Returns 0 for success and -1 if an error occurred.

@@ -1,0 +1,778 @@
+-
+  id: COMMIT
+  type: Property
+  synopsis: 'CAPI.COMMIT: Integer'
+  comment: |-
+    Commits database changes when passed to
+    CAPI.EndTransaction().
+-
+  id: CT_DBLIB
+  type: Property
+  synopsis: 'CAPI.CT_DBLIB: Integer'
+  comment: |-
+    Specifies MSSQL as the database type when calling
+    CAPI.AllocConnect() to create a CAPI connection.
+-
+  id: CT_ODBC
+  type: Property
+  synopsis: 'CAPI.CT_ODBC: Integer'
+  comment: |-
+    Specifies ODBC as the database type when calling
+    CAPI.AllocConnect() to create a CAPI connection.
+-
+  id: CT_ORACLE
+  type: Property
+  synopsis: 'CAPI.CT_ORACLE: Integer'
+  comment: |-
+    Specifies Oracle as the database type when calling
+    CAPI.AllocConnect() to create a CAPI connection.
+-
+  id: ERR_CLEAR
+  type: Property
+  synopsis: 'CAPI.ERR_CLEAR: Integer'
+  comment: |-
+    A flag used by CAPI.ErrOption() to set a given CAPIERR such that
+    it discards accumulated errors when CAPI.ClearErr() is called on
+    it.
+-
+  id: ERR_KEEP
+  type: Property
+  synopsis: 'CAPI.ERR_KEEP: Integer'
+  comment: |-
+    A flag used by CAPI.ErrOption() to set a given CAPIERR such that
+    it retains accumulated errors when CAPI.ClearErr() is called on
+    it.
+-
+  id: CAPI_LOG_APPEND
+  type: Property
+  synopsis: 'CAPI.CAPI_LOG_APPEND: Integer'
+  comment: |-
+    A flag used by CAPI.AllocLog() to set the open mode for the log
+    file.
+-
+  id: CAPI_LOG_TRUNCATE
+  type: Property
+  synopsis: 'CAPI.CAPI_LOG_TRUNCATE: Integer'
+  comment: |-
+    A flag used by CAPI.AllocLog() to set the open mode for the log
+    file.
+-
+  id: CAPI_PROXY_NONE
+  type: Property
+  synopsis: 'CAPI.CAPI_PROXY_NONE: Integer'
+  comment: |-
+    A flag used in CAPI.RightsList() to retrieve the regular rights
+    of the current user.
+-
+  id: CAPI_PROXY_WAPI
+  type: Property
+  synopsis: 'CAPI.CAPI_PROXY_WAPI: Integer'
+  comment: |-
+    A flag used in CAPI.RightsList() to retrieve the proxy rights for
+    WAPI of the current user.
+-
+  id: ROLLBACK
+  type: Property
+  synopsis: 'CAPI.ROLLBACK: Error'
+  comment: |-
+    Rolls back a database transaction when passed to
+    CAPI.EndTransaction().
+-
+  id: AllocConnect
+  type: Method
+  synopsis: 'CAPI.AllocConnect(Integer type, String server, String database, String user, String password, CAPILOG log, CAPIERR err, Integer ctflags): CAPICONNECT'
+  comment: |-
+    Allocates a CAPICONNECT object to the specified server and
+    database. The type parameter must contain either CAPI.CT_CTLIB,
+    CAPI.CT_MSDBLIB or CAPI.CT_ORACLE.
+
+    **Parameters**:
+      type: The type of connection to be established.
+      server: The name of the server to connect to.
+      database: The name of the database to be used. This parameter
+                is left blank for Oracle.
+      user: The database user name.
+      password: The database user password.
+      log: An optional log object, returned by CAPI.AllocLog(), that
+           will associate a log file with the connection.
+      err: An optional error object, returned by CAPI.AllocErr(),
+           that will associate an error object with the
+           connection.
+      ctflags: Connection flags for internal use, set to zero.
+
+    **Result**:
+      A connection object to the specified database, Error
+      otherwise.
+-
+  id: AllocErr
+  type: Method
+  synopsis: 'CAPI.AllocErr(): CAPIERR'
+  comment: |-
+    Allocates a CAPIERR object for use when allocating a database
+    connection with CAPI.AllocConnect().
+
+
+    **Result**:
+      A CAPIERR object.
+-
+  id: AllocLog
+  type: Method
+  synopsis: 'CAPI.AllocLog(String logFilePath, Integer openModeFlag): CAPILOG'
+  comment: |-
+    Allocates a CAPILOG object for use when allocating a database
+    connection with CAPI.AllocConnect().
+
+    **Parameters**:
+      logFilePath: The path to the log file created for this log
+                   object.
+      openModeFlag: Optional param either CAPI.LOG_APPEND or default
+                    CAPI.LOG_TRUNCATE.
+-
+  id: AttachLog
+  type: Method
+  synopsis: 'CAPI.AttachLog(String loggerName, [String logFilePath = '', Integer openModeFlag = CAPI.LOG_TRUNCATE]): CAPILOG'
+  comment: |-
+    Attaches to or Allocates a CAPILOG object for use when allocating
+    a database connection with CAPI, or for general logging
+    functionality.
+
+    **Parameters**:
+      loggerName: The name of this logger (will be prefixed with
+                  Logging.CS_LOGGER_NAME_PREFIX, which is
+                  "com.opentext.contentserver.capi")
+      logFilePath: Optionally, the path to the log file created for
+                   this log object if direct file output is
+                   desired.
+      openModeFlag: Optional param either CAPI.LOG_APPEND or default
+                    CAPI.LOG_TRUNCATE.
+-
+  id: AllocLogin
+  type: Method
+  synopsis: 'CAPI.AllocLogin(CAPICONNECT connection, String username, String password, [String spaceName = '']): CAPILOGIN'
+  comment: |-
+    Allocates a CAPILOGIN object for the specified username and
+    password.
+
+
+    **Result**:
+      A CAPILOGIN object for the Livelink user that was logged in,
+      Error otherwise.
+-
+  id: CheckRight
+  type: Method
+  synopsis: 'CAPI.CheckRight(CAPILOGIN login, Integer rightID): Integer'
+  comment: |-
+    Determines if a user has a certain right in their rights list.
+    An ID in a rights list corresponds to a particular group. For
+    example, a group named "Collaborative Computing" may have the ID
+    3892. If the user is a member of this group or has been granted
+    rights by this group, the ID 3892 will be found on the user's
+    rights list.
+
+    **Parameters**:
+      login: The CAPILOGIN object for the user whose rights are being
+             checked.
+      rightID: The type: Method ID of the right that is being tested against the
+               users rights list.
+
+    **Result**:
+      Integer 0 if the specified right is in the user's rights list,
+      an error otherwise.
+-
+  id: ClearErr
+  type: Method
+  synopsis: 'CAPI.ClearErr(CAPIERR err): Integer'
+  comment: |-
+    Clears the current error stack for the specified CAPIERR object,
+    unless the CAPI.ERR_KEEP flag has been set on the CAPIERR with
+    CAPI.ErrOption(), in which case errors will be retained despite
+    the clear call (default behavior may be restored by calling
+    CAPI.ErrOption() with the CAPI.ERR_CLEAR flag). When an error
+    occurs for a given database connection, the error is placed on
+    the error stack.  This function allows all accumulated errors to
+    be removed from that stack.
+
+    **Parameters**:
+      err: The CAPIERR object
+
+    **Result**:
+      Integer 0 for success; error otherwise.
+-
+  id: ConnectionAttr
+  type: Method
+  synopsis: 'CAPI.ConnectionAttr(CAPICONNECT connection): Assoc'
+  comment: |-
+    Returns attribute information for the specified database
+    connection.
+
+    **Parameters**:
+      connection: The connection for which information should be
+                  returned.
+
+    **Result**:
+      An assoc containing all the attribute information for the
+      specified database connection. This assoc will contain the
+      following information:
+-
+  id: ConnectionInfo
+  type: Method
+  synopsis: 'CAPI.ConnectionInfo([CAPICONNECT connect]): RecArray'
+  comment: |-
+    Returns information about one or all of the currently active
+    connections. If no connection is specified, information about
+    all open connections is returned.
+
+    **Parameters**:
+      connect: An optional parameter specifying the connection for
+               which information is desired.
+
+    **Result**:
+      A RecArray containing information about one or all of the
+      active connections. If an optional connection is specified,
+      the RecArray will contain only a single row. The columns in
+      the RecArray are as follows:
+-
+  id: ContextData
+  type: Method
+  synopsis: 'CAPI.ContextData(Dynamic value, [Dynamic valueIn]): Dynamic'
+  comment: |-
+    Gets or sets application specific information from a CAPICONNECT
+    or one of its children. All objects which are derived from a
+    CAPICONNECT object (CAPILOGIN, DAPISESSION, UAPISESSION, etc)
+    can hold application specific information. If the optional
+    second parameter is passed, the context data for the specified
+    object will be set.
+
+    **Parameters**:
+      value: The Object which is having its context data either set
+             or fetched.
+      valueIn: An optional parameter which, when present, sets the
+               value of the context data besides returning it.
+
+    **Result**:
+      The current value that is stored as context for the specified
+      object.
+-
+  id: Disconnect
+  type: Method
+  synopsis: 'CAPI.Disconnect(CAPICONNECT connection): Integer'
+  comment: |-
+    Disconnects the CAPICONNECT from its database. Note, this does
+    not deallocate the CAPICONNECT, the CAPICONNECT will only be
+    deallocated when it goes out of scope. When a CAPICONNECT goes
+    out of scope, it is automatically disconnected from its
+    database.
+
+    **Parameters**:
+      connection: The connection object that is being disconnected
+                  from its database.
+
+    **Result**:
+      Integer 0 if successful; error otherwise.
+-
+  id: EndTransaction
+  type: Method
+  synopsis: 'CAPI.EndTransaction(Dynamic connectionOrLogin, Dynamic commitOrRollback): Integer'
+  comment: |-
+    Ends the current database transaction on the specified database
+    connection.
+
+    **Parameters**:
+      connectionOrLogin: A CAPICONNECT or CAPILOGIN object
+      commitOrRollback: CAPI.COMMIT for a commit, CAPI.ROLLBACK to
+                        rollback a transaction.
+
+    **Result**:
+      Integer 0 if successful; error otherwise.
+-
+  id: ErrOption
+  type: Method
+  synopsis: 'CAPI.ErrOption(CAPIERR err, Integer flag): Integer'
+  comment: |-
+    Sets the flag controlling clear behavior within a CAPIERR given
+    either the flag CAPI.ERR_CLEAR, to clear errors, or
+    CAPI.ERR_KEEP to keep errors when CAPI.ClearErr() is called upon
+    the CAPIERR.
+
+    **Parameters**:
+      err: A CAPIERR.
+      flag: Specifies what to do with the errors within the CAPIERR,
+            either CAPI.ERR_CLEAR to clear them or CAPI.ERR_KEEP to
+            retain them upon clear.
+
+    **Result**:
+      The current clear flag.
+-
+  id: Exec
+  type: Method
+  synopsis: 'CAPI.Exec(CAPICONNECT connection, String statement, [Dynamic sub]): Dynamic'
+  comment: |-
+    Executes a given SQL statement.
+
+    **Parameters**:
+      connection: The CAPICONNECT object.
+      statement: The SQL statement to be executed.
+      arg3-n: Any parameter values required by the statement.  The
+              values to be used for SQL statment parameters may be
+              passed as either a single List argument, or as a
+              variable number of arguments, as with Str.Format().
+              If passing a List of parameter values, no more than
+              three arguments should be passed to the Exec builtin
+              function.
+
+    **Result**:
+      A RecArray if the executed statement is a select statement,
+      containing rows and columns for all the returned data.
+-
+  id: ExecN
+  type: Method
+  synopsis: 'CAPI.ExecN(CAPICONNECT connection, String statement, RecArray values): Dynamic'
+  comment: |-
+    Executes a given SQL statement once for each row in the
+    RecArray.
+
+    **Parameters**:
+      connection: The CAPICONNECT object.
+      statement: The SQL statement to be executed.
+      values: A RecArray for containing the substitution values for
+              the parameters in the statement.
+
+    **Result**:
+      On success, an integer representing the number of rows effected
+      by the SQL statement, otherwise an error.
+-
+  id: ExecSP
+  type: Method
+  synopsis: 'CAPI.ExecSP(CAPICONNECT connection, String statement, [Dynamic sub]): Dynamic'
+  comment: |-
+    Executes a given SQL statement which will execute a stored
+    procedure.
+
+    **Parameters**:
+      connection: The CAPICONNECT object.
+      statement: The SQL statement to be executed.
+      arg3-n: Any parameter values required by the statement.
+
+    **Result**:
+      A RecArray if the executed stored procedure returns tabular
+      data, containing rows and columns for all the returned
+      data.
+-
+  id: GetDetailAt
+  type: Method
+  synopsis: 'CAPI.GetDetailAt(CAPIERR err, Integer index): String'
+  comment: |-
+    Retrieves the detail information associated with a specified
+    error.
+
+    **Parameters**:
+      err: The CAPIERR object.
+      index: The index location of the desired error in the error
+             stack.
+
+    **Result**:
+      A string containing the detail information for the specified
+      error, undefined if no detail exists.
+-
+  id: GetErrAt
+  type: Method
+  synopsis: 'CAPI.GetErrAt(CAPIERR err, Integer index): Error'
+  comment: |-
+    Retrieves the identified error from the specified error
+    object.
+
+    **Parameters**:
+      err: The CAPIERR object.
+      index: The index location of the desired error in the error
+             stack.
+
+    **Result**:
+      The specified error, if successful; Undefined otherwise.
+-
+  id: IniDelete
+  type: Method
+  synopsis: 'CAPI.IniDelete(CAPILOGIN login, [String section], [String keyword]): Integer'
+  comment: |-
+    Deletes information from the KIni table.
+
+    **Parameters**:
+      login: The CAPILOGIN object.
+      section: An optional string specifying the section to affect in
+               the KIni table.
+      keyword: An optional string specifying the keyword to delete
+               from the specified section.
+
+    **Result**:
+      An Integer 0 if successful, an error otherwise.
+-
+  id: IniGet
+  type: Method
+  synopsis: 'CAPI.IniGet(CAPILOGIN login, String section, String keyword, [Dynamic dftValue]): Dynamic'
+  comment: |-
+    Retrieves the value associated with the specified section and
+    keyword from the KIni table.
+
+    **Parameters**:
+      login: The CAPILOGIN object.
+      section: The section in the KIni table where the keyword is
+               located.
+      keyword: The keyword for the value to be returned
+      dftValue: A default value to be returned if the specified
+                section and keyword pair cannot be found.
+
+    **Result**:
+      The value associated with the specified keyword, if successful;
+      Error otherwise.
+-
+  id: IniList
+  type: Method
+  synopsis: 'CAPI.IniList(CAPILOGIN login, [String section], [String keyword]): RecArray'
+  comment: |-
+    Returns all keyword values in the specified section of the KIni
+    table.
+
+    **Parameters**:
+      login: The CAPILOGIN object.
+      section: An optional parameter specifying the section to be
+               listed from the KIni table.
+      keyword: An optional parameter specifying the keyword to be
+               listed in the section from the KIni table.
+
+    **Result**:
+      A RecArray containing the information requested if successful;
+      Error otherwise.
+-
+  id: IniPut
+  type: Method
+  synopsis: 'CAPI.IniPut(CAPILOGIN login, String section, String keyword, [Dynamic value]): Integer'
+  comment: |-
+    Allows values to be added into the KIni table or to overwrite
+    existing information.
+
+    **Parameters**:
+      login: The CAPILOGIN object.
+      section: The section where the value will be inserted.
+      keyword: The keyword for the value.
+      value: An optional value to be inserted for the section and
+             keyword.
+
+    **Result**:
+      The Integer 0 if successful; Error otherwise.
+-
+  id: IsValid
+  type: Method
+  synopsis: 'CAPI.IsValid(CAPICONNECT connection): Boolean'
+  comment: |-
+    Checks to ensure a previously established database connection is
+    still valid.
+
+    **Parameters**:
+      connection: The CAPICONNECT object.
+
+    **Result**:
+      TRUE if the connection is still valid, False otherwise.
+-
+  id: Log
+  type: Method
+  synopsis: 'CAPI.Log(CAPILOG log, String message): Dynamic'
+  comment: |-
+    Writes the specified INFO message to the connection log file.
+    This is an alias of LogInfo
+
+    **Parameters**:
+      log: The CAPILOG object.
+      message: The message to be written to the log file.
+
+    **Result**:
+      The Integer 0 if successful; Error otherwise.
+-
+  id: LogError
+  type: Method
+  synopsis: 'CAPI.LogError(CAPILOG log, String message): Dynamic'
+  comment: |-
+    Writes the specified ERROR message to the connection log
+    file.
+
+    **Parameters**:
+      log: The CAPILOG object.
+      message: The error message to be written to the log file.
+
+    **Result**:
+      The Integer 0 if successful; Error otherwise.
+-
+  id: LogInfo
+  type: Method
+  synopsis: 'CAPI.LogInfo(CAPILOG log, String message): Dynamic'
+  comment: |-
+    Writes the specified INFO message to the connection log
+    file.
+
+    **Parameters**:
+      log: The CAPILOG object.
+      message: The info message to be written to the log file.
+
+    **Result**:
+      The Integer 0 if successful; Error otherwise.
+-
+  id: LogWarn
+  type: Method
+  synopsis: 'CAPI.LogWarn(CAPILOG log, String message): Dynamic'
+  comment: |-
+    Writes the specified WARN message to the connection log
+    file.
+
+    **Parameters**:
+      log: The CAPILOG object.
+      message: The warning message to be written to the log
+               file.
+
+    **Result**:
+      The Integer 0 if successful; Error otherwise.
+-
+  id: LoginInfo
+  type: Method
+  synopsis: 'CAPI.LoginInfo([CAPILOGIN login]): RecArray'
+  comment: |-
+    Returns information about one or all of the currently active
+    logins. If no login is specified, information about all current
+    logins is returned
+
+    **Parameters**:
+      login: An optional parameter specifying the login for which
+             information is desired.
+
+    **Result**:
+
+-
+  id: Now
+  type: Method
+  synopsis: 'CAPI.Now(CAPICONNECT connect): Date'
+  comment: |-
+    Returns the current date and time for the database server
+    specified by the CAPICONNECT.
+
+    **Parameters**:
+      connect: The CAPICONNECT object indicating the database server
+               for which the current date and time is returned.
+
+    **Result**:
+      The current date and time of the database server, if
+      successful; Error otherwise.
+-
+  id: NumErrs
+  type: Method
+  synopsis: 'CAPI.NumErrs(CAPIERR error): Integer'
+  comment: |-
+    Determines the number of errors stored in the specified error
+    object.
+
+    **Parameters**:
+      error: The CAPIERR object for which the number of errors is
+             returned.
+
+    **Result**:
+      An Integer indicating the number of errors currently stored in
+      the specified error object, if successful; Undefined
+      otherwise.
+-
+  id: Parent
+  type: Method
+  synopsis: 'CAPI.Parent(Dynamic value): Dynamic'
+  comment: |-
+    Retrieves the parent object for the specified object. For
+    example, CAPILOGIN objects will return their associated
+    CAPICONNECT object. DAPISESSION objects, UAPISESSION objects and
+    WAPISESSION objects will return their associated CAPILOGIN
+    object.
+
+    **Parameters**:
+      value: The object for which the parent object is desired.
+
+    **Result**:
+      The parent connection of the specified object, if successful;
+      Error otherwise. The connection type of the parent is
+      determined by the object specified in the following way:
+-
+  id: RestartTransaction
+  type: Method
+  synopsis: 'CAPI.RestartTransaction(Dynamic connectOrLogin, Dynamic status): Integer'
+  comment: |-
+    Restarts a database transaction that was previously started by
+    CAPI.StartTransaction(), preserving the current transaction
+    depth.
+
+    **Parameters**:
+      connectOrLogin: The CAPICONNECT or CAPILOGIN owning the
+                      transaction.
+      status: A constant indicating what action to perform on the
+              specified transaction. Acceptable values are
+              CAPI.COMMIT and CAPI.ROLLBACK.
+
+    **Result**:
+      The Integer 0 if successful; Error otherwise.
+-
+  id: RightsList
+  type: Method
+  synopsis: 'CAPI.RightsList(CAPILOGIN login, [Integer proxyType]): RecArray'
+  comment: |-
+    Returns a RecArray containing the ID numbers of all groups and
+    projects of which the specified user is a member.
+
+    **Parameters**:
+      login: The CAPILOGIN object for the user.
+      proxyType: The proxy type. The default is CAPI.PROXY_NONE.
+
+    **Result**:
+      A RecArray containing the ID numbers of those projects and
+      groups of which the specified user is a member. The fields
+      returned are as follows:
+-
+  id: RightsSet
+  type: Method
+  synopsis: 'CAPI.RightsSet(CAPILOGIN login): Assoc'
+  comment: |-
+    Returns an assoc with keys containing the rights ID of the
+    current user.
+
+    **Parameters**:
+      login: The CAPILOGIN object for the user.
+
+    **Result**:
+      An assoc with keys of right IDs.
+-
+  id: RightsString
+  type: Method
+  synopsis: 'CAPI.RightsString(CAPILOGIN login, String columnName): String'
+  comment: |-
+    Returns a string containing all the right ids for the specified
+    user formatted for use in an SQL statement's "where" clause. The
+    column name in the second parameter will be used to format the
+    "where" clause.
+
+    **Parameters**:
+      login: The CAPILOGIN object for the specified user.
+      columnName: The column name to use when formatting the
+                  string.
+
+    **Result**:
+      A string containing all the right ids for the specified user
+      formatted for use in an SQL statement's "where" clause.
+-
+  id: StartTransaction
+  type: Method
+  synopsis: 'CAPI.StartTransaction(Dynamic connectOrLogin, [Integer numberOfIds]): Integer'
+  comment: |-
+    Begins a new database transaction on the specified CAPICONNECT or
+    CAPILOGIN. If a CAPILOGIN is specified, the connection used to
+    allocate the login will be used in the transaction. The optional
+    second parameter is useful for specifying the number of unique
+    database ids this transaction will use. If the number of unique
+    ids in a given user's cache is exhausted during the transaction,
+    locking problems on the KID table may result.
+
+    **Parameters**:
+      connectOrLogin: The CAPICONNECT or CAPILOGIN to be used for the
+                      transaction.
+      numberOfIds: The number of unique ids to reserve for this
+                   transaction.
+
+    **Result**:
+      The Integer 0 if successful; Error otherwise.
+-
+  id: TransactionDepth
+  type: Method
+  synopsis: 'CAPI.TransactionDepth(Dynamic connectOrLogin): Integer'
+  comment: |-
+    Determines the current transaction depth or the current refCount
+    for the specified connection or login. If a login is specified,
+    the connection that is associated with the login will be
+    used.
+
+    **Parameters**:
+      connectOrLogin: The CAPICONNECT or CAPILOGIN to be used for the
+                      transaction
+
+    **Result**:
+      An Integer representing the current transaction depth; Error
+      otherwise.
+-
+  id: UniqueID
+  type: Method
+  synopsis: 'CAPI.UniqueID(Dynamic connectOrLogin, Integer unused, [Integer numIds]): Integer'
+  comment: |-
+    Generates a new, unique ID from the internal Livelink ID cache.
+    Each unique ID that is generated will be unique across the
+    entire Livelink database. If the optional numIds parameter is
+    used, the first id that was allocated will be returned but, the
+    next n ids will be in consecutive order.
+
+    **Parameters**:
+      connectOrLogin: The CAPICONNECT or CAPILOGIN to be used for the
+                      transaction.
+      unused: This parameter is no longer used. It should be 0.
+      numIds: The number of unique ids to be allocated.
+
+    **Result**:
+      The ID that was generated; Error otherwise.
+-
+  id: UpdateRights
+  type: Method
+  synopsis: 'CAPI.UpdateRights(CAPILOGIN login): Integer'
+  comment: |-
+    Updates the rights list that is cached by the specified login.
+    This call is useful for making sure that the rights list inside
+    of a specified login remains in sync with the actual data in the
+    Livelink database.
+
+    **Parameters**:
+      login: The CAPILOGIN which is to be refreshed.
+
+    **Result**:
+      The Integer 0 if successful; Error otherwise.
+-
+  id: UserID
+  type: Method
+  synopsis: 'CAPI.UserID(CAPILOGIN login, [Integer userId]): Integer'
+  comment: |-
+    Returns the specified user's ID or allows an administrator to
+    log-in as a particular user. If the optional userId is specified
+    and the login is the Administrator's login, the Administrator
+    login will be changed to represent a login for the specified
+    user Id.
+
+    **Parameters**:
+      login: The CAPILOGIN for the user to be examined.
+      userId: The type: Method user ID that the Administrator requests to login
+              as.
+
+    **Result**:
+      An Integer indicating the user ID, if successful; Error
+      otherwise.
+-
+  id: UseRightsString
+  type: Method
+  synopsis: 'CAPI.UseRightsString(CAPILOGIN login): Boolean'
+  comment: |-
+    Returns TRUE if the rights string query with multiple in clauses
+    can be used for this current user.
+
+    **Parameters**:
+      login: The CAPILOGIN for the user to be examined.
+
+    **Result**:
+      A boolean indicating if the rights string query with multiple
+      in clauses can be used.
+-
+  id: UserInfo
+  type: Method
+  synopsis: 'CAPI.UserInfo(CAPILOGIN login): RecArray'
+  comment: |-
+    Returns information about the current user for the specified
+    CAPILOGIN object.
+
+    **Parameters**:
+      login: The CAPILOGIN for the user to be examined.
+
+    **Result**:
+      A RecArray containing a single record which will have the
+      following fields:

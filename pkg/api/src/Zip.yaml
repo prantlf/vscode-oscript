@@ -1,0 +1,66 @@
+-
+  id: ERROR
+  type: Property
+  synopsis: 'Zip.ERROR: Error'
+  comment: |-
+    Unknown error constant.
+-
+  id: FILENOTFOUND
+  type: Property
+  synopsis: 'Zip.FILENOTFOUND: Error'
+  comment: |-
+    File not found error constant.
+-
+  id: NOTAFILE
+  type: Property
+  synopsis: 'Zip.NOTAFILE: Error'
+  comment: |-
+    The input file for Decompress() is not a file error
+    constant.
+-
+  id: NOWRITEPERMISSION
+  type: Property
+  synopsis: 'Zip.NOWRITEPERMISSION: Error'
+  comment: |-
+    The output archive file for Compress() does not have write
+    permission error constant .
+-
+  id: OK
+  type: Property
+  synopsis: 'Zip.OK: Integer'
+  comment: |-
+    Success return constant.
+-
+  id: Compress
+  type: Method
+  synopsis: 'Zip.Compress(String outFilename, String inFilename): Integer'
+  comment: |-
+    Compress file or directory, inFilename, to an archive file,
+    outFilename.
+
+    **Parameters**:
+      outFilename: Name of target archive file.
+      inFilename: Name of source file or directory to be
+                  compressed.
+
+    **Result**:
+      An Integer indicating the return status. Possible values
+      are:
+-
+  id: Decompress
+  type: Method
+  synopsis: 'Zip.Decompress(String outDirname, String inFilename): Integer'
+  comment: |-
+    Decompress an archive file, inFilename, to directory,
+    outDirname.
+
+    **Parameters**:
+      outDirname: Name of target directory where decompression will
+                  occur. If outDirname does not exist then it will
+                  be created.
+      inFilename: Name of source archive file to be
+                  decompressed.
+
+    **Result**:
+      An Integer indicating the return status. Possible values
+      are:

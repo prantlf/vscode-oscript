@@ -1,8 +1,8 @@
 {
   "name": "vscode-oscript",
-  "displayName": "OScript for Visual Studio Code",
-  "description": "Syntax highlighting for the OScript language in Visual Studio Code.",
-  "version": "0.1.1",
+  "displayName": "OScript Language",
+  "description": "Provides syntax checking and fixing, highlighting, autocompletion, hints, symbol outline, identifier recognition and renaming and other features for the OScript language in Visual Studio Code.",
+  "version": "0.2.0",
   "publisher": "prantlf",
   "author": {
     "name": "Ferdinand Prantl",
@@ -25,11 +25,15 @@
     "url": "https://github.com/prantlf/vscode-oscript/issues"
   },
   "engines": {
-    "vscode": "^1.37.0"
+    "vscode": "^1.52.0"
   },
   "categories": [
     "Programming Languages"
   ],
+  "activationEvents": [
+    "onLanguage:oscript"
+  ],
+  "main": "dist/extension.js",
   "contributes": {
     "languages": [
       {
@@ -40,37 +44,188 @@
         ],
         "extensions": [
           ".os",
-          ".osx"
+          ".osx",
+          ".e"
         ],
-        "configuration": "./syntaxes/oscript.configuration.json"
+        "configuration": "dist/oscript.configuration.json"
       }
     ],
     "grammars": [
       {
         "language": "oscript",
         "scopeName": "source.oscript",
-        "path": "./syntaxes/oscript.tmLanguage.json"
+        "path": "dist/oscript.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "OScript Language",
+      "properties": {
+        "oscript.languageServer.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enables/disables the language server for the OScript language."
+        },
+        "oscript.validation.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enables/disables syntax validation for the OScript language."
+        },
+        "oscript.completion.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enables/disables item completion on typing for the OScript language."
+        },
+        "oscript.hover.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enables/disables documentation hints on hover for the OScript language."
+        },
+        "oscript.symbols.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enables/disables the symbol outline for the OScript language."
+        },
+        "oscript.definition.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enables/disables locating definitions of identifiers in the OScript language."
+        },
+        "oscript.references.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enables/disables finding references for identifiers in the OScript language."
+        },
+        "oscript.rename.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enables/disables identifier renaming for the OScript language."
+        },
+        "oscript.quickFixes.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enables/disables quick-fixes for recoverable syntax errors in the OScript language."
+        },
+        "oscript.whatIsNew.change": {
+          "scope": "window",
+          "type": "string",
+          "default": "minor",
+          "enum": [
+            "none",
+            "major",
+            "minor",
+            "patch"
+          ],
+          "enumDescriptions": [
+            "The new version notification will not be shown anymore.",
+            "The new version notification will be shown only with a new major version.",
+            "The new version notification will be shown only with a new minor version.",
+            "The new version notification will always be shown."
+          ],
+          "description": "Limits the \"What Is New\" announcement only if a part of the version number changes: \"major.minor.patch\"."
+        },
+        "oscript.logging.level": {
+          "scope": "window",
+          "type": "string",
+          "default": "none",
+          "enum": [
+            "error",
+            "warning",
+            "debug"
+          ],
+          "enumDescriptions": [
+            "Only errors will be printed on the console.",
+            "Errors and warnings will be printed on the console.",
+            "Errors, warnings and debug messages will be printed on the console."
+          ],
+          "description": "Sets the level of problem tracking messages that appear in the debug output."
+        }
+      }
+    },
+    "problemMatchers": [
+      {
+        "name": "oslint",
+        "owner": "oscript",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": [
+          {
+            "regexp": "^([^:]+):(\\d+):(\\d+): (error|warning): (.+)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "message": 5
+          },
+          {
+            "regexp": "^\\s*\\d+\\S\\s"
+          },
+          {
+            "regexp": "^\\s*\\d+\\S\\s"
+          },
+          {
+            "regexp": "^\\s*\\d+\\S\\s(.+)$",
+            "code": 1
+          }
+        ]
       }
     ]
   },
   "keywords": [
     "vscode-extension",
     "vscode-language",
+    "multi-root ready",
     "oscript",
-    "syntax-highlighting"
+    "syntax-highlighting",
+    "syntax-checking",
+    "lint"
   ],
   "scripts": {
-    "lint:json": "jsonlint -Dq package.json syntaxes/oscript.configuration.json syntaxes/oscript.tmLanguage.json",
-    "lint:yaml": "yamllint syntaxes/oscript.configuration.yaml syntaxes/oscript.tmLanguage.yaml",
-    "convert": "js-yaml syntaxes/oscript.configuration.yaml > syntaxes/oscript.configuration.json && js-yaml syntaxes/oscript.tmLanguage.yaml > syntaxes/oscript.tmLanguage.json",
-    "prepare": "npm run lint:yaml && npm run convert",
-    "vscode:prepublish": "npm run lint:json",
+    "lint:json": "jsonlint -Dq package.json dist/*.json dist/*.json",
+    "lint:yaml": "yamllint pkg/syntaxes/*.yaml pkg/api/src/*.yaml",
+    "convert:syntax": "mkdir -p dist && js-yaml pkg/syntaxes/oscript.configuration.yaml > dist/oscript.configuration.json && js-yaml pkg/syntaxes/oscript.tmLanguage.yaml > dist/oscript.tmLanguage.json",
+    "convert:api": "mkdir -p dist && node pkg/api/convert",
+    "convert": "npm run convert:syntax && npm run convert:api",
+    "lint:ts": "eslint pkg --ext ts",
+    "compile:client": "cd pkg/client && rollup -c",
+    "compile:server": "cd pkg/server && rollup -c",
+    "compile": "npm run compile:server && npm run compile:client",
+    "watch:client": "cd pkg/client && rollup -cw",
+    "watch:server": "cd pkg/server && rollup -cw",
+    "package:client": "cd pkg/client && NODE_ENV=production rollup -c",
+    "package:server": "cd pkg/server && NODE_ENV=production rollup -c",
+    "package": "npm run package:server && npm run package:client",
+    "prepare": "npm run lint:yaml && npm run convert && npm run lint:json && npm run lint:ts && npm run package",
+    "postinstall": "cd pkg/api && npm ci && cd ../client && npm ci && cd ../server && npm ci && cd ..",
+    "test": "npm run lint:yaml && npm run lint:json && npm run lint:ts",
     "vsce:patch": "vsce publish --baseImagesUrl https://raw.githubusercontent.com/prantlf/vscode-oscript/master/ patch",
     "vsce:minor": "vsce publish --baseImagesUrl https://raw.githubusercontent.com/prantlf/vscode-oscript/master/ minor"
   },
   "devDependencies": {
     "@prantlf/jsonlint": "10.2.0",
-    "js-yaml": "3.13.1",
+    "@rollup/plugin-commonjs": "17.0.0",
+    "@rollup/plugin-node-resolve": "11.0.1",
+    "@rollup/plugin-sucrase": "3.1.0",
+    "@types/node": "14.14.19",
+    "@types/vscode": "1.52.0",
+    "@typescript-eslint/eslint-plugin": "4.11.1",
+    "@typescript-eslint/parser": "4.11.1",
+    "eslint": "7.17.0",
+    "js-yaml": "4.0.0",
+    "rollup": "2.35.1",
+    "rollup-plugin-terser": "7.0.2",
+    "typescript": "4.1.3",
     "yaml-lint": "1.2.4"
   }
 }

@@ -1,0 +1,124 @@
+-
+  id: GetTagName
+  type: Method
+  synopsis: 'DOMElement.GetTagName(): String'
+  comment: |-
+    The name of the element.
+
+
+    **Result**:
+      The name of the element.
+-
+  id: GetAttribute
+  type: Method
+  synopsis: 'DOMElement.GetAttribute(String name): String'
+  comment: |-
+    Retrieves the attribute value by name.
+
+    **Parameters**:
+      name: The name of the attribute to retrieve
+
+    **Result**:
+      The value of the attribute.
+-
+  id: SetAttribute
+  type: Method
+  synopsis: 'DOMElement.SetAttribute(String name, String value): Void'
+  comment: |-
+    Adds a new attribute. If an attribute with that name is already
+    present in the element, its value is changed to be that of the
+    value parameter. This value is a simple string, it is not parsed
+    as it is being set. So any markup (such as syntax to be
+    recognized as an entity reference) is treated as literal text,
+    and needs to be appropriately escaped by the implementation when
+    it is written out. In order to assign an attribute value that
+    contains entity references, the user must create an Attr node
+    plus any Text and EntityReference nodes, build the appropriate
+    subtree, and use setAttributeNode to assign it as the value of
+    an attribute.
+
+    **Parameters**:
+      name: Name of the attribute to create or alter.
+      value: Value to set in string form.
+-
+  id: RemoveAttribute
+  type: Method
+  synopsis: 'DOMElement.RemoveAttribute(String name): Void'
+  comment: |-
+    Removes an attribute by name. If the removed attribute is known
+    to have a default value, an attribute immediately appears
+    containing the default value.
+
+    **Parameters**:
+      name: Name of the attribute to remove.
+-
+  id: GetAttributeNode
+  type: Method
+  synopsis: 'DOMElement.GetAttributeNode(String name): DOMAttr'
+  comment: |-
+    Retrieves an attribute node by name.
+
+    **Parameters**:
+      arg1: Name of the attribute to retrieve.
+
+    **Result**:
+      The DOMAttr node with the specified name (nodeName) or null if
+      there is no such attribute.
+-
+  id: SetAttributeNode
+  type: Method
+  synopsis: 'DOMElement.SetAttributeNode(DOMAttr newAttr): DOMAttr'
+  comment: |-
+    Adds a new attribute node. If an attribute with that name
+    (nodeName) is already present in the element, it is replaced by
+    the new one.
+
+    **Parameters**:
+      newAttr: The attribute node to add.
+
+    **Result**:
+      If the newAttr attribute replaces an existing attribute, the
+      replaced Attr node is returned, otherwise null is
+      returned.
+-
+  id: RemoveAttributeNode
+  type: Method
+  synopsis: 'DOMElement.RemoveAttributeNode(DOMAttr oldAttr): DOMAttr'
+  comment: |-
+    Removes the specified attribute node. If the removed Attr has a
+    default value it is immediately replaced.
+
+    **Parameters**:
+      oldAttr: The attribute node to remove.
+
+    **Result**:
+      The Attr node that was removed.
+-
+  id: GetElementsByTagName
+  type: Method
+  synopsis: 'DOMElement.GetElementsByTagName(String name): DOMNodeList'
+  comment: |-
+    Returns a NodeList of all descendant elements with a given tag
+    name, in the order in which they would be encountered in a
+    preorder traversal of the Element tree.
+
+    **Parameters**:
+      name: The name of the tag to match on. The special value "*"
+            matches all tags.
+
+    **Result**:
+      A list of matching Element nodes.
+-
+  id: Normalize
+  type: Method
+  synopsis: 'DOMElement.Normalize(): Void'
+  comment: |-
+    Puts all Text nodes in the full depth of the sub-tree underneath
+    this Node, including attribute nodes, into a "normal" form where
+    only markup (e.g., tags, comments, processing instructions,
+    CDATA sections, and entity references) separates Text nodes,
+    i.e., there are no adjacent Text nodes. This can be used to
+    ensure that the DOM view of a document is the same as if it were
+    saved and re-loaded, and is useful when operations (such as
+    XPointer lookups) that depend on a particular document tree
+    structure are to be used.

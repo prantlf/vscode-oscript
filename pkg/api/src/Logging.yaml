@@ -1,0 +1,125 @@
+-
+  id: CS_LOGGER_NAME_PREFIX
+  type: Property
+  synopsis: 'Logging.CS_LOGGER_NAME_PREFIX: String'
+  comment: |-
+    The logger name prefix for all Content Server loggers.
+-
+  id: LEVEL_OFF
+  type: Property
+  synopsis: 'Logging.LEVEL_OFF: Integer'
+  comment: |-
+    Log level output is disabled. Nothing will be logged.
+-
+  id: LEVEL_FATAL
+  type: Property
+  synopsis: 'Logging.LEVEL_FATAL: Integer'
+  comment: |-
+    Only FATAL log messages will be logged.
+-
+  id: LEVEL_ERROR
+  type: Property
+  synopsis: 'Logging.LEVEL_ERROR: Integer'
+  comment: |-
+    Only ERROR log messages and higher will be logged.
+-
+  id: LEVEL_WARN
+  type: Property
+  synopsis: 'Logging.LEVEL_WARN: Integer'
+  comment: |-
+    Only WARN log messages and higher will be logged.
+-
+  id: LEVEL_INFO
+  type: Property
+  synopsis: 'Logging.LEVEL_INFO: Integer'
+  comment: |-
+    Only INFO log messages and higher will be logged.
+-
+  id: LEVEL_DEBUG
+  type: Property
+  synopsis: 'Logging.LEVEL_DEBUG: Integer'
+  comment: |-
+    Only DEBUG log messages and higher will be logged. Debug level is
+    reserved for internal debugging messages. Enabling this level
+    could have a severe impact on program performance.
+-
+  id: LEVEL_TRACE
+  type: Property
+  synopsis: 'Logging.LEVEL_TRACE: Integer'
+  comment: |-
+    Only TRACE log messages and higher will be logged. Trace level is
+    reserved for internal function-level trace debugging. Enabling
+    this level will have a severe impact on program
+    performance.
+-
+  id: LEVEL_ALL
+  type: Property
+  synopsis: 'Logging.LEVEL_ALL: Integer'
+  comment: |-
+    Messages for all log levels will be logged.
+-
+  id: OK
+  type: Property
+  synopsis: 'Logging.OK: Integer'
+  comment: |-
+    Success return constant.
+-
+  id: GetLoggerNames
+  type: Method
+  synopsis: 'Logging.GetLoggerNames(String loggerPrefix, [ Boolean collapse=TRUE ]): List'
+  comment: |-
+    Gets the master list of loggers defined in Content Server.
+
+    **Parameters**:
+      loggerPrefix: The prefix logger name to match (for example,
+                    "com.opentext.contentserver" would match any
+                    logger name that started with this string.
+      collapse: True if logger names containing numbers should be
+                collapsed, false if each should be returned
+                separately. For example, application.logger.[1],
+                application.logger.[2] are defined in the system. If
+                collapse is true, the logger list will only contain
+                application.logger.
+
+    **Result**:
+      A List containing the logger names if successful.  If the function fails, an error code will be returned.
+-
+  id: GetLogLevel
+  type: Method
+  synopsis: 'Logging.GetLogLevel(String loggerName): Integer'
+  comment: |-
+    Gets the current level configured for the given logger.
+
+    **Parameters**:
+      loggerName: The name of the logger to get the current level
+                  for.
+
+    **Result**:
+      An Integer representing the current log level.
+      Logging.LEVEL_OFF if the logger doesn't exist.
+-
+  id: SetLogLevel
+  type: Method
+  synopsis: 'Logging.SetLogLevel(String loggerName)Integer logLevel): Integer'
+  comment: |-
+    Sets the log level for the given logger.
+
+    **Parameters**:
+      loggerName: The name of the logger whose level is to be
+                  set.
+      logLevel: The level to set.
+
+    **Result**:
+      Logging.OK (Integer zero) if successful; Error otherwise.
+-
+  id: LogLevelToString
+  type: Method
+  synopsis: 'Logging.LogLevelToString(Integer logLevel): �String'
+  comment: |-
+    Gets a (localized) description string for a given log level.
+
+    **Parameters**:
+      logLevel: The log level to get a description for.
+
+    **Result**:
+      A String representation of the given log level.

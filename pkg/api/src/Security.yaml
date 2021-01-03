@@ -1,0 +1,74 @@
+-
+  id: Encrypt
+  type: Method
+  synopsis: 'Security.Encrypt(String value, String key, Integer encryptionType, : String'
+  comment: |-
+    Encrypt value with key using encryptionType
+
+    **Parameters**:
+      value: String containing the value to be encrypted.
+      key: String containing the text used to generate the key to
+           encrypt the value with.
+      encryptionType: Type of encryption to use
+
+    **Result**:
+      A base64 encoded string of the encrypted value.
+-
+  id: Decrypt
+  type: Method
+  synopsis: 'Security.Decrypt(String value, String key, Integer encryptionType, : String'
+  comment: |-
+    Decrypts value with key using encryptionType
+
+    **Parameters**:
+      value: String containing the base64 encoded value to be
+             decrypted.
+      key: String containing the text used to generate the key to
+           decrypt the value with.
+      encryptionType: Type of encryption to use
+
+    **Result**:
+      A hex encoded string of the decrypted value.
+-
+  id: EncryptBytes
+  type: Method
+  synopsis: 'Security.EncryptBytes(String value, String key, Integer encryptionType, : Bytes'
+  comment: |-
+    Encrypts value with key using encryptionType
+
+    **Parameters**:
+      value: String containing the value to be encrypted.
+      key: String containing the text used to generate the key to
+           encrypt the value with.
+      encryptionType: Type of encryption to use
+
+    **Result**:
+      A Bytes object of the encrypted value.
+-
+  id: DecryptBytes
+  type: Method
+  synopsis: 'Security.DecryptBytes(Bytes value, String key, Integer encryptionType, : String'
+  comment: |-
+    Decrypts value with key using encryptionType
+
+    **Parameters**:
+      value: Bytes containing the value to be decrypted.
+      key: String containing the text used to generate the key to
+           decrypt the value with.
+      encryptionType: Type of encryption to use
+
+    **Result**:
+      A String object of the decrypted value.
+-
+  id: Hash
+  type: Method
+  synopsis: 'Security.Hash(String value, Integer hashType, : String'
+  comment: |-
+    Hash value using hashType
+
+    **Parameters**:
+      value: String containing the value to be decrypted.
+      hashType: Type of hash algorithm to use
+
+    **Result**:
+      A hex encoded string of the hash.

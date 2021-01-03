@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags:
+    - 'v[0-9]+.*'
+
+jobs:
+  create_release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      version: ${{ steps.get_version.outputs.version }}
+    steps:
+    - name: Version
+      id: get_version
+      run: echo "::set-output name=version::$(echo "${{ github.ref }}" | sed 's/[^.0-9]\+//')"
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Describe
+      run: |
+        CHANGELOG=$(awk -v ver=${{ steps.get_version.outputs.version }} '/## / { if (p) { exit }; if ($2 == ver) { p=1; next } } p' CHANGELOG.md)
+        echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+        echo "$CHANGELOG" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+    - name: Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+        body: ${{ env.CHANGELOG }}
+
+  publish_assets:
+    name: Upload Package
+    runs-on: ubuntu-latest
+    needs: create_release
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install and Build
+      run: npm ci
+    - name: Package
+      run: |
+        npx vsce package
+        echo "$(npx hasha-cli -a sha256 < vscode-oscript-${{ needs.create_release.outputs.version }}.vsix)  vscode-oscript-${{ needs.create_release.outputs.version }}.vsix" > vscode-oscript-${{ needs.create_release.outputs.version }}.vsix.sha256
+    - name: Upload Archive
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_name: vscode-oscript-${{ needs.create_release.outputs.version }}.vsix
+        asset_path: vscode-oscript-${{ needs.create_release.outputs.version }}.vsix
+        asset_content_type: application/octet-stream
+    - name: Upload Checksum
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_name: vscode-oscript-${{ needs.create_release.outputs.version }}.vsix.sha256
+        asset_path: vscode-oscript-${{ needs.create_release.outputs.version }}.vsix.sha256
+        asset_content_type: text/plain

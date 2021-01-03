@@ -1,0 +1,223 @@
+-
+  id: ERROR
+  type: Property
+  synopsis: 'Language.ERROR: Error'
+  comment: |-
+    Unknown error constant.
+-
+  id: BAD_TABLE_FORMAT
+  type: Property
+  synopsis: 'Language.BAD_TABLE_FORMAT: Error'
+  comment: |-
+    The pMultilingual table attribute is not in the expected
+    format.
+-
+  id: DISABLED
+  type: Property
+  synopsis: 'Language.DISABLED: Error'
+  comment: |-
+    The language is disabled.
+-
+  id: INVALID
+  type: Property
+  synopsis: 'Language.INVALID: Error'
+  comment: |-
+    The language is invalid.
+-
+  id: EMPTY
+  type: Property
+  synopsis: 'Language.EMPTY: Error'
+  comment: |-
+    The language name cannot be empty.
+-
+  id: EMPTY_VALUE
+  type: Property
+  synopsis: 'Language.EMPTY_VALUE: Error'
+  comment: |-
+    The value cannot be empty.
+-
+  id: EMPTY_LOCAL
+  type: Property
+  synopsis: 'Language.EMPTY_LOCAL: Error'
+  comment: |-
+    The local language name cannot be empty.
+-
+  id: INVALID_ASSOC
+  type: Property
+  synopsis: 'Language.INVALID_ASSOC: Error'
+  comment: |-
+    The name/language assoc is invalid.
+-
+  id: OK
+  type: Property
+  synopsis: 'Language.OK: Integer'
+  comment: |-
+    Success return constant.
+-
+  id: GetSystemLanguages
+  type: Method
+  synopsis: 'Language.GetSystemLanguages(CAPICONNECT connection): RecArray'
+  comment: |-
+    Gets the master list of languages defined in Content Server.
+    .
+
+    **Parameters**:
+      connection: The connection to use for the query.
+
+    **Result**:
+      A RecArray containing the languages if successful.  If the
+      function fails, an error code will be returned.  The format of
+      the RecArray is as follows:
+-
+  id: GetDefaultLanguage
+  type: Method
+  synopsis: 'Language.GetDefaultLanguage(CAPILOGIN login): String'
+  comment: |-
+    Gets the default metadata language code.
+
+    **Parameters**:
+      login: The login to use to fetch the data.
+
+    **Result**:
+      A String representing the default language code; Error
+      otherwise.
+-
+  id: SetDefaultLanguage
+  type: Method
+  synopsis: 'Language.SetDefaultLanguage(CAPILOGIN login)String languageCode): Integer'
+  comment: |-
+    Sets the default metadata language code.
+
+    **Parameters**:
+      login: The login to use to set the data.
+      languageCode: The language code to make default.
+
+    **Result**:
+      Language.OK (Integer zero) if successful; Error otherwise.
+-
+  id: GetEnabledLanguages
+  type: Method
+  synopsis: 'Language.GetEnabledLanguages(CAPICONNECT connection): �RecArray'
+  comment: |-
+    Gets the list of enabled metadata languages.
+
+    **Parameters**:
+      connection: The connection to use for the query.
+
+    **Result**:
+      A RecArray containing the languages if successful; Error
+      otherwise. The format for the RecArray is as follows:
+-
+  id: InsertLanguage
+  type: Method
+  synopsis: 'Language.InsertLanguage(CAPILOGIN login)String languageCode)Boolean enabled): Integer'
+  comment: |-
+    Adds a language to the pool of available metadata languages.
+
+    **Parameters**:
+      login: The login to use to set the data.
+      languageCode: The language code to add.
+      enabled: Optional: true if the language should be enabled
+               (default is false).
+
+    **Result**:
+      Language.OK (Integer zero) if successful; Error otherwise.
+-
+  id: DeleteLanguage
+  type: Method
+  synopsis: 'Language.DeleteLanguage(CAPILOGIN login)String languageCode): Integer'
+  comment: |-
+    Removes a language from the pool of available metadata
+    languages.
+
+    **Parameters**:
+      login: The login to use to set the data.
+      languageCode: The language code to remove.
+
+    **Result**:
+      Language.OK (Integer zero) if successful; Error otherwise.
+-
+  id: RenameLanguage
+  type: Method
+  synopsis: 'Language.RenameLanguage(CAPICONNECT connect)String languageCode)String languageName)String languageNameLocal): Integer'
+  comment: |-
+    Adds a language to the pool of available metadata languages.
+
+    **Parameters**:
+      connect: The connection to use to set the data.
+      languageCode: The language code to add.
+      languageName: The new name of the language for the admin user's
+                    view.
+      languageNameLocal: The new name of the language for the
+                         localized, non-admin user's view.
+-
+  id: EnableLanguage
+  type: Method
+  synopsis: 'Language.EnableLanguage(CAPILOGIN login)String languageCode): Integer'
+  comment: |-
+    Mark the given metadata language as enabled.
+
+    **Parameters**:
+      login: The login to use to set the data.
+      languageCode: The language code to enable.
+
+    **Result**:
+      Language.OK (Integer zero) if successful; Error otherwise.
+-
+  id: DisableLanguage
+  type: Method
+  synopsis: 'Language.DisableLanguage(CAPILOGIN login)String languageCode): Integer'
+  comment: |-
+    Mark the given metadata language as disabled.
+
+    **Parameters**:
+      login: The login to use to set the data.
+      languageCode: The language code to disable.
+
+    **Result**:
+      Language.OK (Integer zero) if successful; Error otherwise.
+-
+  id: IsLanguageEnabled
+  type: Method
+  synopsis: 'Language.IsLanguageEnabled(CAPICONNECT connection)String languageCode): Boolean'
+  comment: |-
+    Checks if the given metadata language is currently enabled.
+
+    **Parameters**:
+      connection: The connection to use to retrieve the data.
+      languageCode: The language code to check.
+
+    **Result**:
+      True if the given language is currently enabled; false if
+      not.
+-
+  id: DetermineCoreValue
+  type: Method
+  synopsis: 'Language.DetermineCoreValue(CAPILOGIN login)Assoc values): String'
+  comment: |-
+    Determine the core value from the data given, based on the
+    current language configuration.
+
+    **Parameters**:
+      login: The login to use to retrieve the data.
+      values: A set of values, keyed by their respective language
+              codes.
+
+    **Result**:
+      The core value as a string if successful; Error otherwise.
+-
+  id: DetermineCoreLanguageCode
+  type: Method
+  synopsis: 'Language.DetermineCoreLanguageCode(CAPILOGIN login)Assoc values): String'
+  comment: |-
+    Determine the language code for the core value from the data
+    given, based on the current language configuration.
+
+    **Parameters**:
+      login: The login to use to retrieve the data.
+      values: A set of values, keyed by their respective language
+              codes.
+
+    **Result**:
+      The core language code as a string if successful; Error
+      otherwise.

@@ -1,0 +1,22 @@
+-
+  id: GetPublicID
+  type: Method
+  synopsis: 'DOMNotation.GetPublicID(): String'
+  comment: |-
+    The public identifier of this notation. If the public identifier
+    was not specified, this is null.
+
+
+    **Result**:
+      The public identifier, null otherwise.
+-
+  id: GetSystemID
+  type: Method
+  synopsis: 'DOMNotation.GetSystemID(): String'
+  comment: |-
+    The system identifier of this notation. If the system identifier
+    was not specified, this is null
+
+
+    **Result**:
+      The system identifier, null otherwise.

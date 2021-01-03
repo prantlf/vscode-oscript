@@ -1,0 +1,25 @@
+name: Test
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    types:
+    - opened
+    - reopened
+    - synchronize
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install and Build
+      run: npm ci
+    - name: Test
+      run: |
+        npm test
+        npx vsce package

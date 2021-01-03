@@ -1,4 +1,7 @@
 .DS_Store
+.rollup.cache
+dist
 node_modules
-syntaxes/*.json
+npm-debug.log
+tsconfig.tsbuildinfo
 *.vsix

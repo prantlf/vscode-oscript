@@ -1,0 +1,442 @@
+-
+  id: DOS
+  type: Property
+  synopsis: 'System.DOS: String'
+  comment: |-
+    The String "DOS".
+-
+  id: English
+  type: Property
+  synopsis: 'System.English: Integer'
+  comment: |-
+    The Integer constant that represents the English language.
+-
+  id: Japanese
+  type: Property
+  synopsis: 'System.Japanese: Integer'
+  comment: |-
+    The Integer constant that represents the Japanese language.
+-
+  id: Korean
+  type: Property
+  synopsis: 'System.Korean: Integer'
+  comment: |-
+    The Integer constant that represents the Korean language.
+-
+  id: Mac
+  type: Property
+  synopsis: 'System.Mac: String'
+  comment: |-
+    The String "Mac".
+-
+  id: Motif
+  type: Property
+  synopsis: 'System.Motif: String'
+  comment: |-
+    The String "Motif"
+-
+  id: NotEncoded
+  type: Property
+  synopsis: 'System.NotEncoded: Integer'
+  comment: |-
+    The Integer constant for a character encoding of Not
+    Encoded.
+-
+  id: Unix
+  type: Property
+  synopsis: 'System.Unix: String'
+  comment: |-
+    The String "Unix"
+-
+  id: UTF8
+  type: Property
+  synopsis: 'System.UTF8: Integer'
+  comment: |-
+    The Integer constant for a character encoding of UTF-8.
+-
+  id: Windows
+  type: Property
+  synopsis: 'System.Windows: String'
+  comment: |-
+    The String "Windows"
+-
+  id: AppBuildNo
+  type: Method
+  synopsis: 'System.AppBuildNo(): String'
+  comment: |-
+    Gets the Livelink application build number as a String.
+
+
+    **Result**:
+      A String representing the build number.
+-
+  id: AppPatchLevel
+  type: Method
+  synopsis: 'System.AppPatchLevel(): String'
+  comment: |-
+    Deprecated Gets the Livelink application patch level as a
+    String.
+
+
+    **Result**:
+      A String representing the patch level.
+-
+  id: AppVersion
+  type: Method
+  synopsis: 'System.AppVersion(): String'
+  comment: |-
+    Gets the Livelink version as a String. The major, minor, and
+    incremental release number will appear separated by dots. For
+    example: "8.0.1" would indicate Livelink Version 8.0.1.
+
+
+    **Result**:
+      A String representing the major, minor, and incremental release
+      numbers of Livelink.
+-
+  id: AppVersionList
+  type: Method
+  synopsis: 'System.AppVersionList(): List'
+  comment: |-
+    Gets the Livelink version as a List. The major, minor, and
+    incremental release numbers will each appear as elements in the
+    list. For example: {'8','0','1'} would indicate Livelink Version
+    8.0.1. Development builds will contain a character element 'd'
+    followed by the development build number.
+
+
+    **Result**:
+      A List containing the major, minor, and incremental release
+      number of Livelink.
+-
+  id: BaselineRefCounts
+  type: Method
+  synopsis: 'System.BaselineRefCounts(): Boolean'
+  comment: |-
+    Resets the baseline for OScript object refcounts output by
+    System.RefCounts().
+
+
+    **Result**:
+      True
+-
+  id: CharEncoding
+  type: Method
+  synopsis: 'System.CharEncoding([Integer encodingType]): Integer'
+  comment: |-
+    Gets or sets system character encoding.
+
+    **Parameters**:
+      encodingType: If specified, valid constants are either
+                    System.NotEncoded or System.UTF8. This argument
+                    should only be used at startup and only in a
+                    single threaded (Builder) environment. The
+                    multi-threaded server will have this set at
+                    startup based on configuration ini
+                    settings.
+
+    **Result**:
+      The current value. If new value is passed as parameter then the
+      old value is returned.
+-
+  id: CurrentLocaleSuffix
+  type: Method
+  synopsis: 'System.CurrentLocaleSuffix(): String'
+  comment: |-
+    Gets the thread current Locale suffix.
+
+
+    **Result**:
+      The current Locale suffix value.
+-
+  id: DefaultLocaleSuffix
+  type: Method
+  synopsis: 'System.DefaultLocaleSuffix(): String'
+  comment: |-
+    Gets the system default Locale suffix.
+
+
+    **Result**:
+      The system default Locale suffix value.
+-
+  id: FilePrefsPath
+  type: Method
+  synopsis: 'System.FilePrefsPath([String path]): String'
+  comment: |-
+    Gets or sets the fully qualified path of the default
+    configuration file.
+
+    **Parameters**:
+      path: If specified, this string sets the default path to the
+            configuration file. This argument should only be used at
+            startup and only in a single threaded (Builder)
+            environment, since a cached and shared version of the
+            configuration file is used in multi-threaded
+            environments.
+
+    **Result**:
+      The fully qualified String path of the default configuration
+      file.
+-
+  id: GetLocaleDateFormats
+  type: Method
+  synopsis: 'System.GetLocaleDateFormats(): Assoc'
+  comment: |-
+    Returns an Assoc containing the date/time formats for all
+    locales.
+
+
+    **Result**:
+      An Assoc containing the date/time formats for all locales.
+-
+  id: IntlLanguage
+  type: Method
+  synopsis: 'System.IntlLanguage([Integer languageConstant]): Integer'
+  comment: |-
+    Gets or sets system language.
+
+    **Parameters**:
+      languageConstant: If specified, valid constants are
+                        System.English, System.Japanese, or
+                        System.Korean. This is deprecated and has
+                        been replaced with the Locale support. This
+                        argument should only be used at startup and
+                        only in a single threaded (Builder)
+                        environment. The multi-threaded server will
+                        have this set at startup based on
+                        configuration ini settings.
+
+    **Result**:
+      The current value. If new value is passed as parameter then the
+      old value is returned.
+-
+  id: IntlStrings
+  type: Method
+  synopsis: 'System.IntlStrings([Boolean flag]): Boolean'
+  comment: |-
+    Gets or sets the system international strings flag.
+
+    **Parameters**:
+      flag: If specified, TRUE directs the system to use string
+            handling routines that support international languages,
+            FALSE indicates the system can use 7-bit ASCII only
+            routines. This argument should only be used at startup
+            and only in a single threaded (Builder) environment. The
+            multi-threaded server will have this set at startup
+            based on configuration ini settings.
+
+    **Result**:
+      The current value. If new value is passed as parameter then the
+      old value is returned.
+-
+  id: LanguageCode
+  type: Method
+  synopsis: 'System.LanguageCode(): String'
+  comment: |-
+    Returns a three character country code indicating the language in
+    which the string resources were compiled, and the language in
+    which the Livelink .XDBs were compiled. For example: "USA" for
+    American English or "GER" for German.
+
+
+    **Result**:
+      A three character string indicating the language used by the
+      Livelink installation.
+-
+  id: LibSuffix
+  type: Method
+  synopsis: 'System.LibSuffix(): String'
+  comment: |-
+    Returns the dotted file extension for a shared library in the
+    environment on which Livelink is running, such as ".DLL".
+
+
+    **Result**:
+      A String containing the dotted file extension.
+-
+  id: Mac
+  type: Method
+  synopsis: 'System.Mac(): Boolean'
+  comment: |-
+    True if Livelink is running in a Macintosh environment.
+
+
+    **Result**:
+      True if Livelink is running in a Macintosh environment; False
+      otherwise.
+-
+  id: Motif
+  type: Method
+  synopsis: 'System.Motif(): Boolean'
+  comment: |-
+    Not used.
+
+
+    **Result**:
+      False.
+-
+  id: MultiByte
+  type: Method
+  synopsis: 'System.MultiByte([Boolean flag]): Boolean'
+  comment: |-
+    Gets or sets the system multibyte strings flag.
+
+    **Parameters**:
+      flag: If specified, TRUE directs the system to use multibyte
+            string handling routines that support multibyte
+            character sets, FALSE indicates the system will use
+            fixed width character string routines. This argument
+            should only be used at startup and only in a single
+            threaded (Builder) environment. The multi-threaded
+            server will have this set at startup based on
+            configuration ini settings.
+
+    **Result**:
+      The current value. If new value is passed as parameter then the
+      old value is returned.
+-
+  id: Name
+  type: Method
+  synopsis: 'System.Name(): String'
+  comment: |-
+    Determines the name of the operating system on which Livelink is
+    running.
+
+
+    **Result**:
+      The String name of the operating system on which Livelink is
+      running.
+-
+  id: ProfileOff
+  type: Method
+  synopsis: 'System.ProfileOff(): Boolean'
+  comment: |-
+    Not used.
+
+
+    **Result**:
+      Meaningless.
+-
+  id: ProfileOn
+  type: Method
+  synopsis: 'System.ProfileOn(): Boolean'
+  comment: |-
+    Not used.
+
+
+    **Result**:
+      Meaningless.
+-
+  id: RefCounts
+  type: Method
+  synopsis: 'System.RefCounts(): String'
+  comment: |-
+    Returns a formatted string containing information about the
+    current number of referenced OScript objects.
+
+
+    **Result**:
+      A formatted string containing information about the current
+      number of referenced OScript objects.
+-
+  id: SetCurrentLocaleSuffix
+  type: Method
+  synopsis: 'System.SetCurrentLocaleSuffix([String suffix]): String'
+  comment: |-
+    Sets the thread current Locale suffix.
+
+    **Parameters**:
+      suffix: The string should be of the form underscore and 2 char
+              language code, optional underscore and 2 char
+              uppercase country code, optional underscore and
+              variant string. For example: _en_US. This argument can
+              be used on a per request basis in order to set the
+              current Locale for that request.  The Locale suffix
+              will be used to load the proper localized string
+              property resources.
+
+    **Result**:
+      The old Locale suffix value is returned.
+-
+  id: Sleep
+  type: Method
+  synopsis: 'System.Sleep([String duration]): String'
+  comment: |-
+    Puts the current thread to sleep for a period of time.
+
+    **Parameters**:
+      suffix: The time duration to sleep in milliseconds.
+
+    **Result**:
+      True if Sleep times out normally, False if Sleep returns
+      because of a server shutdown notification.
+-
+  id: ThreadID
+  type: Method
+  synopsis: 'System.ThreadID(): Integer'
+  comment: |-
+    Returns the unique Integer indicating the current thread
+    identification.
+
+
+    **Result**:
+      A unique identifying integer assigned to the current thread by
+      the operating system.
+-
+  id: ThreadIndex
+  type: Method
+  synopsis: 'System.ThreadIndex(): Integer'
+  comment: |-
+    Returns the unique Integer indicating the current thread's index.
+    For more coherent logging and reference, the Livelink server
+    assigns an ordered integer from 1 to n to all threads. In the
+    "single-threaded" Builder environment, the current thread index
+    will always be 0.
+
+
+    **Result**:
+      An integer indicating the current thread index.
+-
+  id: Unix
+  type: Method
+  synopsis: 'System.Unix(): Boolean'
+  comment: |-
+    True if Livelink is running in a Unix environment.
+
+
+    **Result**:
+      True if Livelink is running in a Unix environment; False
+      otherwise.
+-
+  id: Version
+  type: Method
+  synopsis: 'System.Version(): String'
+  comment: |-
+    Determines the version number of the operating system.
+
+
+    **Result**:
+      A String containing the version number of the operating
+      system.
+-
+  id: Win32
+  type: Method
+  synopsis: 'System.Win32(): Boolean'
+  comment: |-
+    True if Livelink is running in a 32-bit Windows environment.
+
+
+    **Result**:
+      True if Livelink is running in a 32-bit Windows environment;
+      False otherwise.
+-
+  id: Windows
+  type: Method
+  synopsis: 'System.Windows(): Boolean'
+  comment: |-
+    True if Livelink is running in a Windows environment.
+
+
+    **Result**:
+      True if Livelink is running in a Windows environment; False
+      otherwise.

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "lib": ["es2019"],
+    "downlevelIteration": true,
+    "outDir": "out",
+    "rootDir": "src",
+    "composite": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

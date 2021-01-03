@@ -1,0 +1,32 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "compile",
+			"type": "npm",
+			"script": "compile",
+			"group": "build",
+			"problemMatcher": "$tsc"
+		},
+		{
+			"label": "watch:client",
+			"type": "npm",
+			"script": "watch:client",
+			"isBackground": true,
+			"group": "build",
+			"problemMatcher": "$tsc-watch"
+		},
+		{
+			"label": "watch:server",
+			"type": "npm",
+			"script": "watch:server",
+			"isBackground": true,
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": "$tsc-watch",
+			"detail": "cd src/server && rollup -cw"
+		}
+	]
+}

@@ -1,0 +1,263 @@
+-
+  id: ERROR
+  type: Property
+  synopsis: 'Memcached.ERROR: Error'
+  comment: |-
+    Generic error constant.
+-
+  id: INIT_ERROR
+  type: Property
+  synopsis: 'Memcached.INIT_ERROR: Error'
+  comment: |-
+    Server failed to initialize.
+-
+  id: KEYALREADYEXIST
+  type: Property
+  synopsis: 'Memcached.KEYALREADYEXIST: Error'
+  comment: |-
+    Key already exists in cache.
+-
+  id: KEYNOTFOUND
+  type: Property
+  synopsis: 'Memcached.KEYNOTFOUND: Error'
+  comment: |-
+    Key not found.
+-
+  id: NOMEMORY
+  type: Property
+  synopsis: 'Memcached.NOMEMORY: Error'
+  comment: |-
+    Not enough memory.
+-
+  id: NOTINITIALIZED
+  type: Property
+  synopsis: 'Memcached.NOTINITIALIZED: Error'
+  comment: |-
+    Memcached not initialized. Call Init() to intialize before
+    calling any other features.
+-
+  id: SERVERNOTFOUND_ERROR
+  type: Property
+  synopsis: 'Memcached.SERVERNOTFOUND_ERROR: Error'
+  comment: |-
+    Server not found.
+-
+  id: SUCCESS
+  type: Property
+  synopsis: 'Memcached.SUCCESS: Integer'
+  comment: |-
+    Return code for an successful operation.
+-
+  id: Add
+  type: Method
+  synopsis: 'Memcached.Add(String key, String value, Integer valueLength, Integer timeout, Integer flags): Integer'
+  comment: |-
+    Add a key/value pair to the cache.
+
+    **Parameters**:
+      key: String containing the key to be added to the cache.
+      value: String containing the value to be added to the
+             cache.
+      valueLength: Length of value to be added.
+      timeout: Time, in seconds, for the data to live on the server.
+               Enter 0 for indefinite timeout.
+      flags: Any flags set by the client for this key.
+
+    **Result**:
+      A return code indicating the operation status. Possible values
+      are:
+-
+  id: AddServer
+  type: Method
+  synopsis: 'Memcached.AddServer(String host, Integer port, Integer min, Integer smax, Integer max, Integer ttl): Integer'
+  comment: |-
+    Add a server to the Memcached client server list.
+
+    **Parameters**:
+      host: hostname of the server.
+      port: port of the server.
+      min: minimum number of client sockets to open.
+      smax: soft maximum number of client connections to open.
+      max: hard maximum number of client connections to open.
+      ttl: time to live, in seconds, of a client connection.
+
+    **Result**:
+      A return code indicating the operation status. Possible values
+      are:
+-
+  id: Decrement
+  type: Method
+  synopsis: 'Memcached.Decrement(String key, Integer num): Integer'
+  comment: |-
+    Decrement the value corresponding to key by num.
+
+    **Parameters**:
+      key: key to the value being decremented.
+      num: number to decrement by.
+
+    **Result**:
+      A return code indicating the operation status. Possible values
+      are:
+-
+  id: Delete
+  type: Method
+  synopsis: 'Memcached.Delete(String key, Integer timeout): Integer'
+  comment: |-
+    Delete key from the cache.
+
+    **Parameters**:
+      key: The key to delete.
+      timeout: time for the delete to stop other clients from
+               adding.
+
+    **Result**:
+      An Integer indicating the return status. Possible values
+      are:
+-
+  id: Get
+  type: Method
+  synopsis: 'Memcached.Get(String key): String'
+  comment: |-
+    Get the value corresponding to key from the cache..
+
+    **Parameters**:
+      key: The key to get.
+
+    **Result**:
+      A string containing the retrieved value if successful else an
+      error code. Possible error codes are:
+-
+  id: Increment
+  type: Method
+  synopsis: 'Memcached.Increment(String key, Integer num): Integer'
+  comment: |-
+    Increment the value corresponding to key by num.
+
+    **Parameters**:
+      key: key to the value being incremented.
+      num: number to increment by.
+
+    **Result**:
+      A return code indicating the operation status. Possible values
+      are:
+-
+  id: Init
+  type: Method
+  synopsis: 'Memcached.Init(Integer maxServers): Integer'
+  comment: |-
+    Initialize the Memcached client with a maximum of  maxServers
+    servers.
+
+    **Parameters**:
+      maxServers: Maximum number of servers that can be added to this
+                  client.
+
+    **Result**:
+      A return code indicating the operation status. Possible values
+      are:
+-
+  id: MultiGet
+  type: Method
+  synopsis: 'Memcached.MultiGet(List keyList): Assoc'
+  comment: |-
+    Get a list of values, corresponding to the list of keys in
+    keyList, from the cache..
+
+    **Parameters**:
+      keyList: A list keys to get from the cache.
+
+    **Result**:
+      An Assoc containing the retrieved key/value pairs if successful
+      else an error code. Possible error codes are:
+-
+  id: Replace
+  type: Method
+  synopsis: 'Memcached.Replace(String key, String newValue, Integer newValueLength, Integer timeout, Integer flags): Integer'
+  comment: |-
+    Add a key/value pair to the cache.
+
+    **Parameters**:
+      key: String containing the key to be replaced in the
+           cache.
+      newValue: String containing the new value to replace the
+                current value corresponding to key in the
+                cache.
+      newValueLength: Length of the newValue.
+      timeout: Time, in seconds, for the data to live on the server.
+               Enter 0 for indefinite timeout.
+      flags: Any flags set by the client for this key.
+
+    **Result**:
+      A return code indicating the operation status. Possible values
+      are:
+-
+  id: Set
+  type: Method
+  synopsis: 'Memcached.Set(String key, String value, Integer valueLength, Integer timeout, Integer flags): Integer'
+  comment: |-
+    Set a key/value pair to the cache.
+
+    **Parameters**:
+      key: String containing the key to be added to the cache.
+      value: String containing the value to be added to the
+             cache.
+      valueLength: Length of value to be added.
+      timeout: Time, in seconds, for the data to live on the server.
+               Enter 0 for indefinite timeout.
+      flags: Any flags set by the client for this key.
+
+    **Result**:
+      A return code indicating the operation status. Possible values
+      are:
+-
+  id: Stats
+  type: Method
+  synopsis: 'Memcached.Stats(String host, Integer port): Assoc'
+  comment: |-
+    Retrieves statistics for the specified server.
+
+    **Parameters**:
+      host: hostname of the server.
+      port: port of the server.
+
+    **Result**:
+      Returns an Assoc containing various statistics for the
+      specified server. The Assoc contains the following keys:
+      version - Version string of this server pid - Process id of
+      this server process uptime - Number of seconds this server has
+      been running time - current UNIX time according to the server
+      pointer_size - The size of a pointer on the current machine
+      rusage_user - Accumulated user time for this process
+      rusage_system - Accumulated system time for this process
+      curr_items - Current number of items stored by the server
+      total_items - Total number of items stored by this server
+      bytes - Current number of bytes used by this server to store
+      items curr_connections - Number of open connections
+      total_connections - Total number of connections opened since
+      the server started running connection_structures - Number of
+      connection structures allocated by the server cmd_get -
+      Cumulative number of retrieval requests cmd_set - Cumulative
+      number of storage requests get_hits - Number of keys that have
+      been requested and found present get_misses - Number of items
+      that have been requested and not found evictions - Number of
+      items removed from cache because they passed their expiration
+      time bytes_read - Total number of bytes read by this server
+      bytes_written - Total number of bytes sent by this server
+      limit_maxbytes - Number of bytes this server is allowed to use
+      for storage threads - Number of threads the server is running
+      (if built with threading)
+-
+  id: Version
+  type: Method
+  synopsis: 'Memcached.Version(String host, Integer port): String'
+  comment: |-
+    Retrieves the version number for the specified server.
+
+    **Parameters**:
+      host: hostname of the server.
+      port: port of the server.
+
+    **Result**:
+      Returns a string containing the version number for the
+      specified server if successful else returns an error code.
+      Possible error codes are:

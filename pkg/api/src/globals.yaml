@@ -1,0 +1,811 @@
+# language types
+-
+  id: Assoc
+  type: TypeParameter
+-
+  id: Boolean
+  type: TypeParameter
+-
+  id: Bytes
+  type: TypeParameter
+-
+  id: Date
+  type: TypeParameter
+-
+  id: Dynamic
+  type: TypeParameter
+-
+  id: Error
+  type: TypeParameter
+-
+  id: Extern
+  type: TypeParameter
+-
+  id: File
+  type: TypeParameter
+-
+  id: Integer
+  type: TypeParameter
+-
+  id: List
+  type: TypeParameter
+-
+  id: Long
+  type: TypeParameter
+-
+  id: Object
+  type: TypeParameter
+-
+  id: Point
+  type: TypeParameter
+-
+  id: Real
+  type: TypeParameter
+-
+  id: RecArray
+  type: TypeParameter
+-
+  id: Record
+  type: TypeParameter
+-
+  id: Script
+  type: TypeParameter
+-
+  id: String
+  type: TypeParameter
+# built-in types
+-
+  id: CAPICONNECT
+  type: TypeParameter
+-
+  id: CAPIERR
+  type: TypeParameter
+-
+  id: CAPILOG
+  type: TypeParameter
+-
+  id: CAPILOGIN
+  type: TypeParameter
+-
+  id: DAPINODE
+  type: TypeParameter
+-
+  id: DAPISESSION
+  type: TypeParameter
+-
+  id: DAPISTREAM
+  type: TypeParameter
+-
+  id: DAPIVERSION
+  type: TypeParameter
+-
+  id: FileCopy
+  type: TypeParameter
+-
+  id: PatFind
+  type: TypeParameter
+-
+  id: PatChange
+  type: TypeParameter
+-
+  id: SqlConnection
+  type: TypeParameter
+-
+  id: SqlCursor
+  type: TypeParameter
+-
+  id: UAPISESSION
+  type: TypeParameter
+-
+  id: UAPIUSER
+  type: TypeParameter
+-
+  id: WAPISESSION
+  type: TypeParameter
+-
+  id: WAPIMAP
+  type: TypeParameter
+-
+  id: WAPIMAPTASK
+  type: TypeParameter
+-
+  id: WAPIWORK
+  type: TypeParameter
+-
+  id: WAPISUBWORK
+  type: TypeParameter
+-
+  id: DOMCDATASection
+  type: TypeParameter
+-
+  id: DOMComment
+  type: TypeParameter
+-
+  id: DOMDdocumentFragment
+  type: TypeParameter
+-
+  id: DOMEntityReference
+  type: TypeParameter
+# operators
+-
+  id: and
+  type: Operator
+  space: true
+-
+  id: eq
+  type: Operator
+  space: true
+-
+  id: ge
+  type: Operator
+  space: true
+-
+  id: gt
+  type: Operator
+  space: true
+-
+  id: le
+  type: Operator
+  space: true
+-
+  id: lt
+  type: Operator
+  space: true
+-
+  id: ne
+  type: Operator
+  space: true
+-
+  id: not
+  type: Operator
+  space: true
+-
+  id: or
+  type: Operator
+  space: true
+-
+  id: xor
+  type: Operator
+  space: true
+# flow control
+-
+  id: break
+  type: Keyword
+-
+  id: breakif
+  type: Keyword
+  space: true
+-
+  id: by
+  type: Keyword
+  space: true
+-
+  id: case
+  type: Keyword
+  space: true
+-
+  id: continue
+  type: Keyword
+-
+  id: continueif
+  type: Keyword
+  space: true
+-
+  id: default
+  type: Keyword
+  commit: ':'
+  insert: ':'
+-
+  id: do
+  type: Keyword
+  space: true
+-
+  id: downto
+  type: Keyword
+  space: true
+-
+  id: else
+  type: Keyword
+-
+  id: elseif
+  type: Keyword
+  space: true
+-
+  id: end
+  type: Keyword
+-
+  id: for
+  type: Keyword
+  space: true
+-
+  id: function
+  type: Keyword
+  space: true
+-
+  id: goto
+  type: Keyword
+  space: true
+-
+  id: if
+  type: Keyword
+  space: true
+-
+  id: in
+  type: Keyword
+  space: true
+-
+  id: repeat
+  type: Keyword
+-
+  id: return
+  type: Keyword
+-
+  id: switch
+  type: Keyword
+  space: true
+-
+  id: to
+  type: Keyword
+  space: true
+-
+  id: until
+  type: Keyword
+  space: true
+-
+  id: void
+  type: Keyword
+-
+  id: while
+  type: Keyword
+  space: true
+# miscellaneous control
+-
+  id: dll
+  type: Keyword
+-
+  id: inbyref
+  type: Keyword
+-
+  id: inout
+  type: Keyword
+-
+  id: linked
+  type: Keyword
+-
+  id: nodebug
+  type: Keyword
+-
+  id: xcmd
+  type: Keyword
+-
+  id: xfcn
+  type: Keyword
+# new keywords
+-
+  id: endscript
+  type: Keyword
+-
+  id: final
+  type: Keyword
+  space: true
+-
+  id: inherits
+  type: Keyword
+  space: true
+-
+  id: interface
+  type: Keyword
+  space: true
+-
+  id: none
+  type: Keyword
+-
+  id: object
+  type: Keyword
+  space: true
+-
+  id: override
+  type: Keyword
+  space: true
+-
+  id: package
+  type: Keyword
+  space: true
+-
+  id: private
+  type: Keyword
+  space: true
+-
+  id: public
+  type: Keyword
+  space: true
+-
+  id: script
+  type: Keyword
+  space: true
+-
+  id: super
+  type: Keyword
+  commit: '.'
+-
+  id: this
+  type: Keyword
+  commit: '.'
+-
+  id: using
+  type: Keyword
+  space: true
+# constants
+-
+  id: BooleanType
+  type: Constant
+  synopsis: 'BooleanType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Boolean`.
+-
+  id: BytesType
+  type: Constant
+  synopsis: 'BytesType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Bytes`.
+-
+  id: DateType
+  type: Constant
+  synopsis: 'DateType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Date`.
+-
+  id: DynamicType
+  type: Constant
+  synopsis: 'DynamicType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the pseudo-datatype `Dynamic`.
+-
+  id: ErrorType
+  type: Constant
+  synopsis: 'ErrorType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Error`.
+-
+  id: ExternType
+  type: Constant
+  synopsis: 'ExternType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Extern`.
+-
+  id: 'False'
+  type: Constant
+  synopsis: 'False: Boolean'
+  comment: |-
+    A constant indicating the Boolean constant `FALSE`.
+-
+  id: IntegerType
+  type: Constant
+  synopsis: 'IntegerType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Integer`.
+-
+  id: ListType
+  type: Constant
+  synopsis: 'ListType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `List`.
+-
+  id: ObjectType
+  type: Constant
+  synopsis: 'ObjectType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Object`.
+-
+  id: ObjRefType
+  type: Constant
+  synopsis: 'ObjRefType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `ObjRef`.
+-
+  id: PointType
+  type: Constant
+  synopsis: 'PointType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Point`.
+-
+  id: RealType
+  type: Constant
+  synopsis: 'RealType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Real`.
+-
+  id: ScriptType
+  type: Constant
+  synopsis: 'ScriptType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Script`.
+-
+  id: StringType
+  type: Constant
+  synopsis: 'StringType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `String`.
+-
+  id: 'True'
+  type: Constant
+  synopsis: 'True: Boolean'
+  comment: |-
+    A constant indicating the `Boolean` value `TRUE`.
+-
+  id: Undefined
+  type: Constant
+  synopsis: 'Undefined: Undefined'
+  comment: |-
+    A constant indicating the special value `Undefined`, which is of datatype `Undefined`.
+-
+  id: UndefinedType
+  type: Constant
+  synopsis: 'UndefinedType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Undefined`.
+-
+  id: VoidType
+  type: Constant
+  synopsis: 'VoidType: Integer'
+  comment: |-
+    A constant indicating the datatype number of the datatype `Void`.
+# functions
+-
+  id: DatatypeName
+  type: Function
+  synopsis: 'DatatypeName(Integer typeNumber): String'
+  comment: |-
+    For a type number, returns a String containing the corresponding
+    type name. If there is no loaded type, then Undefined is returned.
+
+    **Parameters**:
+      typeNumber: The datatype number.
+
+    **Result**:
+      A String containing the name of the type specified by
+      typeNumber. If the specified type number does not correspond
+      to a loaded type, this will return Undefined.
+-
+  id: Echo
+  type: Function
+  synopsis: 'Echo([Dynamic firstValue], ...): Void'
+  comment: |-
+    Converts arguments to a string display format and emits the
+    result to the debug/log output with a level of INFO. This
+    function terminates its output with a newline. If no arguments
+    are specified, then only a newline is emitted. A maximum of 127
+    arguments can be passed. This method is an alias of
+    EchoInfo.
+
+    **Parameters**:
+      firstValue: First value to be echoed/logged.
+
+    **Result**:
+      Undefined
+-
+  id: EchoDebug
+  type: Function
+  synopsis: 'EchoDebug([Dynamic firstValue], ...): Void'
+  comment: |-
+    Converts arguments to a string display format and emits the
+    result to the debug/log output with a level of DEBUG. This
+    function terminates its output with a newline. If no arguments
+    are specified, then only a newline is emitted. A maximum of 127
+    arguments can be passed.
+
+    **Parameters**:
+      firstValue: First value to be echoed/logged.
+
+    **Result**:
+      Undefined
+-
+  id: EchoError
+  type: Function
+  synopsis: 'EchoError([Dynamic firstValue], ...): Void'
+  comment: |-
+    Converts arguments to a string display format and emits the
+    result to the debug/log output with a level of ERROR. This
+    function terminates its output with a newline. If no arguments
+    are specified, then only a newline is emitted. A maximum of 127
+    arguments can be passed.
+
+    **Parameters**:
+      firstValue: First value to be echoed/logged.
+
+    **Result**:
+      Undefined
+-
+  id: EchoInfo
+  type: Function
+  synopsis: 'EchoInfo([Dynamic firstValue], ...): Void'
+  comment: |-
+    Converts arguments to a string display format and emits the
+    result to the debug/log output with a level of INFO. This
+    function terminates its output with a newline. If no arguments
+    are specified, then only a newline is emitted. A maximum of 127
+    arguments can be passed.
+
+    **Parameters**:
+      firstValue: First value to be echoed/logged.
+
+    **Result**:
+      Undefined
+-
+  id: EchoStamp
+  type: Function
+  synopsis: 'EchoStamp(Boolean enable): Void'
+  comment: |-
+    Enables/disables a timestamp prefix for all Echo output.  When
+    enabled, a timestamp will be prepended to all Echo, EchoError,
+    EchoDebug, and EchoWarn statements in the format "mm/dd/YYY
+    HH:MM:SS [ssss] ", where ssss is the current system tick count
+    in microseconds.
+
+    **Parameters**:
+      enable: True to enable the timestamp, false to disable.
+
+    **Result**:
+      Undefined
+-
+  id: EchoWarn
+  type: Function
+  synopsis: 'EchoWarn([Dynamic firstValue], ...): Void'
+  comment: |-
+    Converts arguments to a string display format and emits the
+    result to the debug/log output with a level of WARN. This
+    function terminates its output with a newline. If no arguments
+    are specified, then only a newline is emitted. A maximum of 127
+    arguments can be passed.
+
+    **Parameters**:
+      firstValue: First value to be echoed/logged.
+
+    **Result**:
+      Undefined
+-
+  id: GetFeatures
+  type: Function
+  synopsis: 'GetFeatures(Dynamic firstValue, [Boolean dummy]): List'
+  comment: |-
+    Internal use only.
+
+    **Parameters**:
+      firstValue: First value.
+      dummy: Unused.
+
+    **Result**:
+      A list.
+-
+  id: IsDefined
+  type: Function
+  synopsis: 'IsDefined(Dynamic testValue): Boolean'
+  comment: |-
+    Determines whether a value is not Undefined.
+
+    **Parameters**:
+      testValue: The value to evaluate.
+
+    **Result**:
+      FALSE if the value is Undefined, TRUE otherwise.
+-
+  id: IsError
+  type: Function
+  synopsis: 'IsError(Dynamic testValue, [Error compareValue]): Boolean'
+  comment: |-
+    Determines whether a value is of datatype Error and, if so,
+    optionally tests equality against a second error value if
+    compareValue is specified.
+
+    **Parameters**:
+      testValue: Value to test.
+      compareValue: Value to compare.
+
+    **Result**:
+      If called with one argument, then this function returns TRUE if
+      the type of the argument is Error. If called with two
+      arguments, then this returns TRUE if both arguments are of
+      type Error and are identical.
+-
+  id: IsFeature
+  type: Function
+  synopsis: 'IsFeature(Dynamic object, Dynamic feature): Boolean'
+  comment: |-
+    Indicates whether a value has the given feature. Note that this
+    function applies to any datatype that can be dotted (e.g.,
+    Record, Assoc, Object) and it performs the appropriate
+    type-specific function.
+
+    **Parameters**:
+      object: Object-like value
+      feature: Feature
+
+    **Result**:
+      TRUE if the object has the specified feature, FALSE
+      otherwise.
+-
+  id: IsInvokable
+  type: Function
+  synopsis: 'IsInvokable(Dynamic testValue): Boolean'
+  comment: |-
+    Indicates whether the specified value can be invoked. Note that
+    currently, only Script values are invokable.
+
+    **Parameters**:
+      testValue: Value to examine for invokability.
+
+    **Result**:
+      TRUE if the value can be invoked. FALSE otherwise.
+-
+  id: IsNotError
+  type: Function
+  synopsis: 'IsNotError(Dynamic testValue, [Error compareValue]): Boolean'
+  comment: |-
+    Determines whether a value is of datatype Error and optionally
+    compares two error values for equality. If compareValue is
+    specified, then it is compared with testValue.
+
+    **Parameters**:
+      testValue: Value to test
+      compareValue: Value to compare
+
+    **Result**:
+      If a single argument is specified, this returns FALSE if
+      testValue is of datatype Error. If both arguments are
+      specified, this will return FALSE if testValue is of datatype
+      Error and is equal to compareValue. This function will return
+      TRUE otherwise.
+-
+  id: IsNotSet
+  type: Function
+  synopsis: 'IsNotSet(Dynamic testValue): Boolean'
+  comment: |-
+    Deprecated. Determines whether a value is the special
+    pseudo-value NotSet. This value is a special value used in
+    conjunction with Assoc. See Assoc.NotSetValue() for more
+    information.
+
+    **Parameters**:
+      testValue: Value to evaluate
+
+    **Result**:
+      FALSE if the value is the special value returned by
+      Assoc.NotSetValue(), TRUE otherwise.
+-
+  id: IsObject
+  type: Function
+  synopsis: 'IsObject(Dynamic testValue): Boolean'
+  comment: |-
+    Determines whether a value is of datatype Object.
+
+    **Parameters**:
+      testValue: Value to evaluate
+
+    **Result**:
+      TRUE if the value is of datatype Object, FALSE otherwise.
+-
+  id: IsSet
+  type: Function
+  synopsis: 'IsSet(Dynamic testValue): Boolean'
+  comment: |-
+    Deprecated. Determines whether a value is not the special
+    pseudo-value NotSet. This value is a special value used in
+    conjunction with Assoc. See Assoc.NotSetValue() for more
+    information.
+
+    **Parameters**:
+      testValue: Value to evaluate
+
+    **Result**:
+      TRUE if the value is not the special value returned by
+      Assoc.NotSetValue(), FALSE otherwise.
+-
+  id: IsUndefined
+  type: Function
+  synopsis: 'IsUndefined(Dynamic testValue): Boolean'
+  comment: |-
+    Determines whether a value is the special value Undefined.
+
+    **Parameters**:
+      testValue: Value to evaluate.
+
+    **Result**:
+      TRUE if the value is Undefined, FALSE otherwise.
+-
+  id: Length
+  type: Function
+  synopsis: 'Length(Dynamic value): Integer'
+  comment: |-
+    Returns the length of the specified value.
+
+    **Parameters**:
+      value: Value to return length of.
+
+    **Result**:
+      The length of the specified value.
+-
+  id: NParameters
+  type: Function
+  synopsis: 'NParameters(): Integer'
+  comment: |-
+    Indicates the number of actual parameters passed to the current
+    function. Useful when variable argument lists are used. Note
+    that defaulted parameters count as parameters with respect to
+    this function.
+
+    **Result**:
+      The number of actual and/or defaulted parameters passed to the
+      current function.
+-
+  id: Parameters
+  type: Function
+  synopsis: 'Parameters([Integer whichArg]): Dynamic'
+  comment: |-
+    Access the actual parameter values from within the currently
+    executing OScript function. This is especially useful with
+    variable argument lists, since it permits unnamed parameters to
+    be examined.
+
+    **Parameters**:
+      whichArg: Index (1-based) of desired parameter
+
+    **Result**:
+      If no index is specified, then this will return a list of the
+      actual parameters passed to the current function. If an index
+      is specified, then the parameter with the given index will be
+      returned. If an out-of-bounds index is specified, this
+      function will return Undefined.
+-
+  id: Point
+  type: Function
+  synopsis: 'Point(Integer hCoord, Integer vCoord): Point'
+  comment: |-
+    Deprecated. Construct a Point value from two coordinates. Note
+    that the coordinate values must be between -32768 and
+    +32767.
+
+    **Parameters**:
+      hCoord: The H coordinate
+      vCoord: The V coordinate
+
+    **Result**:
+      A Point value consisting of the specified coordinates.
+-
+  id: PointH
+  type: Function
+  synopsis: 'PointH(Point somePoint): Integer'
+  comment: |-
+    Deprecated. Return the H coordinate from the specified point.
+
+    **Parameters**:
+      somePoint: Point value from which the H coordinate is to be
+                 extracted.
+
+    **Result**:
+      The H coordinate of the specified point.
+-
+  id: PointV
+  type: Function
+  synopsis: 'PointV(Point somePoint): Integer'
+  comment: |-
+    Deprecated. Return the V coordinate from a Point value.
+
+    **Parameters**:
+      somePoint: Point value from which the V coordinate is to be
+                 extracted.
+
+    **Result**:
+      The V coordinate of the specified point.
+-
+  id: Type
+  type: Function
+  synopsis: 'Type(Dynamic testValue): Integer'
+  comment: |-
+    Returns the datatype number indicating the type of the given value.
+
+    **Parameters**:
+      testValue: Value for which the corresponding type number is
+                 returned.
+
+    **Result**:
+      The datatype number for the specified value.

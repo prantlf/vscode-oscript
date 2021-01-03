@@ -1,0 +1,26 @@
+-
+  id: Item
+  type: Method
+  synopsis: 'DOMNodeList.Item(Integer index): DOMNode'
+  comment: |-
+    Returns the indexth item in the collection. If index is greater
+    than or equal to the number of nodes in the list, this returns
+    null.
+
+    **Parameters**:
+      arg1: index into the collection, zero-based.
+
+    **Result**:
+      The node at the indexth position in the NodeList, or null if
+      that is not a valid index
+-
+  id: GetLength
+  type: Method
+  synopsis: 'DOMNodeList.GetLength(): Integer'
+  comment: |-
+    The number of nodes in the list. The range of valid child node
+    indices is 0 to length-1 inclusive.
+
+
+    **Result**:
+      The number of nodes in the list.

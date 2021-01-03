@@ -1,0 +1,856 @@
+-
+  id: CR
+  type: Property
+  synopsis: 'Str.CR: String'
+  comment: |-
+    Carriage return character constant.
+-
+  id: CRLF
+  type: Property
+  synopsis: 'Str.CRLF: String'
+  comment: |-
+    Carriage return, linefeed constant.
+-
+  id: E_Truncation
+  type: Property
+  synopsis: 'Str.E_Truncation: Error'
+  comment: |-
+    String truncation error constant.
+-
+  id: LF
+  type: Property
+  synopsis: 'Str.LF: String'
+  comment: |-
+    Linefeed character constant.
+-
+  id: OldEncoding
+  type: Property
+  synopsis: 'Str.OldEncoding: Integer'
+  comment: |-
+    Old encoding algorithm constant. When specified as the optional
+    third parameter to Encode() and Decode(), these functions will
+    use the old encoding algorithm (for backward compatibility
+    only).
+-
+  id: TAB
+  type: Property
+  synopsis: 'Str.TAB: String'
+  comment: |-
+    Tab character constant.
+-
+  id: Ascii
+  type: Method
+  synopsis: 'Str.Ascii(Dynamic value): Dynamic'
+  comment: |-
+    Converts an ASCII value to a String, or converts a String to an
+    ASCII value.
+
+    **Parameters**:
+      value: Specifies either an Integer or a String. If an Integer
+             is specified, it is converted to a one-character String
+             corresponding to the specified ASCII value. If a String
+             is specified, the first character of the String is
+             converted to an Integer corresponding to the ASCII
+             value of that character.
+
+    **Result**:
+      If an Integer from 0 to 255 is specified, a String consisting
+      of a single character is returned. If an Integer outside this
+      range is specified, Undefined is returned on UNIX platforms.
+      If a String is specified, an Integer corresponding to the
+      ASCII value of the first character in the String is returned.
+      Note: in double-byte localizations of Livelink, this function
+      can be used with double-byte characters. If an Integer value
+      between 255 and 65535 is specified, a double-byte character is
+      returned. If the first character of a String parameter is a
+      double-byte character, the Integer that is returned will
+      represent both bytes of the character.
+-
+  id: ByteLength
+  type: Method
+  synopsis: 'Str.ByteLength(String aString): Integer'
+  comment: |-
+    Returns the length of aString in bytes rather than length in
+    characters. These numbers will only be different on multibyte
+    systems.
+
+    **Parameters**:
+      aString: A String whose length in bytes is returned.
+
+    **Result**:
+      An Integer specifying number of bytes used to represent aString
+      in computer memory.
+-
+  id: CSpn
+  type: Method
+  synopsis: 'Str.CSpn(String aString, String searchChars): Integer'
+  comment: |-
+    Returns the length of the longest initial segment of aString that
+    consists of characters not in searchChars.  See Str.Spn().
+
+    **Parameters**:
+      aString: A String to search.
+      searchChars: A String containing the characters for which to
+                   search.
+
+    **Result**:
+      An Integer indicating the length of the segment of aString that
+      contains no characters found in searchChars. If the first
+      character of aString is a character in searchChars, the
+      Integer value 0 is returned.
+-
+  id: CString
+  type: Method
+  synopsis: 'Str.CString(String aString, [String quoteChar]): String'
+  comment: |-
+    Returns a C-escaped version of the specified String. Newlines
+    (
+    ), carriage returns (\r), tabs (\t), backslashes (\\), and
+    quotes (\' or \") are escaped.  quoteChar allows customization
+    of the quote-escaping used.
+
+    **Parameters**:
+      aString: The String for which a C-String is returned.
+      quoteChar: The quote character to escape; either a single (')
+                 or double (") quote. Double quote (") is the
+                 default.
+
+    **Result**:
+      A C-escaped version of the specified String.
+-
+  id: Capitalize
+  type: Method
+  synopsis: 'Str.Capitalize(String aString): String'
+  comment: |-
+    Returns a new String which is a capatalized version of aString..
+    The first letter of each word will be converted to uppercase,
+    while following letters of each word will be converted to
+    lowercase.  See Str.Upper(). **Parameters**: aString - The String
+    for which a capitalized version is returned. Returns: A copy of
+    aString, but with the first letter of each word capitalized and
+    all other letters in lowercase. Here is a short example:
+-
+  id: Catenate
+  type: Method
+  synopsis: 'Str.Catenate(List values, [String appendString]): String'
+  comment: |-
+    Returns a String which is a concatenation of each element of
+    values, appending appendString after each element if it is
+    specified.  See Str.Elements() for performing the opposite
+    function.
+
+    **Parameters**:
+      values: A List containing the values to concatenate. If any
+              element of values is not of type String, a String
+              representation of the value is appended to the
+              resulting String.
+      appendString: Specifies an optional String to be appended after
+                    each element of the List in the return value.
+                    If not specified, the default value is the empty
+                    String ("").
+
+    **Result**:
+      A String concatenation, if successful; Undefined
+      otherwise.
+-
+  id: Chr
+  type: Method
+  synopsis: 'Str.Chr(String aString, String ch): Integer'
+  comment: |-
+    Returns the index of the first occurrence, from left to right, of
+    the first character of ch within the aString.
+
+    **Parameters**:
+      aString: Specifies a String in which to search.
+      ch: Specifies a String whose first character is to be
+          located.
+
+    **Result**:
+      An Integer specifying the character position (from 1 to n) of
+      the first character of ch if it is found within aString;
+      Undefined otherwise.
+-
+  id: Cmp
+  type: Method
+  synopsis: 'Str.Cmp(String string1, String string2, [Integer chars]): Integer'
+  comment: |-
+    Performs a case-sensitive ASCII value comparison of string1 to
+    string2.  Str.Cmp() is the OScript equivalent of C's strcmp()
+    and strncmp().  See Str.CmpI() and Str.CmpBE().
+
+    **Parameters**:
+      string1: The first String to compare.
+      string2: The second String to compare.
+      chars: Specifies an optional positive Integer indicating the
+             maximum number of characters of string1 and string2 to
+             compare. If not specified, both strings are compared in
+             their entirety, or until a non-matching character is
+             found.
+
+    **Result**:
+      Result Reason <0 string1 is less than string2. 0 string1 is
+      identical to string2. >0 string1 is greater than string2.
+-
+  id: CmpBE
+  type: Method
+  synopsis: 'Str.CmpBE(String string1, String string2): Integer'
+  comment: |-
+    Performs a case-sensitive ASCII value comparison of string1 to
+    string2, where the longer String is compared against the shorter
+    as padded with trailing blanks ("Blank Extended") to make the
+    strings equal in length. Note that this Blank Extension is only
+    internal to the comparison, and does not alter string1 or
+    strin2.  See Str.Cmp() and Str.CmpIBE().
+
+    **Parameters**:
+      string1: The first String to compare.
+      string2: the second String to compare.
+
+    **Result**:
+      Result Reason <0 string1 is less than string2. 0 string1 is
+      identical to string2. >0 string1 is greater than string2.
+-
+  id: CmpI
+  type: Method
+  synopsis: 'Str.CmpI(String string1, String string2, [Integer chars]): Integer'
+  comment: |-
+    Performs a case-insensitive ASCII value comparison of string1 to
+    string2.  Str.CmpI() is the case-insensitive version of
+    Str.Cmp().  See Str.CmpIBE() as well.
+
+    **Parameters**:
+      string1: The first String to compare.
+      string2: The second String to compare.
+      chars: Specifies an optional positive Integer indicating the
+             maximum number of characters of string1 and string2 to
+             compare. If not included, both strings are compared in
+             their entirety, or until a non-matching character is
+             found.
+
+    **Result**:
+      Result Reason <0 string1 is less than string2. 0 string1 is
+      identical to string2. >0 string1 is greater than string2.
+-
+  id: CmpIBE
+  type: Method
+  synopsis: 'Str.CmpIBE(String string1, String string2): Integer'
+  comment: |-
+    Performs a case-insensitive ASCII value comparison of string1 to
+    string2, where the shorter String is padded with trailing blanks
+    ("Blank Extended") to make the strings equal in length. Note
+    that this Blank Extension is only internal, and neither string1
+    nor string2 are affected.  See Str.CmpI() and Str.CmpBE().
+
+    **Parameters**:
+      string1: The first String to compare.
+      string2: The second String to compare.
+
+    **Result**:
+      Result Reason <0 string1 is less than string2. 0 string1 is
+      identical to string2. >0 string1 is greater than string2.
+-
+  id: Collapse
+  type: Method
+  synopsis: 'Str.Collapse(String aString): String'
+  comment: |-
+    Removes all spaces and tabs from a String.
+
+    **Parameters**:
+      aString: The String for which a spaceless and tabless version
+               is returned.
+
+    **Result**:
+      A String, identical to the specified String, but with all
+      spaces and horizontal tabs removed.
+-
+  id: Compress
+  type: Method
+  synopsis: 'Str.Compress(String aString): String'
+  comment: |-
+    Converts all sequences of one or more spaces or horizontal tabs
+    to a single space character.
+
+    **Parameters**:
+      aString: The String for which a compressed version is
+               returned.
+
+    **Result**:
+      A String, identical to the specified String, but with all
+      sequences of one or more spaces or horizontal tabs converted
+      to a single space character.
+-
+  id: Decode
+  type: Method
+  synopsis: 'Str.Decode(String aString, [Integer keyToEncode], [Integer version]): String'
+  comment: |-
+    Converts a String encoded by Str.Encode() back to ASCII
+    text.
+
+    **Parameters**:
+      aString: An encoded String returned by the Str.Encode
+               function.
+      keyToEncode: An optional Integer corresponding to the
+                   keyToEncode value passed to the Str.Encode
+                   function when the String was encoded. This
+                   parameter is only used if version is equal to
+                   Str.OldEncoding.
+      version: Specifies an optional version of the internal encoding
+               algorithm used. Currently, Str.OldEncoding is the
+               only meaningful value for this parameter.
+
+    **Result**:
+      The String originally passed to the Str.Encode function.
+-
+  id: EOL
+  type: Method
+  synopsis: 'Str.EOL(): String'
+  comment: |-
+    Returns a line termination character appropriate for the current
+    platform. Str.EOL() maintains cross-platform line termination,
+    and should be used over Str.Ascii().
+
+
+    **Result**:
+      A String containing the platform-specific line termination
+      character.
+-
+  id: Elements
+  type: Method
+  synopsis: 'Str.Elements(String aString, String delimiter): List'
+  comment: |-
+    Extracts the segments of aString delimited by the first character
+    of delimiter and returns the segments as elements in a List. The
+    order of the elements within the list reflects their occurrence
+    in the String. See Str.Catenate() for performing the opposite
+    function.
+
+    **Parameters**:
+      aString: A String for which delimited elements are
+               returned.
+      delimiter: A String whose first character delimits the elements
+                 of aString.
+
+    **Result**:
+      A List containing String elements that consist of the delimited
+      String segments of aString. The delimiter is not included in
+      the returned List of elements.
+-
+  id: Encode
+  type: Method
+  synopsis: 'Str.Encode(String aString, [Integer keyToEncode], [Integer version]): String'
+  comment: |-
+    Encodes/encrypts a String. An encoded String can be converted
+    back to its original value with Str.Decode() using the same
+    keyToEncode and version used to encode it.
+
+    **Parameters**:
+      aString: The String for which an encoded version is
+               returned.
+      keyToEncode: An optional Integer encoding key. This value is
+                   significant only in that the same value must be
+                   specified to decode the String. This parameter is
+                   ignored if version is not equal to
+                   Str.OldEncoding.
+      version: An optional version of the internal encoding algorithm
+               used. Currently, Str.OldEncoding is the only
+               meaningful value for this parameter.
+
+    **Result**:
+      An encoded version of the input String.
+-
+  id: FileToString
+  type: Method
+  synopsis: 'Str.FileToString(String filename): String'
+  comment: |-
+    Returns the contents of a text file as a String. When
+    Str.FileToString is called, operating system-specific line
+    termination is converted to Str.CR line termination.
+
+    **Parameters**:
+      filename: A String indicating the name of the file to convert,
+                which should be the full file path if the file is
+                not in the current working directory.
+
+    **Result**:
+      A String containing the contents of the file, or if the file
+      does not exist or cannot be read as text, Undefined.
+-
+  id: Format
+  type: Method
+  synopsis: 'Str.Format(String format, [Dynamic arg], [Dynamic arg], [Dynamic arg]): String'
+  comment: |-
+    This function returns a String formatted such that each included
+    substitution indicator (%1...%9) is replaced by the
+    corresponding substitution argument. Str.Format() is the OScript
+    equivalent of the C language's sprintf() and printf().  However,
+    numbers are used as format symbols instead of type identifiers
+    since OScript is dynamically typed and numbers allow for
+    alterations in substitution order as required for
+    internationalization.
+
+    **Parameters**:
+      format: The format String for which a substituted version is
+              returned.
+      arg: Each arg specifies a String indicating the substitution to
+           be made for the corresponding substitution indicator. For
+           example, if arg1 = 'Arnold', the String 'Arnold' will
+           replace %1 each time it is located in format.
+      arg<2>:
+      arg<n>:
+
+    **Result**:
+      A String identical to format, but with the substitutions made,
+      if successful; Undefined otherwise.
+-
+  id: FromBase64
+  type: Method
+  synopsis: 'Str.FromBase64(String aString): String'
+  comment: |-
+    Decodes a String which was encoded using Base64. Base64 is a
+    standard encoding for MIME content, described in RFC 1341. The
+    encoded String consists only of printable ASCII characters,
+    making it useful for exchanging data across networks and between
+    platforms.
+
+    **Parameters**:
+      aString: A Base64-encoded String to decode.
+
+    **Result**:
+      The decoded contents of the specified String.
+-
+  id: Hyphenate
+  type: Method
+  synopsis: 'Str.Hyphenate(String aString, Integer maxLength): List'
+  comment: |-
+    Breaks a String into multiple segments, each of which is no
+    longer than the number of characters specified in
+    maxLength.
+
+    **Parameters**:
+      aString: Specifies the String on which to operate.
+      maxLength: Specifies the maximum number of characters to
+                 include in any segment, which is one minimum.
+                 Hyphenate works heuristically, that is, it attempts
+                 to break on white space, but if that cannot be
+                 done, then it breaks just after each vowel, unless
+                 no vowels are found , in which case the segment is
+                 broken at maxLength.
+
+    **Result**:
+      A List containing String elements, each representing a segment
+      of the input String appending a hyphen character to the end of
+      each segment.
+-
+  id: IntlSort
+  type: Method
+  synopsis: 'Str.IntlSort([Boolean newValue]): Boolean'
+  comment: |-
+    Returns and optionally sets the international sorting mode. If
+    international sorting is turned on, extended characters will
+    sort properly, since international sorting accounts for
+    multi-byte characters.
+
+    **Parameters**:
+      newValue: Specifies an optional Boolean which, if present, sets
+                international sorting mode.  If present, TRUE
+                indicates that sorting mode should be
+                international.
+
+    **Result**:
+      A Boolean where TRUE indicates that the sort mode is
+      international. If newValue is specified, the function returns
+      the previous sort setting; otherwise, it returns the current
+      setting.
+-
+  id: Locate
+  type: Method
+  synopsis: 'Str.Locate(String searchInStr, String searchForStr): Integer'
+  comment: |-
+    Performs a case-sensitive search for the first occurrence of
+    searchForStr within searchInStr. For a case-insensitive search,
+    see Str.LocateI().
+
+    **Parameters**:
+      searchInStr: A String to search.
+      searchForStr: A String for which to search.
+
+    **Result**:
+      An Integer specifying the position (from 1 to n) of the first
+      character of searchForStr within searchInStr if the
+      searchInStr contains the searchForStr; Undefined
+      otherwise.
+-
+  id: LocateI
+  type: Method
+  synopsis: 'Str.LocateI(String searchInStr, String searchForStr): Integer'
+  comment: |-
+    Performs a case-insensitive search for the first occurrence of
+    searchForStr within searchInStr. LocateI() ends in "I" due to
+    the case-insensitivity; for a case-sensitive version, see
+    Str.Locate().
+
+    **Parameters**:
+      searchInStr: The String to search.
+      searchForStr: The String for which to search.
+
+    **Result**:
+      An Integer specifying the position (from 1 to n) of the first
+      character of searchForStr within searchInStr if searchInStr
+      contains searchForStr; Undefined otherwise.
+-
+  id: Lower
+  type: Method
+  synopsis: 'Str.Lower(String aString): String'
+  comment: |-
+    Converts all alphabetic characters in the specified String to
+    lowercase characters. See Str.Upper(), as well as
+    Str.Capitalize().
+
+    **Parameters**:
+      aString: The String for which a lowercase version is
+               returned.
+
+    **Result**:
+      A String identical to the specified String, with all alphabetic
+      characters in lowercase.
+-
+  id: Quote
+  type: Method
+  synopsis: 'Str.Quote(String aString, [String quote]): String'
+  comment: |-
+    This function adds either single or double quotation marks to the
+    specified String.
+
+    **Parameters**:
+      aString: Specifies the String on which to operate.
+      quote: a String containing the quotation marks (either single
+             or double) to add.  The default is a single quote.
+
+    **Result**:
+      A String, identical to the original String, but surrounded by
+      quotation marks, with any matching embedded quotation marks
+      doubled.
+-
+  id: RChr
+  type: Method
+  synopsis: 'Str.RChr(String aString, String ch): Integer'
+  comment: |-
+    Locates the rightmost occurrence of the first character of ch
+    within aString. See Str.Chr() for searching from the beginning
+    of the String.
+
+    **Parameters**:
+      aString: The String to search.
+      ch: Specifies a String whose first character will be located
+          from the right of aString.  This is usually a single
+          character.
+
+    **Result**:
+      An Integer specifying the character position (from 1 to n) of
+      the last occurrence of the first character of ch within
+      aString, if found; Undefined otherwise.
+-
+  id: Replace
+  type: Method
+  synopsis: 'Str.Replace(String aString, String find, String replace): String'
+  comment: |-
+    Performs a single case-sensitive search and replace operation on
+    a String.  For a thorough search and replace see
+    Str.ReplaceAll().  The Str.Replace function executes faster than
+    the Pattern.Change function when searching for and replacing
+    simple Strings.
+
+    **Parameters**:
+      aString: A String which is searched.
+      find: A String for which to search.
+      replace: A String which replaces find when found in
+               aString.
+
+    **Result**:
+      A String, identical to the specified String, but with the first
+      instance of find replaced with replace, if found; Undefined
+      otherwise.
+-
+  id: ReplaceAll
+  type: Method
+  synopsis: 'Str.ReplaceAll(String aString, String find, String replace): String'
+  comment: |-
+    Performs an exhaustive case-sensitive search and replace on a
+    String, returning a new String copy with all instances of the
+    String find replaced with replace. Str.Replace() only replaces
+    the first occurrence.
+
+    **Parameters**:
+      aString: A String to search.
+      find: The String for which to search.
+      replace: The String which replaces find.
+
+    **Result**:
+      A String, identical to the specified String, but with all
+      instances of find replaced with replace if found.
+-
+  id: Set
+  type: Method
+  synopsis: 'Str.Set(Dynamic length, String value): String'
+  comment: |-
+    Returns a String of the specified length consisting solely of the
+    first character in the specified String. This function is useful
+    for creating formatted columns of text.
+
+    **Parameters**:
+      length: Specifies either an Integer or a String. If an Integer
+              is specified, the resulting String is length
+              characters long. If a String is specified, the
+              resulting String is Length( length ) characters
+              long.
+      value: A String whose first character is repeated length times
+             in the resulting String.
+
+    **Result**:
+      A String of the specified length consisting solely of the first
+      character in value.
+-
+  id: SJis2Jis
+  type: Method
+  synopsis: 'Str.SJis2Jis(String aString): String'
+  comment: |-
+    Converts a Shift-JIS String to JIS format. Livelink processes
+    Japanese text as Shift-JIS internally, but JIS is often a more
+    useful format for exchanging textual data across networks and
+    between platforms.
+
+    **Parameters**:
+      aString: A string to convert.
+
+    **Result**:
+      A String, identical to the specified String, but converted from
+      Shift-JIS format to JIS format. In addition, half-width
+      (hankaku) characters are converted to full-width
+      (zenkaku).
+-
+  id: Spn
+  type: Method
+  synopsis: 'Str.Spn(String aString, String searchChars): Integer'
+  comment: |-
+    Determines the length of the maximum initial segment of aString
+    that consists solely of characters that are in searchChars. See
+    Str.CSpn().
+
+    **Parameters**:
+      aString: A String in which to search.
+      searchChars: A String containing the characters for which to
+                   search.
+
+    **Result**:
+      An Integer indicating the length of the segment of aString that
+      contains only characters found in searchChars. Returns 0 if no
+      searchChars characters are found.
+-
+  id: String
+  type: Method
+  synopsis: 'Str.String(Dynamic value, [Boolean displayString]): String'
+  comment: |-
+    Converts the specified value to a presentable String. If a String
+    value is specified, that same String value is returned. If an
+    Error is specified, the message associated with that Error is
+    returned.
+
+    **Parameters**:
+      value: A value of any type to be converted to a presentable
+             String.
+      displayString: If FALSE (default), a display-friendly version
+                     of value will be returned, otherwise the result
+                     is equivalent to that returned by
+                     Str.ValueToString().
+
+    **Result**:
+      A String representation of the specified value.
+-
+  id: StringToInteger
+  type: Method
+  synopsis: 'Str.StringToInteger(String aString): Integer'
+  comment: |-
+    Converts a String to an Integer. See Str.StringToReal() to
+    convert a String containing a numerical value into a Real.
+
+    **Parameters**:
+      aString: Specifies a String representation of an Integer.  It
+               can only contain a leading +/- sign and digits, as
+               well as leading and/or trailing space.  However any
+               unary +/- sign should directly precede the first
+               digit.
+
+    **Result**:
+      An Integer, if the specified String can be interpreted as an
+      Integer; Undefined otherwise.
+-
+  id: StringToReal
+  type: Method
+  synopsis: 'Str.StringToReal(String aString): Real'
+  comment: |-
+    Converts the specified String to a Real. See
+    Str.StringToInteger() to convert a String containing a numerical
+    value into an Integer.
+
+    **Parameters**:
+      aString: A String representation of a Real, in basically the
+               same format as is acceptable in the C programming
+               language, The format is "[+-]X[.Y[e[+-]Z]]" where
+               optional parts are bracketed, and the letters X, Y,
+               and Z indicate any number of digits of the number,
+               decimal, and exponent parts, respectively.  It should
+               be noted that X is optional if Y is present, and the
+               'e' character which prefixes the exponent part may be
+               of any case. The String may contain leading or
+               trailing spaces, but no spaces within the number text
+               block.
+
+    **Result**:
+      A Real, if the specified String can be interpreted as a real
+      number; Undefined otherwise.
+-
+  id: StringToValue
+  type: Method
+  synopsis: 'Str.StringToValue(String aString): Dynamic'
+  comment: |-
+    Converts a String resulting from the Str.ValueToString() back to
+    a value of its original type. Strings for aString other than
+    those created with ValueToString() can yield unpredictable
+    results.
+
+    **Parameters**:
+      aString: A String value returned by Str.ValueToString().
+
+    **Result**:
+      A value of the appropriate type as converted from aString.
+-
+  id: Strip
+  type: Method
+  synopsis: 'Str.Strip(String aString, String stripChars): String'
+  comment: |-
+    Removes all occurrences of the specified characters from a
+    String.
+
+    **Parameters**:
+      aString: The String for which a stripped version is
+               returned.
+      stripChars: The characters to strip from aString. If stripChars
+                  contains multiple characters, all of these
+                  characters are removed from aString, regardless of
+                  their order.
+
+    **Result**:
+      A String, identical to aString, but with all occurrences of the
+      characters in stripChars removed.
+-
+  id: Substitute
+  type: Method
+  synopsis: 'Str.Substitute(String aString, Dynamic substitutions): String'
+  comment: |-
+    This function replaces tokens in aString with values from
+    substitutions.
+
+    **Parameters**:
+      aString: The string for which a substituted version will be
+               returned. Tokens must be in the following format:
+               "%tokenName%".
+      substitutions: Specifies a List, Record, or RecArray containing
+                     the values to substitute for each token. If
+                     substitutions is a List, each element must be a
+                     List in the following format: { tokenName,
+                     value } If substitutions is a Record, the
+                     function substitutes the value in the field
+                     whose field name corresponds to the token name
+                     for each token. If substitutions is a RecArray,
+                     the function substitutes the value in the field
+                     of the first Record whose field name
+                     corresponds to the token name for each token.
+                     Token comparison is not case-sensitive.  Note
+                     that the substituted items must be Strings, or
+                     the substitution will resolve to an error
+                     String ("!KOSValue error string!").
+
+    **Result**:
+      A String copy of the original, but with substitutions
+      made.
+-
+  id: Tab
+  type: Method
+  synopsis: 'Str.Tab(): String'
+  comment: |-
+    This function returns a tab character. Using the Str.Tab function
+    is preferable to using Str.Ascii() to generate a tab character,
+    allowing the script to be run on a machine that does not use the
+    ASCII character set.
+
+
+    **Result**:
+      A String containing the tab character.
+-
+  id: ToBase64
+  type: Method
+  synopsis: 'Str.ToBase64(String aString): String'
+  comment: |-
+    Encodes the specified String using the Base64 encoding. Base64 is
+    a standard encoding for MIME content, described in RFC 1341. The
+    encoded String consists only of printable ASCII characters,
+    making it useful for exchanging data across networks and between
+    platforms.
+
+    **Parameters**:
+      aString: A String to be encoded.
+
+    **Result**:
+      The encoded version of the specified String. Note that the
+      result will be approximately 33% longer than the original
+      String.
+-
+  id: Trim
+  type: Method
+  synopsis: 'Str.Trim(String aString): String'
+  comment: |-
+    Removes all leading and trailing white space from the specified
+    String. White space is defined as any combination of spaces,
+    form feeds, new lines, carriage returns, and horizontal or
+    vertical tabs.
+
+    **Parameters**:
+      aString: The String for which a trimmed version is
+               returned.
+
+    **Result**:
+      A String, identical to the specified String, but with all
+      leading and trailing white space removed.
+-
+  id: Upper
+  type: Method
+  synopsis: 'Str.Upper(String aString): String'
+  comment: |-
+    Converts all alphabetic characters in the specified String to
+    uppercase. See Str.Lower(), as well as Str.Capitalize()
+
+    **Parameters**:
+      aString: The String for which an uppercase version is
+               returned.
+
+    **Result**:
+      A String, identical to the specified String, but with all
+      alphabetic characters converted to uppercase characters.
+-
+  id: ValueToString
+  type: Method
+  synopsis: 'Str.ValueToString(Dynamic value): String'
+  comment: |-
+    Converts a value of any type to a String. The data type of the
+    original value is retained in the String representation so that
+    the resulting String can be converted back to a value of its
+    original type with Str.StringToValue().
+
+    **Parameters**:
+      value: Specifies a value of any type to be converted to a
+             String. The result from passing values of data types
+             other than Error, Integer, Date, Boolean, Real, String,
+             List, Assoc, or RecArray can be unpredictable.
+
+    **Result**:
+      A String representation of the specified value.

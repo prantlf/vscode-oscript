@@ -1,0 +1,345 @@
+-
+  id: RecArrayType
+  type: Property
+  synopsis: 'RecArray.RecArrayType: Integer'
+  comment: |-
+    Specifies a value of type RecArray.
+-
+  id: RecordType
+  type: Property
+  synopsis: 'RecArray.RecordType: Integer'
+  comment: |-
+    Specifies a value of type Record.
+-
+  id: AddField
+  type: Method
+  synopsis: 'RecArray.AddField(RecArray theRecArray, Dynamic fieldNames): Integer'
+  comment: |-
+    Adds a field to a RecArray if a field with the specified name
+    does not exist.
+
+    **Parameters**:
+      theRecArray: The RecArray to which the field will be
+                   added.
+      fieldNames: Either a String indicating the name of the field to
+                  add or a List containing String elements
+                  indicating multiple fields to add.
+
+    **Result**:
+      The index of the newly added field. If the field already
+      exists, its index is returned. If more than one field is
+      added, the index of the last field added is returned.
+-
+  id: AddRecord
+  type: Method
+  synopsis: 'RecArray.AddRecord(RecArray theRecArray, [List values]): Integer'
+  comment: |-
+    Adds a Record to the end of the RecArray. If there are fewer
+    elements in the values List than there are fields, the
+    unspecified field values are set to Undefined. If there are more
+    elements in the values List than there are fields, the extra
+    elements in the List are ignored.
+
+    **Parameters**:
+      theRecArray: The RecArray to which the Record will be
+                   added.
+      values: An optional List of values to add, containing one value
+              for each field in the Record. If not specified, a
+              Record with Undefined values is added.
+
+    **Result**:
+      The position of the added Record in the RecArray. For example,
+      if there are four Records in the specified RecArray, the
+      result of executing the RecArray.AddRecord function would be
+      5.
+-
+  id: Allocate
+  type: Method
+  synopsis: 'RecArray.Allocate(RecArray theRecArray, Integer numRecords): Integer'
+  comment: |-
+    Allocates space into which a RecArray can expand. This function
+    can be used to optimize performance during RecArray creation.
+    The most efficient procedure for filling a RecArray is to create
+    the RecArray, use the RecArray.Allocate function to allocate
+    space for the desired number of Records, and then add the
+    Records. Note that the numRecords parameters specifies the
+    desired size of the RecArray, irrespective of any existing
+    records. For example, if theRecArray contains five Records and
+    you Allocate 10, the RecArray will contain 10 Records, not 15.
+    If you Allocate the same RecArray to three Records, the RecArray
+    will be truncated so that it contains only three Records.
+
+    **Parameters**:
+      theRecArray: The RecArray in which to pre-allocate space.
+      numRecords: The desired size of the RecArray.
+
+    **Result**:
+      The number of records in the RecArray.
+-
+  id: ColumnToList
+  type: Method
+  synopsis: 'RecArray.ColumnToList(RecArray theRecArray, Dynamic colRef): List'
+  comment: |-
+    Returns a List containing the values stored in a RecArray
+    column.
+
+    **Parameters**:
+      theRecArray: The RecArray from which to retrieve the
+                   values.
+      colRef: Either a String containing the name or an Integer
+              containing the (1-based) index of the desired
+              column.
+
+    **Result**:
+      A List of values stored in the specified column. If the colRef
+      parameter is not a String or an Integer, if the field name is
+      not found, or if the index is out of range, Undefined is
+      returned. If the RecArray contains no Records, an empty List
+      is returned.
+-
+  id: Copy
+  type: Method
+  synopsis: 'RecArray.Copy(RecArray theRecArray): RecArray'
+  comment: |-
+    Duplicates a RecArray.
+
+    **Parameters**:
+      theRecArray: The RecArray to duplicate.
+
+    **Result**:
+      A new RecArray, identical in format and content to the
+      original.
+-
+  id: Create
+  type: Method
+  synopsis: 'RecArray.Create([List fieldNames], [Integer numRecords]): RecArray'
+  comment: |-
+    Creates a new RecArray.
+
+    **Parameters**:
+      fieldNames: An optional List of String names for the fields in
+                  the RecArray. If this parameter is not specified,
+                  a RecArray with no fields or Records is created.
+                  Fields can later be specified using the
+                  RecArray.AddField function; Records can be added
+                  using RecArray.AddRecord or
+                  RecArray.InsertRecordAt, or by using the index
+                  operator ([ ]).
+      numRecords: An optional Integer indicating the number of
+                  Records (containing Undefined field values) to
+                  add. No Records are added if this parameter is not
+                  specified.
+
+    **Result**:
+      A new RecArray.
+-
+  id: CreateRecord
+  type: Method
+  synopsis: 'RecArray.CreateRecord([List fieldNames], [List values]): Record'
+  comment: |-
+    Creates a Record containing the specified field names and
+    values.
+
+    **Parameters**:
+      fieldNames: A List of String elements indicating the desired
+                  field names. Defaults to Undefined if not
+                  specified.
+      values: The values to be stored in the Record. The values will
+              be inserted in the order in which they are contained
+              in the List. Defaults to Undefined if not
+              specified.
+
+    **Result**:
+      A new Record.
+-
+  id: DropField
+  type: Method
+  synopsis: 'RecArray.DropField(RecArray theRecArray, Dynamic fieldName): Boolean'
+  comment: |-
+    Removes the specified field from a RecArray.
+
+    **Parameters**:
+      theRecArray: The RecArray from which the field will be
+                   removed.
+      fieldName: Either a String indicating the name or an Integer
+                 indicating the (1-based) index of the field to be
+                 dropped. If the specified field does not exist, the
+                 RecArray is not modified.
+
+    **Result**:
+      TRUE if the specified field was removed from the RecArray.
+-
+  id: DropRecord
+  type: Method
+  synopsis: 'RecArray.DropRecord(RecArray theRecArray, Integer index1, [Integer index2]): Boolean'
+  comment: |-
+    Removes one or more Records from a RecArray.
+
+    **Parameters**:
+      theRecArray: The RecArray from which you want to drop the
+                   Record(s).
+      index1: The Integer (1-based) index of the first Record to
+              drop.
+      index2: The Integer (1-based) index of the last Record to
+              drop.
+
+    **Result**:
+      TRUE if the specified Records were removed from the
+      RecArray.
+-
+  id: FieldNames
+  type: Method
+  synopsis: 'RecArray.FieldNames(Dynamic theRecArray): List'
+  comment: |-
+    Returns the names of the fields in the specified RecArray or
+    Record.
+
+    **Parameters**:
+      theRecArray: The Record or RecArray whose field names you want
+                   to retrieve.
+
+    **Result**:
+      A List containing String field name elements.
+-
+  id: GetRecord
+  type: Method
+  synopsis: 'RecArray.GetRecord(Dynamic value, [Integer index]): List'
+  comment: |-
+    Returns a List containing the values stored in the specified
+    Record.
+
+    **Parameters**:
+      value: Either a Record whose data will be returned or a
+             RecArray from which a specified Record�s data will be
+             returned.
+      index: An Integer (1-based) index of the Record to retrieve.
+             Specify this parameter only if the value parameter is a
+             RecArray.
+
+    **Result**:
+      A List containing one element for each field in the specified
+      Record.
+-
+  id: InsertRecordAt
+  type: Method
+  synopsis: 'RecArray.InsertRecordAt(RecArray theRecArray, Dynamic values, Integer position): Record'
+  comment: |-
+    Inserts a Record into a RecArray at the specified position,
+    moving all subsequent Records down. If the values parameter is a
+    List, and too few values are passed, the remaining values in the
+    Record are Undefined. If too many values are passed, the extra
+    values are ignored. If the values parameter is a Record, it
+    should have the same format (same name and number of fields) as
+    the RecArray into which it will be inserted. If it has a
+    different format, a new Record is created with the proper
+    format, and filled with values from the specified Record (the
+    value in the first field of the specified Record is copied to
+    the first field of the new Record, and so on). If there are too
+    few fields in the specified Record, the new Record is padded
+    with Undefined values. If there are too many fields in the
+    specified Record, the extra fields are ignored. If the value of
+    the position parameter is greater than the length of the
+    RecArray, Records with all Undefined values will automatically
+    be added to the RecArray, expanding it to include the number of
+    Records as specified by the position parameter.
+
+    **Parameters**:
+      theRecArray: The RecArray to modify.
+      values: A Record or List of values to insert.
+      position: An Integer (1-based) index indicating the desired
+                position of the new Record.
+
+    **Result**:
+      The inserted Record.
+-
+  id: IsColumn
+  type: Method
+  synopsis: 'RecArray.IsColumn(Dynamic value, String fieldName): Integer'
+  comment: |-
+    Returns the Integer (1-based) index of a field in a Record or
+    RecArray. Note: it is more efficient to reference a field by its
+    Integer index than by its String name.
+
+    **Parameters**:
+      value: TheRecord or RecArray in which to look for the
+             field.
+      fieldName: The field name for which to search.
+
+    **Result**:
+      The 1-based field index if found, 0 otherwise.
+-
+  id: RenameField
+  type: Method
+  synopsis: 'RecArray.RenameField(RecArray theRecArray, Dynamic oldField, String newField): Boolean'
+  comment: |-
+    Changes the name of a field in a RecArray.
+
+    **Parameters**:
+      theRecArray: The RecArray containing the field to rename.
+      oldField: Either a String indicating the name or an Integer
+                indicating the (1-based) index of the field to
+                rename.
+      newField: The new field name.
+
+    **Result**:
+      TRUE if the field was renamed.
+-
+  id: SetRecord
+  type: Method
+  synopsis: 'RecArray.SetRecord(Dynamic toReplace, Dynamic values, [Integer position]): Record'
+  comment: |-
+    Replaces the contents of the specified Record. If the values
+    parameter is a List, and too few values are passed, the
+    remaining values in the Record are Undefined. If too many values
+    are passed, the extra values are ignored. If the values
+    parameter is a Record, it should have the same format (same name
+    and number of fields) as the RecArray in which it will be
+    inserted. If it has a different format, a new Record is created
+    with the proper format, and filled with values from the
+    specified Record (the value in the first field of the specified
+    Record is copied to the first field of the new Record, and so
+    on). If there are too few fields in the specified Record, the
+    new Record is padded with Undefined values. If there are too
+    many fields in the specified Record, the extra fields are
+    ignored and the specified Record is left unchanged. If the value
+    of the position parameter is out of range, the RecArray will not
+    be modified and Undefined will be returned.
+
+    **Parameters**:
+      toReplace: the RecArray or Record on which to operate.
+      values: a Record or List of values for the replacement
+              Record.
+      position: an Integer (1-based) index of the Record to replace.
+                Do not specify if the toReplace parameter is a
+                Record.
+
+    **Result**:
+      The replacement Record if successful; otherwise Undefined.
+-
+  id: Sort
+  type: Method
+  synopsis: 'RecArray.Sort(RecArray theRecArray, Dynamic sortVal, [Boolean ignoreCase]): RecArray'
+  comment: |-
+    Sorts a RecArray in place according to the specified fields. The
+    maximum number of sort values the sortVal parameter can contain
+    is 10. This function sorts in ascending order by default. If a
+    negative sort index is specified, this function sorts in
+    descending order. The sortVal parameter can only contain Strings
+    or Integers. If the sortVal parameter contains other data types,
+    the RecArray does not sort and a runtime error is
+    generated.
+
+    **Parameters**:
+      theRecArray: The RecArray to sort.
+      sortVal: A String, Integer, or List indicating the fields by
+               which to sort. If sortVal is a String field name or
+               Integer field index, the RecArray is sorted by the
+               specified column. If sortVal is a List, it can
+               contain field names (Strings), field indices
+               (Integers), or both.
+      ignoreCase: Specifies whether the sort is case-insensitive for
+                  all String values, where TRUE indicates a
+                  case-insensitive sort.
+
+    **Result**:
+      A reference to the sorted RecArray.

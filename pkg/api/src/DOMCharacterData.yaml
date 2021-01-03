@@ -1,0 +1,96 @@
+-
+  id: GetData
+  type: Method
+  synopsis: 'DOMCharacterData.GetData(): String'
+  comment: |-
+    Get the character data of the node that implements this
+    interface.
+
+    **Result**:
+      The character data of this node.
+-
+  id: SetData
+  type: Method
+  synopsis: 'DOMCharacterData.SetData(String arg): Void'
+  comment: |-
+    Sets the character data of the node that implements this
+    interface.
+
+    **Parameters**:
+      arg: The data to set for this node.
+-
+  id: GetLength
+  type: Method
+  synopsis: 'DOMCharacterData.GetLength(): Integer'
+  comment: |-
+    The number of characters that are available through data and the
+    substringData method below. This may have the value zero, i.e.,
+    CharacterData nodes may be empty.
+
+
+      The number of characters available.
+-
+  id: SubstringData
+  type: Method
+  synopsis: 'DOMCharacterData.SubstringData(Integer offset, Integer count): String'
+  comment: |-
+    Extracts a range of data from the node.
+
+    **Parameters**:
+      offset: Start offset of substring to extract.
+      count: The number of characters to extract.
+
+    **Result**:
+      The specified substring. If the sum of offset and count exceeds
+      the length, then all characters to the end of the data are
+      returned.
+-
+  id: AppendData
+  type: Method
+  synopsis: 'DOMCharacterData.AppendData(String arg): Void'
+  comment: |-
+    Append the string to the end of the character data of the node.
+    Upon success, data provides access to the concatenation of data
+    and the DOMString specified.
+
+    **Parameters**:
+      arg: The DOMString to append.
+-
+  id: InsertData
+  type: Method
+  synopsis: 'DOMCharacterData.InsertData(Integer offset, String arg): Void'
+  comment: |-
+    Insert a string at the specified character offset.
+
+    **Parameters**:
+      offset: The character offset at which to insert.
+      arg: The DOMString to insert.
+-
+  id: DeleteData
+  type: Method
+  synopsis: 'DOMCharacterData.DeleteData(Integer offset, Integer count): Void'
+  comment: |-
+    Remove a range of characters from the node. Upon success, data
+    and length reflect the change.
+
+    **Parameters**:
+      offset: The offset from which to remove characters.
+      count: The number of characters to delete. If the sum of offset
+             and count exceeds length then all characters from
+             offset to the end of the data are deleted.
+-
+  id: ReplaceData
+  type: Method
+  synopsis: 'DOMCharacterData.ReplaceData(Integer offset, Integer count, String arg): Void'
+  comment: |-
+    Replace the characters starting at the specified character offset
+    with the specified string.
+
+    **Parameters**:
+      offset: The offset from which to start replacing.
+      count: The number of characters to replace. If the sum of
+             offset and count exceeds length, then all characters to
+             the end of the data are replaced (i.e., the effect is
+             the same as a remove method call with the same range,
+             followed by an append method invocation).
+      arg: The DOMString with which the range must be replaced.

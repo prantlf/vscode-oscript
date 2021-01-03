@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "lib": ["es2019"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "strict": true,
+    "outDir": "out",
+    "rootDir": "pkg",
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "composite": true
+  },
+  "include": ["pkg"],
+  "exclude": ["node_modules"],
+  "references": [
+    { "path": "pkg/client" },
+    { "path": "pkg/server" }
+  ]
+}

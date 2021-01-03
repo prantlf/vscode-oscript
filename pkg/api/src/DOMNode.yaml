@@ -1,0 +1,332 @@
+-
+  id: ELEMENT_NODE
+  type: Property
+  synopsis: 'DOMNode.ELEMENT_NODE: Integer'
+  comment: |-
+    The node is an DOMElement.
+-
+  id: ATTRIBUTE_NODE
+  type: Property
+  synopsis: 'DOMNode.ATTRIBUTE_NODE: Integer'
+  comment: |-
+    The node is an DOMAttr.
+-
+  id: TEXT_NODE
+  type: Property
+  synopsis: 'DOMNode.TEXT_NODE: Integer'
+  comment: |-
+    The node is an DOMText.
+-
+  id: CDATA_SECTION_NODE
+  type: Property
+  synopsis: 'DOMNode.CDATA_SECTION_NODE: Integer'
+  comment: |-
+    The node is an DOMCDATASection.
+-
+  id: ENTITY_REFERENCE_NODE
+  type: Property
+  synopsis: 'DOMNode.ENTITY_REFERENCE_NODE: Integer'
+  comment: |-
+    The node is an DOMEntityReference.
+-
+  id: ENTITY_NODE
+  type: Property
+  synopsis: 'DOMNode.ENTITY_NODE: Integer'
+  comment: |-
+    The node is an DOMEntity.
+-
+  id: PROCESSING_INSTRUCTION_NODE
+  type: Property
+  synopsis: 'DOMNode.PROCESSING_INSTRUCTION_NODE: Integer'
+  comment: |-
+    The node is an DOMProcessingInstruction.
+-
+  id: COMMENT_NODE
+  type: Property
+  synopsis: 'DOMNode.COMMENT_NODE: Integer'
+  comment: |-
+    The node is an DOMComment.
+-
+  id: DOCUMENT_NODE
+  type: Property
+  synopsis: 'DOMNode.DOCUMENT_NODE: Integer'
+  comment: |-
+    The node is an DOMDocument.
+-
+  id: DOCUMENT_TYPE_NODE
+  type: Property
+  synopsis: 'DOMNode.DOCUMENT_TYPE_NODE: Integer'
+  comment: |-
+    The node is an DOMDocumentType.
+-
+  id: DOCUMENT_FRAGMENT_NODE
+  type: Property
+  synopsis: 'DOMNode.DOCUMENT_FRAGMENT_NODE: Integer'
+  comment: |-
+    The node is an DOMDocumentFragment.
+-
+  id: NOTATION_NODE
+  type: Property
+  synopsis: 'DOMNode.NOTATION_NODE: Integer'
+  comment: |-
+    The node is an DOMNotation.
+-
+  id: GetNodeName
+  type: Method
+  synopsis: 'DOMNode.GetNodeName(): String'
+  comment: |-
+    The name of this node.
+
+
+    **Result**:
+      The name of this node.
+-
+  id: GetNodeValue
+  type: Method
+  synopsis: 'DOMNode.GetNodeValue(): String'
+  comment: |-
+    The value of this node, depending on its type; see the table
+    above. When it is defined to be null, setting it has no
+    effect.
+
+
+    **Result**:
+      The value of this node.
+-
+  id: SetNodeValue
+  type: Method
+  synopsis: 'DOMNode.SetNodeValue(String nodeValue): Void'
+  comment: |-
+    Sets the value of the node.
+
+    **Parameters**:
+      nodeValue: The value to set the node
+-
+  id: GetNodeType
+  type: Method
+  synopsis: 'DOMNode.GetNodeType(): Integer'
+  comment: |-
+    A code representing the type of the underlying object, as defined
+    above.
+
+
+    **Result**:
+      A code representing the type of the underlying object.
+-
+  id: GetParentNode
+  type: Method
+  synopsis: 'DOMNode.GetParentNode(): DOMNode'
+  comment: |-
+    The parent of this node. All nodes, except Attr, Document,
+    DocumentFragment, Entity, and Notation may have a parent.
+    However, if a node has just been created and not yet added to
+    the tree, or if it has been removed from the tree, this is
+    null.
+
+
+    **Result**:
+      A DOMNode that represents the parent.
+-
+  id: GetChildNodes
+  type: Method
+  synopsis: 'DOMNode.GetChildNodes(): DOMNodeList'
+  comment: |-
+    A NodeList that contains all children of this node. If there are
+    no children, this is a NodeList containing no nodes. The content
+    of the returned NodeList is "live" in the sense that, for
+    instance, changes to the children of the node object that it was
+    created from are immediately reflected in the nodes returned by
+    the NodeList accessors; it is not a static snapshot of the
+    content of the node. This is true for every NodeList, including
+    the ones returned by the getElementsByTagName method.
+
+
+    **Result**:
+      A DOMNodeList of the children.
+-
+  id: GetFirstChild
+  type: Method
+  synopsis: 'DOMNode.GetFirstChild(): DOMNode'
+  comment: |-
+    The first child of this node. If there is no such node, this
+    returns null.
+
+
+    **Result**:
+      A DOMNode representing the first child.
+-
+  id: GetLastChild
+  type: Method
+  synopsis: 'DOMNode.GetLastChild(): DOMNode'
+  comment: |-
+    The last child of this node. If there is no such node, this
+    returns null.
+
+
+    **Result**:
+      A DOMNode representing the last child.
+-
+  id: GetPreviousSibling
+  type: Method
+  synopsis: 'DOMNode.GetPreviousSibling(): DOMNode'
+  comment: |-
+    The node immediately preceding this node. If there is no such
+    node, this returns null.
+
+
+    **Result**:
+      The node immediately preceding this node.
+-
+  id: GetNextSibling
+  type: Method
+  synopsis: 'DOMNode.GetNextSibling(): DOMNode'
+  comment: |-
+    The node immediately following this node. If there is no such
+    node, this returns null.
+
+
+    **Result**:
+      The node immediately following this node.
+-
+  id: GetAttributes
+  type: Method
+  synopsis: 'DOMNode.GetAttributes(): DOMNamedNodeMap'
+  comment: |-
+    A NamedNodeMap containing the attributes of this node (if it is
+    an Element) or null otherwise.
+
+
+    **Result**:
+      A NamedNodeMap containing the attributes of this node (if it is
+      an Element) or null otherwise.
+-
+  id: GetOwnerDocument
+  type: Method
+  synopsis: 'DOMNode.GetOwnerDocument(): DOMDocument'
+  comment: |-
+    The Document object associated with this node. This is also the
+    Document object used to create new nodes. When this node is a
+    Document or a DocumentType which is not used with any Document
+    yet, this is null.
+
+
+    **Result**:
+      The Document object associated with this node.
+-
+  id: InsertBefore
+  type: Method
+  synopsis: 'DOMNode.InsertBefore(DOMNode newChild, DOMNode refChild): DOMNode'
+  comment: |-
+    Inserts the node newChild before the existing child node
+    refChild. If refChild is null, insert newChild at the end of the
+    list of children. If newChild is a DocumentFragment object, all
+    of its children are inserted, in the same order, before
+    refChild. If the newChild is already in the tree, it is first
+    removed.
+
+    **Parameters**:
+      newChild: The node to insert.
+      refChild: The reference node, i.e., the node before which the
+                new node must be inserted.
+
+    **Result**:
+      The node being inserted
+-
+  id: ReplaceChild
+  type: Method
+  synopsis: 'DOMNode.ReplaceChild(DOMNode newChild, DOMNode oldChild): DOMNode'
+  comment: |-
+    Replaces the child node oldChild with newChild in the list of
+    children, and returns the oldChild node. If newChild is a
+    DocumentFragment object, refChild is replaced by all of the
+    DocumentFragment children, which are inserted in the same order.
+    If the newChild is already in the tree, it is first
+    removed.
+
+    The reference node, i.e., the node before which the new node must
+    be inserted. newChildThe reference node, i.e., the node before which the new node must
+    be inserted. newChild -The reference node, i.e., the node before which the new node must
+    be inserted. newChild - The new node to put in the child
+    list.The reference node, i.e., the node before which the new node must
+    be inserted. newChild - The new node to put in the child list.
+    oldChildThe reference node, i.e., the node before which the new node must
+    be inserted. newChild - The new node to put in the child list.
+    oldChild -The reference node, i.e., the node before which the new node must
+    be inserted. newChild - The new node to put in the child list.
+    oldChild - The node being replaced in the list.
+
+    **Result**:
+      The node replaced.
+-
+  id: RemoveChild
+  type: Method
+  synopsis: 'DOMNode.RemoveChild(DOMNode oldChild): DOMNode'
+  comment: |-
+    Removes the child node indicated by oldChild from the list of
+    children, and returns it.
+
+    **Parameters**:
+      oldChild: The node being removed.
+
+    **Result**:
+      The node removed.
+-
+  id: AppendChild
+  type: Method
+  synopsis: 'DOMNode.AppendChild(DOMNode newChild): DOMNode'
+  comment: |-
+    Adds the node newChild to the end of the list of children of this
+    node. If the newChild is already in the tree, it is first
+    removed.
+
+    **Parameters**:
+      newChild: The node to add.
+
+    **Result**:
+      The node added.
+-
+  id: HasChildNodes
+  type: Method
+  synopsis: 'DOMNode.HasChildNodes(): Boolean'
+  comment: |-
+    This is a convenience method to allow easy determination of
+    whether a node has any children.
+
+
+    **Result**:
+      True if the node has any children, false if the node has no
+      children.
+-
+  id: CloneNode
+  type: Method
+  synopsis: 'DOMNode.CloneNode(Boolean deep): DOMNode'
+  comment: |-
+    Returns a duplicate of this node, i.e., serves as a generic copy
+    constructor for nodes. The duplicate node has no parent
+    (parentNode returns null.). Cloning an Element copies all
+    attributes and their values, including those generated by the
+    XML processor to represent defaulted attributes, but this method
+    does not copy any text it contains unless it is a deep clone,
+    since the text is contained in a child Text node. Cloning any
+    other type of node simply returns a copy of this node. Note that
+    cloning an immutable subtree results in a mutable copy, but the
+    children of an EntityReference clone are readonly.
+
+    **Parameters**:
+      deep: If true, recursively clone the subtree under the
+            specified node; if false, clone only the node itself
+            (and its attributes, if it is an Element).
+
+    **Result**:
+      The duplicate node.
+-
+  id: Cast
+  type: Method
+  synopsis: 'DOMNode.Cast(): Dynamic'
+  comment: |-
+    Cast the DOMNode to the appropriate type.
+
+
+    **Result**:
+      The actual type of this node (e.g. DOMElement, DOMText,
+      etc.).

@@ -1,0 +1,235 @@
+-
+  id: E_Overflow
+  type: Property
+  synopsis: 'Math.E_Overflow: Error'
+  comment: |-
+    Overflow range error -- i.e. math.power( 10, 1000 )
+-
+  id: E_Singularity
+  type: Property
+  synopsis: 'Math.E_Singularity: Error'
+  comment: |-
+    Argument singularity -- i.e. math.power( 0, -2 )
+-
+  id: E_StackFault
+  type: Property
+  synopsis: 'Math.E_StackFault: Error'
+  comment: |-
+    Floating point unit stack overflow.
+-
+  id: E_Underflow
+  type: Property
+  synopsis: 'Math.E_Underflow: Error'
+  comment: |-
+    Underflow range error -- i.e. math.power( 10, -1000 )
+-
+  id: Abs
+  type: Method
+  synopsis: 'Math.Abs(Real number): Real'
+  comment: |-
+    Returns the absolute value of the specified number.
+
+    **Parameters**:
+      number: An Integer or a Real to be evaluated.
+
+    **Result**:
+      The absolute value of the specified number as a Real.
+-
+  id: Ceil
+  type: Method
+  synopsis: 'Math.Ceil(Real number): Real'
+  comment: |-
+    Returns a Real number corresponding to the smallest Integer value
+    that is not smaller than the specified number.
+
+    **Parameters**:
+      number: A Real number.
+
+    **Result**:
+      A Real number corresponding to the smallest Integer value that
+      is not smaller than the specified number.
+-
+  id: Floor
+  type: Method
+  synopsis: 'Math.Floor(Real number): Real'
+  comment: |-
+    Returns a Real number corresponding to the largest Integer value
+    that is not larger than the specified number.
+
+    **Parameters**:
+      number: A Real number.
+
+    **Result**:
+      A Real number corresponding to the largest Integer value that
+      is not smaller than the specified number.
+-
+  id: Log
+  type: Method
+  synopsis: 'Math.Log(Real number): Real'
+  comment: |-
+    Computes the natural logarithm of the specified number.
+
+    **Parameters**:
+      number: Specifies an Integer or a Real which should be non-zero
+              and positive.
+
+    **Result**:
+      A Real number corresponding to the natural logarithm, if number
+      is a non-zero, positive value; Undefined otherwise.
+-
+  id: Log10
+  type: Method
+  synopsis: 'Math.Log10(Real number): Real'
+  comment: |-
+    Computes the base-10 logarithm of the specified number.
+
+    **Parameters**:
+      number: An Integer or Real which should be non-zero and
+              positive.
+
+    **Result**:
+      A Real number corresponding to the base-10 logarithm, if number
+      is a non-zero, positive value; Undefined otherwise.
+-
+  id: Max
+  type: Method
+  synopsis: 'Math.Max(Real number1, Real number2): Real'
+  comment: |-
+    Returns the larger of two given numbers.
+
+    **Parameters**:
+      number1: An Integer or a Real which is one number to be
+               compared.
+      number2: An Integer or a Real which is compared to
+               number1.
+
+    **Result**:
+      The Real which is the larger value, if successful; Undefined
+      otherwise. Note: The Real value returned can be converted into
+      an Integer by storing the result in an Integer.
+-
+  id: Min
+  type: Method
+  synopsis: 'Math.Min(Real number1, Real number2): Real'
+  comment: |-
+    Returns the smaller of two given numbers.
+
+    **Parameters**:
+      number1: An Integer or a Real which is one number to be
+               compared.
+      number2: An Integer or a Real which is compared to
+               number1.
+
+    **Result**:
+      A Real which is the smaller value, if successful; Undefined
+      otherwise. Note: The Real value returned can be converted into
+      an Integer by storing the result in an Integer.
+-
+  id: Power
+  type: Method
+  synopsis: 'Math.Power(Real base, Real exponent): Real'
+  comment: |-
+    Raises the specified base number to the specified exponent
+    power.
+
+    **Parameters**:
+      base: A Real or Integer.
+      exponent: A Real or Integer.
+
+    **Result**:
+      Specifies any number, Real or Integer. Note: The Real value
+      returned can be forced into an Integer by storing the result
+      in an Integer, if needed.
+-
+  id: Random
+  type: Method
+  synopsis: 'Math.Random(Integer range, [Integer seed]): Integer'
+  comment: |-
+    Generates and returns a pseudo-random Integer within the
+    specified range.
+
+    **Parameters**:
+      range: A positive Integer which is the upper limit for the
+             generated random number, all generated random integers
+             will be less than range.
+      seed: An optional Integer indicating a seed for the set of
+            random numbers from which the returned random number is
+            selected. Defaults to a random seed if not
+            specified.
+
+    **Result**:
+      A pseudo-random Integer in the range from 0 to less than
+      range.
+-
+  id: Round
+  type: Method
+  synopsis: 'Math.Round(Real number): Real'
+  comment: |-
+    Rounds the specified number up or down to the next closest
+    Integer.
+
+    **Parameters**:
+      number: A Real indicating the number to round.
+
+    **Result**:
+      A Real number rounded to the next closest Integer value (i.e.
+      1.5 -> 2, 1.4 -> 1).
+-
+  id: RoundSignificant
+  type: Method
+  synopsis: 'Math.RoundSignificant(Real number, Integer digits): Integer'
+  comment: |-
+    Rounds the specified number to the specified number of
+    significant digits
+
+    **Parameters**:
+      number: A Real indicating the number to round.
+      digits: The number of significant digits to round to.
+
+    **Result**:
+      An integer number rounded to the number of significant
+      digits.
+-
+  id: Sqrt
+  type: Method
+  synopsis: 'Math.Sqrt(Real number): Real'
+  comment: |-
+    Calculates the square root of the specified number.
+
+    **Parameters**:
+      number: An Integer or a Real indicating the number on which to
+              operate.
+
+    **Result**:
+      The square root of the specified number as a Real, if
+      successful; Undefined otherwise.
+-
+  id: Trunc
+  type: Method
+  synopsis: 'Math.Trunc(Real number): Real'
+  comment: |-
+    Truncates the decimal part of a Real number.
+
+    **Parameters**:
+      number: A Real number to be truncated.
+
+    **Result**:
+      A Real number whose signed numerals to the left of the decimal
+      point are the same as the specified number and whose numerals
+      to the right of the decimal point are set to zero, if
+      successful; Undefined otherwise.
+-
+  id: TruncLeft
+  type: Method
+  synopsis: 'Math.TruncLeft(Real number): Real'
+  comment: |-
+    Truncates the whole number part from a Real number.
+
+    **Parameters**:
+      number: A Real number to be left-truncated.
+
+    **Result**:
+      A Real number whose sign and numerals to the right of the
+      decimal point are the same as the specified number and whose
+      numerals to the left of the decimal point are set to zero, if
+      successful; Undefined otherwise.

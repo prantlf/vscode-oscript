@@ -1,0 +1,79 @@
+-
+  id: GetNamedItem
+  type: Method
+  synopsis: 'DOMNamedNodeMap.GetNamedItem(String name): DOMNode'
+  comment: |-
+    Retrieves a node specified by name.
+
+    **Parameters**:
+      name: The name of the node.
+
+    **Result**:
+      A Node (of any type) with the specified nodeName, or null if it
+      does not identify any node in the map.
+-
+  id: SetNamedItem
+  type: Method
+  synopsis: 'DOMNamedNodeMap.SetNamedItem(DOMNode node): DOMNode'
+  comment: |-
+    Adds a node using its nodeName attribute. As the nodeName
+    attribute is used to derive the name which the node must be
+    stored under, multiple nodes of certain types (those that have a
+    "special" string value) cannot be stored as the names would
+    clash. This is seen as preferable to allowing nodes to be
+    aliased.
+
+    **Parameters**:
+      node: A node to store in a named node map. The node will later
+            be accessible using the value of the nodeName attribute
+            of the node. If a node with that name is already present
+            in the map, it is replaced by the new one.
+
+    **Result**:
+      If the new Node replaces an existing node the replaced Node is
+      returned, otherwise null is returned.
+-
+  id: RemoveNamedItem
+  type: Method
+  synopsis: 'DOMNamedNodeMap.RemoveNamedItem(String name): DOMNode'
+  comment: |-
+    Removes a node specified by name.
+
+    **Parameters**:
+      name: The nodeName of the node to remove. When this
+            NamedNodeMap contains the attributes attached to an
+            element, as returned by the attributes attribute of the
+            Node interface, if the removed attribute is known to
+            have a default value, an attribute immediately appears
+            containing the default value as well as the
+            corresponding namespace URI, local name, and prefix when
+            applicable.
+
+    **Result**:
+      The node removed from the map if a node with such a name
+      exists.
+-
+  id: Item
+  type: Method
+  synopsis: 'DOMNamedNodeMap.Item(Integer index): DOMNode'
+  comment: |-
+    Returns the indexth item in the map. If index is greater than or
+    equal to the number of nodes in the map, this returns null.
+
+    **Parameters**:
+      index: Index into the map.
+
+    **Result**:
+      The node at the indexth position in the NamedNodeMap, or null
+      if that is not a valid index.
+-
+  id: GetLength
+  type: Method
+  synopsis: 'DOMNamedNodeMap.GetLength(): Integer'
+  comment: |-
+    The number of nodes in the map. The range of valid child node
+    indices is 0 to length-1 inclusive.
+
+
+    **Result**:
+      The number of nodes in the map.

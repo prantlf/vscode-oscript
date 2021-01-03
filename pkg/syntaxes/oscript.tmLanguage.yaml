@@ -29,6 +29,16 @@ patterns:
       0:
         name: punctuation.definition.string.end.oscript
   -
+    name: string.quoted.other.oscript
+    begin: '`'
+    beginCaptures:
+      0:
+        name: punctuation.definition.string.begin.oscript
+    end: '`'
+    endCaptures:
+      0:
+        name: punctuation.definition.string.end.oscript
+  -
     name: comment.block.oscript
     begin: '/\*'
     beginCaptures:

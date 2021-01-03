@@ -1,0 +1,46 @@
+-
+  id: define
+  type: Directive
+  synopsis: '#define NAME VALUE'
+  comment: |-
+    The `#define` directive allows the definition of identifiers within your source code. These definitions allow constant values to be declared for use throughout your code.
+
+    These definitions are not variables and cannot be changed by your program code like variables. You generally use this syntax when creating constants that represent numbers or strings.
+-
+  id: undef
+  type: Directive
+  synopsis: '#undef NAME'
+  comment: |-
+    The `#undef` directive tells the preprocessor to remove te definition of the specified identifier. An identifier can be redefined after it has been removed by the `#undef` directive.
+
+    Once an identifier is undefined, the `#ifdef` directive on that identifier will evaluate to `false`.
+-
+  id: ifdef
+  type: Directive
+  synopsis: '#ifdef NAME'
+  comment: |-
+    The `#ifdef` directive allows for conditional compilation. The preprocessor determines if the provided identifier exists before including the subsequent code in the compilation process. Identifiers can be defined by a `#define` and undefined by the `#undef` directive.
+
+    **Note**:
+      The #ifdef directive must be closed by an `#endif` directive.
+-
+  id: ifndef
+  type: Directive
+  synopsis: '#ifndef NAME'
+  comment: |-
+    The `#ifndef` directive allows for conditional compilation. The preprocessor determines if the provided identifier does not exist before including the subsequent code in the compilation process. Identifiers can be defined by the `#define` and undefined by the `#undef` directive.
+
+    **Note**:
+      The #ifndef directive must be closed by an `#endif` directive.
+-
+  id: else
+  type: Directive
+  synopsis: '#else'
+  comment: |-
+    The `#else` directive provides an alternate action when used with the `#ifdef` or `#ifndef` directives. The preprocessor will include the source code that follows the `#else` statement when the condition for the `#ifdef` or `#ifndef` directive evaluates to `false`.
+-
+  id: endif
+  type: Directive
+  synopsis: '#endif'
+  comment: |-
+    The `#endif` directive closes off the `#ifdef` or `#ifndef` directives. When the `#endif` directive is encountered, preprocessing of the opening directive (`#ifdef` or `#ifndef`) is completed.

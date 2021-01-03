@@ -1,0 +1,26 @@
+root: true
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 6
+  sourceType: module
+env:
+  node: true
+plugins:
+  - '@typescript-eslint'
+extends:
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/recommended'
+rules:
+  '@typescript-eslint/explicit-module-boundary-types': 0
+  '@typescript-eslint/no-empty-function': 0
+  '@typescript-eslint/no-explicit-any': 0
+  '@typescript-eslint/no-non-null-assertion': 0
+  '@typescript-eslint/no-unused-vars': 0
+  '@typescript-eslint/naming-convention': off
+  '@typescript-eslint/semi': off
+  curly: off
+  eqeqeq: warn
+  indent: [warn, 2, { SwitchCase: 1 }]
+  no-extra-semi: warn
+  no-throw-literal: warn
+  semi: [2, never]

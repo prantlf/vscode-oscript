@@ -1,0 +1,26 @@
+-
+  id: Match
+  type: Method
+  synopsis: 'Regex.Match(String value): Boolean'
+  comment: |-
+    Evaluates value against the regular expression specified in the
+    SetPattern() function
+
+    **Parameters**:
+      value: String to be evaluated
+
+    **Result**:
+      TRUE if a match is found, FALSE otherwise.
+-
+  id: SetPattern
+  type: Method
+  synopsis: 'Regex.SetPattern(String pattern): void'
+  comment: |-
+    Sets the pattern to be used for matches for this regex instance.
+    Note: this regex only supports POSIX character classes.
+
+    **Parameters**:
+      pattern: String containing the regex pattern
+
+    **Result**:
+      Nothing

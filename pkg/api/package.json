@@ -1,0 +1,7 @@
+{
+  "name": "oscript-api",
+  "private": true,
+  "devDependencies": {
+    "tiny-glob": "0.2.8"
+  }
+}
