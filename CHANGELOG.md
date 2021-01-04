@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3
+
+Fix parsing of the member expression without the explicit `this` object.
+
 ## 0.2.2
 
 Fix parsing of the `switch` statement.

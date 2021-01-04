@@ -35,7 +35,7 @@
   "devDependencies": {
     "@rollup/plugin-yaml": "3.0.0",
     "oscript-ast-walker": "0.0.1",
-    "oscript-parser": "0.2.1",
+    "oscript-parser": "0.2.2",
     "rollup-plugin-copy": "3.3.0",
     "vscode-languageserver": "7.0.0",
     "vscode-languageserver-textdocument": "1.0.1"
