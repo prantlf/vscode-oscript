@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+Fix parsing of the `switch` statement.
+
 ## 0.2.1
 
 Fix the dependency on oscript-ast-walker.

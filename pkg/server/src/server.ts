@@ -5,7 +5,8 @@ import {
   ShowMessageNotification, MessageType, WorkspaceFolder, WorkspaceFoldersChangeEvent,
   DocumentSymbolParams, SymbolInformation, DocumentSymbol, RenameParams,
   WorkspaceEdit, Range, CodeActionKind, CodeActionParams, CodeAction,
-  ReferenceParams, Location, TextDocumentIdentifier
+  ReferenceParams, Location, TextDocumentIdentifier, TextDocumentChangeEvent,
+  DidChangeWatchedFilesParams, DidChangeConfigurationParams
 } from 'vscode-languageserver/node'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import {
@@ -67,7 +68,7 @@ const documents = new TextDocuments(TextDocument)
 const pendingValidationRequests: Map<string, NodeJS.Timer> = new Map
 const validationDelay = 200
 
-connection.onInitialize((params: InitializeParams) => {
+connection.onInitialize((params: InitializeParams): InitializeResult => {
   workspaceRoot = params.rootUri
   workspaceFolders = params.workspaceFolders || []
 
@@ -117,7 +118,7 @@ connection.onInitialize((params: InitializeParams) => {
   return result
 })
 
-connection.onInitialized(() => {
+connection.onInitialized((): void => {
   if (hasConfigurationCapability) {
     connection.client.register(DidChangeConfigurationNotification.type, undefined)
   }
@@ -161,7 +162,7 @@ function updateLogLevel () {
     .then(settings => setLevel(settings.logging.level))
 }
 
-connection.onDidChangeConfiguration(event => {
+connection.onDidChangeConfiguration((event: DidChangeConfigurationParams): void => {
   logDebug('configuration changed')
   documentExtras.clear()
   if (!hasConfigurationCapability) {
@@ -208,7 +209,7 @@ async function ensureDocumentExtras(document: TextDocument): Promise<DocumentExt
   return extras
 }
 
-documents.onDidChangeContent(event => {
+documents.onDidChangeContent((event: TextDocumentChangeEvent<TextDocument>): void => {
   const { document } = event
   const { uri } = document
   logDebug('document changed - %1', uri)
@@ -217,11 +218,17 @@ documents.onDidChangeContent(event => {
   triggerValidation(document)
 })
 
+documents.onDidOpen((event: TextDocumentChangeEvent<TextDocument>): void => {
+  const { document } = event
+  logDebug('document opened - %1', document.uri)
+  triggerValidation(document)
+})
+
 function invalidateExtras(extras: DocumentExtras): void {
   extras.error = extras.ast = extras.tokens = extras.warnings = undefined
 }
 
-documents.onDidClose(event => {
+documents.onDidClose((event: TextDocumentChangeEvent<TextDocument>): void => {
   const { document } = event
   const { uri } = document
   logDebug('document closed - %1', uri)
@@ -229,14 +236,13 @@ documents.onDidClose(event => {
   cancelValidation(document)
 })
 
-connection.onDidChangeWatchedFiles(event => {
+connection.onDidChangeWatchedFiles((event: DidChangeWatchedFilesParams): void => {
   if (wantDebug()) {
     logDebug('watched files changed - %1',
       JSON.stringify(event.changes.map(({ uri }) => uri)))
   }
   event.changes.forEach(change => {
-    const { uri } = change
-    const document = documents.get(uri)
+    const document = documents.get(change.uri)
     if (document) triggerValidation(document)
   })
 })

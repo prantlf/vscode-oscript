@@ -2,7 +2,8 @@
   "name": "vscode-oscript",
   "displayName": "OScript Language",
   "description": "Provides syntax checking and fixing, highlighting, autocompletion, hints, symbol outline, identifier recognition and renaming and other features for the OScript language in Visual Studio Code.",
-  "version": "0.2.1",
+  "version": "0.2.2",
+  "icon": "doc/logo.png",
   "publisher": "prantlf",
   "author": {
     "name": "Ferdinand Prantl",
