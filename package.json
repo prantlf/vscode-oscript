@@ -23,7 +23,7 @@
     "url": "https://github.com/prantlf/vscode-oscript.git"
   },
   "bugs": {
-    "url": "https://github.com/prantlf/vscode-oscript/issues"
+    "url": "https://github.com/prantlf/vscode-oscript/issues/new/choose"
   },
   "engines": {
     "vscode": "^1.52.0"
