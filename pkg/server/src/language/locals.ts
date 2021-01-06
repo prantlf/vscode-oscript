@@ -15,7 +15,7 @@ export function findLocalsInScope (scope: any, node: any): { node: Node, parent:
         // Skip the scope itself, if it has accidentally the same name. Also,
         // skip nested scopes, if they contain a local declaration using the
         // same identifier value.
-        if (scope !== node && !ignoreScope &&
+        if (scope !== parent && !ignoreScope &&
             mayComeFromVariable(node, parent) && node.value === value) {
           results.push({ node, parent })
         }

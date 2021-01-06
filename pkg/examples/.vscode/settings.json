@@ -6,5 +6,6 @@
     "editor.tabSize": 4,
     "editor.insertSpaces": false,
     "editor.detectIndentation": false
-  }
+  },
+  "oscript.logging.level": "debug"
 }

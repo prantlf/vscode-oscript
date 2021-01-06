@@ -8,6 +8,11 @@ public object Document inherits CORE::Node
 		DAPINODE node = DAPI.GetNodeByID(id, workspace, FALSE)
 		if !IsError(node) and node.pSubType == $Document
 			return node
+		elseif IsError(node)
+			.Clear()
+			return Error(1)
+		else
+			;
 		end
 	end
 
@@ -16,6 +21,14 @@ public object Document inherits CORE::Node
 		Object	item
 
 		for item in cached
+			switch item.type
+				case 144
+					break
+				end
+				default
+					;
+				end
+			end
 		end
 
 		function List GetCache()

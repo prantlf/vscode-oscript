@@ -1,7 +1,7 @@
 {
   "name": "oscript-language-server",
-  "description": "Syntax checking, highlighting, hover hints and other support for the OScript language in Visual Studio Code.",
-  "version": "0.0.3",
+  "description": "A language server for the OScript language.",
+  "version": "0.0.5",
   "author": {
     "name": "Ferdinand Prantl",
     "email": "prantlf@gmail.com",
@@ -34,8 +34,8 @@
   ],
   "devDependencies": {
     "@rollup/plugin-yaml": "3.0.0",
-    "oscript-ast-walker": "0.0.1",
-    "oscript-parser": "0.2.2",
+    "oscript-ast-walker": "0.0.2",
+    "oscript-parser": "0.2.3",
     "rollup-plugin-copy": "3.3.0",
     "vscode-languageserver": "7.0.0",
     "vscode-languageserver-textdocument": "1.0.1"
