@@ -1,7 +1,7 @@
 {
   "name": "oscript-language-server",
   "description": "A language server for the OScript language.",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "author": {
     "name": "Ferdinand Prantl",
     "email": "prantlf@gmail.com",
@@ -20,7 +20,7 @@
     "url": "https://github.com/prantlf/vscode-oscript.git"
   },
   "bugs": {
-    "url": "https://github.com/prantlf/vscode-oscript/issues/new/choose"
+    "url": "https://github.com/prantlf/vscode-oscript/issues"
   },
   "engines": {
     "node": ">=12"
@@ -34,8 +34,8 @@
   ],
   "devDependencies": {
     "@rollup/plugin-yaml": "3.0.0",
-    "oscript-ast-walker": "0.0.2",
-    "oscript-parser": "0.2.3",
+    "oscript-ast-walker": "0.1.0",
+    "oscript-parser": "0.2.5",
     "rollup-plugin-copy": "3.3.0",
     "vscode-languageserver": "7.0.0",
     "vscode-languageserver-textdocument": "1.0.1"

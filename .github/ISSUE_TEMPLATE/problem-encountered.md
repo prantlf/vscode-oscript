@@ -30,7 +30,7 @@ Diagnostic messages can be enabled by:
 "oscript.logging.level": "debug"
 ````
 
-Then you open the development tools from the menu "Help" -\> "Toggle Developer Tools", perform tyhe operation that you want to investigate ans  and save the content of the console. The interesting messages will start with "[oscript]".
+Then you open the development tools from the menu "Help" -> "Toggle Developer Tools", perform tyhe operation that you want to investigate ans  and save the content of the console. The interesting messages will start with "[oscript]".
 
 **What is the input OScript source that you used?**
 

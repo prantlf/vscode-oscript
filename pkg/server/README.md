@@ -36,7 +36,7 @@ In simpler terms, this allows editor and addon devs to add support for the OScri
 
 Install a plugin for your editor:
 
-* [Visual Studio Code](../..#readme)
+* [Visual Studio Code](https://github.com/prantlf/vscode-oscript#readme)
 
 [language server protocol]: https://microsoft.github.io/language-server-protocol/
 [OScript language]: https://github.com/prantlf/oscript-parser/blob/master/doc/grammar.md#oscript-language-grammar

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.5
+
+* Allow dereferencing `this` without the `this` keyword (chain the dot operators).
+
+## 0.2.4
+
+Fix locating a local variable identifier.
+
 ## 0.2.3
 
 Fix parsing of the member expression without the explicit `this` object.

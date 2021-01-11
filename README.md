@@ -219,7 +219,7 @@ Licensed under the [MIT license].
 [OScript language server]: ./pkg/server/#readme
 [Bracket Pair Colorizer 2]: https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2
 [static language description]: ./pkg/syntaxes/
-[file a bug report]: https://github.com/prantlf/vscode-oscript/issues/new
+[file a bug report]: https://github.com/prantlf/vscode-oscript/issues/new/choose
 [TextMate]: https://macromates.com/
 [OScript Bundle]: https://github.com/prantlf/oscript.tmbundle
 [Scintilla]: https://scintilla.org/
