@@ -2,6 +2,7 @@
   "name": "oscript-api",
   "private": true,
   "devDependencies": {
-    "tiny-glob": "0.2.8"
+    "js-yaml": "4.1.0",
+    "tiny-glob": "0.2.9"
   }
 }

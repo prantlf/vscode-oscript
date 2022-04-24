@@ -1,5 +1,7 @@
 import { Position } from 'vscode-languageserver/node'
-import { Node, Identifier, Program, VariableDeclarator, FunctionDeclaration, ScriptDeclaration } from 'oscript-parser'
+import {
+  Node, Identifier, Program, VariableDeclarator, FunctionDeclaration
+} from 'oscript-parser'
 import { simple as simpleWalk, findNodeAround } from 'oscript-ast-walker'
 import { logDebug } from '../utils/log'
 
@@ -90,11 +92,11 @@ export function findScopeOfLocal (ast: Program, position: Position): { node: Nod
   // the scope to its parent script
   if (scope === parent) scope = scopes[1]
   if (!scope) {
-    logDebug('no surrounding scope or no local for "%1"', node.raw)
+    logDebug('no surrounding scope or no local for "%1"', (node as Identifier).raw)
     return null
   }
   // Secondly, check if the identifier belongs to a variable or a local function
-  const { value } = node
+  const { value } = node as Identifier
   // Look for the declaration of the identifier. Either among the formal
   // parameters, if the scope is a function declaration, ...
   let variable = scope.params && scope.params.some(({ id }) => id.value === value)
@@ -124,10 +126,10 @@ export function findScopeOfLocal (ast: Program, position: Position): { node: Nod
     }
   }
   if (!variable) {
-    logDebug('not declared in scope of identifier "%1"', node.raw)
+    logDebug('not declared in scope of identifier "%1"', (node as Identifier).raw)
     return null
   }
-  logDebug('found scope %1 "%2" for "%3"', scope.type, scope.id.raw, node.raw)
+  logDebug('found scope %1 "%2" for "%3"', scope.type, scope.id.raw, (node as Identifier).raw)
   return { node: node, parent, scope }
 }
 

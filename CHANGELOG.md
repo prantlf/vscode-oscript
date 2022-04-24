@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+* Add a command runScript executing .e or .lxe files.
+* Do not include built-in Node.js modules in the bundled output.
+
 ## 0.2.5
 
 * Allow dereferencing `this` without the `this` keyword (chain the dot operators).

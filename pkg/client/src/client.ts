@@ -4,6 +4,12 @@ import {
   LanguageClient, LanguageClientOptions, ServerOptions, TransportKind
 } from 'vscode-languageclient/node'
 
+let client: LanguageClient
+
+export function getClient(): LanguageClient {
+  return client
+}
+
 export function startClient(context: ExtensionContext): void {
   const serverModule = context.asAbsolutePath(join('dist', 'server.js'))
 
@@ -19,13 +25,10 @@ export function startClient(context: ExtensionContext): void {
     documentSelector: [{ scheme: 'file', language: 'oscript' }],
     synchronize: {
       configurationSection: ['oscript', '[oscript]'],
-      fileEvents: [
-        workspace.createFileSystemWatcher('**/*.os?(x)'),
-        workspace.createFileSystemWatcher('**/*.json')
-      ]
+      fileEvents: [workspace.createFileSystemWatcher('**/*.{os,osx,e,lxe,json}')]
     }
   }
 
-  const client = new LanguageClient('oscript', 'OScript Support', serverOptions, clientOptions)
+  client = new LanguageClient('oscript', 'OScript Support', serverOptions, clientOptions)
   context.subscriptions.push(client.start())
 }

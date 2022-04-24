@@ -1,9 +1,6 @@
 import { CompletionItemKind } from 'vscode-languageserver/node'
-import { readFile } from 'fs'
-import { promisify } from 'util'
+import { readFile } from 'fs/promises'
 import { logDebug } from '../utils/log'
-
-const readFileAsync = promisify(readFile)
 
 export let completionItemKinds: Map<string, CompletionItemKind>
 
@@ -38,7 +35,7 @@ async function loadApi(): Promise<void> {
   objectMembers.set('globals', globals)
   // api contains object names as keys pointing to their members as arrays
   logDebug('loading api.json')
-  const api = JSON.parse(await readFileAsync(`${__dirname}/api.json`, 'utf8'))
+  const api = JSON.parse(await readFile(`${__dirname}/api.json`, 'utf8'))
   Object.keys(api).forEach((name: string) => {
     logDebug('registering %1', name)
     const global = name === 'globals'

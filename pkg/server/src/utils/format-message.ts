@@ -1,5 +1,3 @@
-const slice = Array.prototype.slice // optimize the often access
-
 // A sprintf-like implementation using `%index` placeholders (index based on 1)
 // to insert arguments to the message format.
 //

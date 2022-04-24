@@ -10,46 +10,49 @@
       "type": "extensionHost",
       "request": "launch",
       "runtimeExecutable": "${execPath}",
-			"args": ["--extensionDevelopmentPath=${workspaceFolder}"],
-			"sourceMaps": true,
-			"outFiles": ["${workspaceRoot}/dist/extension.js"]
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
+      "cwd": "${workspaceRoot}",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceRoot}/dist/extension.js"]
     },
     {
       "name": "Launch Server",
       "type": "node",
-			"request": "launch",
-			"program": "${workspaceRoot}/dist/server.js",
-			"args": ["--nolazy", "--inspect=6009"],
-			"sourceMaps": true,
-			"outFiles": ["${workspaceRoot}/dist/server.js"]
-    },
-		{
-			"name": "Attach to Server",
-			"type": "node",
-			"request": "attach",
-			"port": 6009,
-			"restart": true,
-			"sourceMaps": true,
+      "request": "launch",
+      "program": "${workspaceRoot}/dist/server.js",
+      "args": ["--nolazy", "--inspect=6009"],
+      "cwd": "${workspaceRoot}",
+      "sourceMaps": true,
       "outFiles": ["${workspaceRoot}/dist/server.js"]
-		},
-		{
-			"name": "Test Server",
-			"type": "extensionHost",
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"args": [
-				"--extensionDevelopmentPath=${workspaceRoot}",
-				"--extensionTestsPath=${workspaceRoot}/out/client/test/index",
-				"${workspaceRoot}/pkg/client/testFixture"
-			],
-			"sourceMaps": true,
-			"outFiles": ["${workspaceRoot}/dist/extension.js"]
-		}
-	],
-	"compounds": [
-		{
-			"name": "Client + Server",
-			"configurations": ["Launch Client", "Attach to Server"]
-		}
-	]
+    },
+    {
+      "name": "Attach to Server",
+      "type": "node",
+      "request": "attach",
+      "port": 6009,
+      "restart": true,
+      "sourceMaps": true,
+      "outFiles": ["${workspaceRoot}/dist/server.js"]
+    },
+    {
+      "name": "Test Server",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceRoot}",
+        "--extensionTestsPath=${workspaceRoot}/out/client/test/index",
+        "${workspaceRoot}/pkg/client/testFixture"
+      ],
+      "cwd": "${workspaceRoot}",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceRoot}/dist/extension.js"]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Client + Server",
+      "configurations": ["Launch Client", "Attach to Server"]
+    }
+  ]
 }

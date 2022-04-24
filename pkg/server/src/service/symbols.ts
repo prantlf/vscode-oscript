@@ -1,5 +1,5 @@
 import {
-  SymbolInformation, DocumentSymbol, SymbolKind, Range, Position
+  SymbolInformation, DocumentSymbol, SymbolKind
 } from 'vscode-languageserver/node'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import {
@@ -95,7 +95,7 @@ export function doHierarchicalSymbols(textDocument: TextDocument, extras: any): 
       pre(node: ObjectDeclaration) {
         const children: DocumentSymbol[] = []
         currentScope.push(DocumentSymbol.create(
-          node.id.raw, undefined, SymbolKind.Object, 
+          node.id.raw, undefined, SymbolKind.Object,
           getNodeRange(node), getNodeRange(node.id), children))
         scopes.push(currentScope)
         currentScope = children

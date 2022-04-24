@@ -3,7 +3,7 @@ import {
   OptionalVersionedTextDocumentIdentifier
 } from 'vscode-languageserver/node'
 import { TextDocument } from 'vscode-languageserver-textdocument'
-import { Program } from 'oscript-parser'
+import { Literal, Program } from 'oscript-parser'
 import { findNodeAround } from 'oscript-ast-walker'
 import { getNodeRange } from '../language/location'
 
@@ -34,7 +34,7 @@ export default new Map([
     action (document: TextDocument, ast: Program, range: Range): TextDocumentEdit[] {
       const { start } = range
       const { node } = findNodeAround(ast, { line: start.line + 1, column: start.character + 1 }, 'Literal')
-      const string = replaceLineBreaks(node.value)
+      const string = replaceLineBreaks((node as Literal).value)
       const { start: stringStart, end: stringEnd } = getNodeRange(node)
       return [TextDocumentEdit.create(
         OptionalVersionedTextDocumentIdentifier.create(document.uri, null), [
@@ -48,7 +48,7 @@ export default new Map([
     action (document: TextDocument, ast: Program, range: Range): TextDocumentEdit[] {
       const { start } = range
       const { node } = findNodeAround(ast, { line: start.line + 1, column: start.character + 1 }, 'Literal')
-      const string = deleteLineBreaks(node.value)
+      const string = deleteLineBreaks((node as Literal).value)
       const { start: stringStart, end: stringEnd } = getNodeRange(node)
       return [TextDocumentEdit.create(
         OptionalVersionedTextDocumentIdentifier.create(document.uri, null), [

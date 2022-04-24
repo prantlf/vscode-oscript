@@ -12,7 +12,7 @@ import { TextDocument } from 'vscode-languageserver-textdocument'
 import {
   doInitialize, doValidation, doCompletion, doCompletionResolve, doHover,
   doFlatSymbols, doHierarchicalSymbols, doDefinition, doReferences,
-  doRenameRequest, doPrepareRename, doCodeAction
+  doRenameRequest, doPrepareRename, doCodeAction, runScript
 } from './service'
 import { uriToProjectPath } from './utils/path'
 import { logError, logDebug, wantDebug, setLevel, Level } from './utils/log'
@@ -341,7 +341,19 @@ connection.onPrepareRename(async (documentPositionParams: TextDocumentPositionPa
   return doPrepareRename(document, position, extras)
 })
 
-async function prepareDocumentHandler (documentId: TextDocumentIdentifier, eventName: string, enablingFlag: string): Promise<[TextDocument?, DocumentExtras?]> {
+connection.onRequest('runScript', async (textDocument: TextDocumentIdentifier): Promise<string | undefined> => {
+  const [document, extras] = await prepareDocumentHandler (textDocument, 'run script')
+  if (!document) return
+  const diagnostic = runScript(document, extras)
+  if (diagnostic) {
+    connection.sendDiagnostics({ uri: document.uri, diagnostics: [diagnostic] })
+    connection.sendNotification(ShowMessageNotification.type.method,
+      { message: diagnostic.message, type: MessageType.Error })
+    return diagnostic.message
+  }
+})
+
+async function prepareDocumentHandler (documentId: TextDocumentIdentifier, eventName: string, enablingFlag?: string): Promise<[TextDocument?, DocumentExtras?]> {
   const document = documents.get(documentId.uri)
   if (!document) {
     logDebug('%1 rejected for unknown document', eventName)
@@ -351,11 +363,11 @@ async function prepareDocumentHandler (documentId: TextDocumentIdentifier, event
   return extras ? [document, extras] : []
 }
 
-async function prepareDocument(document: TextDocument, eventName: string, enablingFlag: string): Promise<DocumentExtras | undefined> {
+async function prepareDocument(document: TextDocument, eventName: string, enablingFlag?: string): Promise<DocumentExtras | undefined> {
   logDebug('%1 requested for %2', eventName, document.uri)
   const extras = await ensureDocumentExtras(document)
   const { settings } = extras
-  if (!(settings.languageServer.enabled && settings[enablingFlag].enabled)) return
+  if (!(settings.languageServer.enabled && (!enablingFlag || settings[enablingFlag].enabled))) return
   return extras
 }
 

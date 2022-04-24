@@ -1,5 +1,5 @@
 .DS_Store
-.eslintrc.json
+.eslintrc.yml
 .editorconfig
 .git
 .github
@@ -7,9 +7,10 @@
 .rollup.cache
 .vscode
 .vscodeignore
+backup
 doc/examples
-pkg
 node_modules
+pkg
 package-lock.json
 tsconfig.json
 tsconfig.tsbuildinfo

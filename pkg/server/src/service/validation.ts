@@ -1,30 +1,30 @@
 import {
-  Diagnostic, DiagnosticSeverity, Range, Position, Location,
-  DiagnosticRelatedInformation
+  Diagnostic, DiagnosticSeverity, Location, DiagnosticRelatedInformation
 } from 'vscode-languageserver/node'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import { ParseError, ParseWarning } from 'oscript-parser'
 import { ensureParsedDocument } from '../language/document'
+import { getParserErrorRange } from '../language/location'
 
 export interface ValidationOptions {
   relatedInformation: boolean
 }
 
-export function doValidation(textDocument: TextDocument, originalExtras: any, options: ValidationOptions): Diagnostic[] {
+export function doValidation(textDocument: TextDocument, extras: any, options: ValidationOptions): Diagnostic[] {
   const { uri } = textDocument
-  const { error, warnings } = ensureParsedDocument(textDocument, originalExtras)
+  const { error, warnings } = ensureParsedDocument(textDocument, extras)
   const diagnostics = warnings.map(warning => diagnoseWarning(warning, uri, options))
   if (error) diagnostics.push(diagnoseError(error))
   return diagnostics
 }
 
 function diagnoseError(error: ParseError): Diagnostic {
-  return Diagnostic.create(getErrorRange(error), error.message,
+  return Diagnostic.create(getParserErrorRange(error), error.message,
     DiagnosticSeverity.Error, error.code, 'oslint')
 }
 
 function diagnoseWarning(warning: ParseWarning, uri: string, options: ValidationOptions): Diagnostic {
-  const range = getErrorRange(warning)
+  const range = getParserErrorRange(warning)
   const relatedInformation = options.relatedInformation
     ? [DiagnosticRelatedInformation.create(
       Location.create(uri, range),
@@ -32,16 +32,4 @@ function diagnoseWarning(warning: ParseWarning, uri: string, options: Validation
     : undefined
   return Diagnostic.create(range, warning.message,
     DiagnosticSeverity.Warning, warning.code, 'oslint', relatedInformation)
-}
-
-function getErrorRange(error: ParseWarning): Range {
-  let line: number, start: number,  end: number
-  if (error.line) {
-    line = error.line - 1
-    start = error.column - 1
-    end = start + error.length
-  } else {
-    line = start = end = 0
-  }
-  return Range.create(Position.create(line, start), Position.create(line, end))
 }

@@ -27,6 +27,7 @@ Except for the first four features below, the others depend on the [OScript lang
 * [Symbol Outline](#symbol-outline)
 * [Definition and References](#definition-and-references)
 * [Renaming](#renaming)
+* [Run Script](#run-script)
 
 ### Syntax Highlighting
 
@@ -132,6 +133,16 @@ You can rename a variable or a function by the command "Rename Symbol" (`F2`).
 
 Identifier renaming works currently only for the locally declared variables and functions.
 
+### Run Script
+
+You can run a script (ending with `.e` or `.lxe`) and watch the progress on the console. For example:
+
+    Echo("Hello, world!")
+
+Will print "Hello, world!" to the console output.
+
+This feature is in the development and depended on the state of [oscript-interpreter].
+
 ## Settings
 
 This extension contributes the following settings. Names of the properties in table are shortened not to occupy so much space. They have to be prefixed by "oscript." to get the full name:
@@ -206,7 +217,7 @@ Web pages can highlight the OScript syntax of a code example [using JavaScript].
 
 ## License
 
-Copyright (c) 2020-2021 Ferdinand Prantl
+Copyright (c) 2020-2022 Ferdinand Prantl
 
 The logo was based on an [original icon](https://icon-icons.com/icon/file-type-vscode/130084) published among [vscode by Roberto Huertas](https://icon-icons.com/pack/vscode/2107) under the [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) license. Thank you!
 
@@ -216,6 +227,7 @@ Licensed under the [MIT license].
 [from the marketplace]: https://marketplace.visualstudio.com/items?itemName=prantlf.vscode-oscript
 [released package]: https://github.com/prantlf/vscode-oscript/releases
 [OScript language]: https://github.com/prantlf/oscript-parser/blob/master/doc/grammar.md#oscript-language-grammar
+[oscript-interpreter]: https://www.npmjs.com/package/oscript-interpreter
 [OScript language server]: ./pkg/server/#readme
 [Bracket Pair Colorizer 2]: https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2
 [static language description]: ./pkg/syntaxes/

@@ -1,17 +1,13 @@
-import { Range, Position } from 'vscode-languageserver/node'
 import { TextDocument } from 'vscode-languageserver-textdocument'
 import {
-  parseText, SourceType, Token, tokenTypes,
-  ParseError, ParseWarning, Node, Program
+  parseText, SourceType, Token, ParseError, ParseWarning, Node, Program
 } from 'oscript-parser'
 import { extname } from 'path'
 import { logWarning, logDebug } from '../utils/log'
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const { Identifier, Punctuator, KeywordOrIdentifier } = tokenTypes
-
 const sourceTypes: { [ext: string]: SourceType } = {
   '.e': 'script',
+  '.lxe': 'script',
   '.os': 'object',
   '.osx': 'dump'
 }
